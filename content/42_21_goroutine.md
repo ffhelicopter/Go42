@@ -1,11 +1,9 @@
 # <center>第二十一章 协程(goroutine)</center>
 
->Concurrency is about dealing with lots of things at once. 
-
->Parallelism is about doing lots of things at once.
+>Concurrency is about dealing with lots of things at once. <br>
+>Parallelism is about doing lots of things at once.<br>
 >
->并发： 指的是程序的逻辑结构。如果程序代码结构中的某些函数逻辑上可以同时运行，但物理上未必会同时运行。
-
+>并发： 指的是程序的逻辑结构。如果程序代码结构中的某些函数逻辑上可以同时运行，但物理上未必会同时运行。<br>
 >并行： 并行是指程序的运行状态。并行则指的就是在物理层面也就是使用了不同CPU在执行不同或者相同的任务。
 
 ## 21.1 并发
