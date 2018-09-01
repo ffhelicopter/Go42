@@ -1,0 +1,125 @@
+# <center>第二十一章 协程(goroutine)</center>
+
+>Concurrency is about dealing with lots of things at once. 
+>Parallelism is about doing lots of things at once.
+>
+>并发： 指的是程序的逻辑结构。如果程序代码结构中的某些函数逻辑上可以同时运行，但物理上未必会同时运行。
+>并行： 并行是指程序的运行状态。并行则指的就是在物理层面也就是使用了不同CPU在执行不同或者相同的任务。
+
+## 21.1 并发
+
+并发是在同一时间处理（dealing with）多件事情。并行是在同一时间做（doing）多件事情。并发的目的在于把当个 CPU 的利用率使用到最高。并行则需要多核 CPU 的支持。
+
+Go 语言从语言层面上就支持了并发，goroutine是Go语言提供的一种用户态线程，有时我们也称之为协程。所谓的协程，某种程度上也可以叫做轻量线程，它不由os，而由应用程序创建和管理，因此使用开销较低（一般为4K）。我们可以创建很多的goroutine，并且它们跑在同一个内核线程之上的时候，就需要一个调度器来维护这些goroutine，确保所有的goroutine都使用cpu，并且是尽可能公平的使用cpu资源。调度器的主要有4个重要部分，分别是M、G、P、Sched，前三个定义在runtime.h中，Sched定义在proc.c中。
+
+* M (work thread) 代表了系统线程OS Thread，由操作系统管理。
+
+* P (processor)    衔接M和G的调度上下文，它负责将等待执行的G与M对接。P的数量可以通过GOMAXPROCS()来设置，它其实也就代表了真正的并发度，即有多少个goroutine可以同时运行。
+
+* G (goroutine)    goroutine的实体，包括了调用栈，重要的调度信息，例如channel等。
+
+在操作系统的OS Thread和编程语言的User Thread之间，实际上存在3中线程对应模型，也就是：1:1，1:N，M:N。
+
+N:1 多个（N）用户线程始终在一个内核线程上跑，context上下文切换很快，但是无法真正的利用多核。 
+1:1 一个用户线程就只在一个内核线程上跑，这时可以利用多核，但是上下文切换很慢，切换效率很低。 
+M:N 多个goroutine在多个内核线程上跑，这个可以集齐上面两者的优势，但是无疑增加了调度的难度。
+
+M:N 综合两种方式（N:1，1:1）的优势。多个 goroutines 可以在多个 OS threads 上处理。既能快速切换上下文，也能利用多核的优势，而Go正是选择这种实现方式。
+
+Go 的goroutine是运行在虚拟CPU中的(通过runtime.GOMAXPROCS(1)所设定的虚拟CPU个数)。 虚拟CPU个数未必会和实际CPU个数相吻合。
+
+每个goroutine都会被一个特定的P(虚拟CPU)选定维护，而M(物理计算资源)每次挑选一个有效P，然后执行P中的goroutine。
+
+每个P会将自己所维护的goroutine放到一个G队列中，其中就包括了goroutine堆栈信息，是否可执行信息等等。
+
+默认情况下，P的数量与实际物理CPU的数量相等。当我们通过循环来创建goroutine时，goroutine会被分配到不同的G队列中。 而M的数量又不是唯一的，当M随机挑选P时，也就等同随机挑选了goroutine。
+
+所以，当我们碰到多个goroutine的执行顺序不是我们想象的顺序时就可以理解了，因为goroutine进入P管理的队列G是带有随机性的。
+
+P的数量由runtime.GOMAXPROCS(1)所设定，通常来说它是和内核数对应，例如在4Core的服务器上会启动4个线程。G会有很多个，每个P会将goroutine从一个就绪的队列中做Pop操作，为了减小锁的竞争，通常情况下每个P会负责一个队列。
+
+```Go
+runtime.NumCPU()        // 返回当前CPU内核数
+runtime.GOMAXPROCS(2)  // 设置运行时最大可执行CPU数
+runtime.NumGoroutine() // 当前正在运行的goroutine 数
+```
+P维护着这个队列（称之为runqueue），Go语言里，启动一个goroutine很容易：go function 就行，所以每有一个go语句被执行，runqueue队列就在其末尾加入一个goroutine，在下一个调度点，就从runqueue中取出一个goroutine执行。
+
+假如有两个M，即两个OS Thread线程，分别对应一个P，每一个P调度一个G队列。如此一来，就组成的goroutine运行时的基本结构：
+
+* 当有一个M返回时，它必须尝试取得一个P来运行goroutine，一般情况下，它会从其他的OS Thread线程那里窃取一个P过来，如果没有拿到，它就把goroutine放在一个global runqueue里，然后自己进入线程缓存里。
+
+* 如果某个P所分配的任务G很快就执行完了，这会导致多个队列存在不平衡，会从其他队列中截取一部分goroutine到P上进行调度。一般来说，如果P从其他的P那里要取任务的话，一般就取run queue的一半，这就确保了每个OS线程都能充分的使用。
+
+* 当一个OS Thread线程被阻塞时，P可以转而投奔另一个OS线程。
+
+
+下面是G、 M、 P的具体结构，这不是Go代码：
+
+```C
+struct  G
+{
+    uintptr stackguard0;// 用于栈保护，但可以设置为StackPreempt，用于实现抢占式调度
+    uintptr stackbase;  // 栈顶
+    Gobuf   sched;      // 执行上下文，G的暂停执行和恢复执行，都依靠它
+    uintptr stackguard; // 跟stackguard0一样，但它不会被设置为StackPreempt
+    uintptr stack0;     // 栈底
+    uintptr stacksize;  // 栈的大小
+    int16   status;     // G的六个状态
+    int64   goid;       // G的标识id
+    int8*   waitreason; // 当status==Gwaiting有用，等待的原因，可能是调用time.Sleep之类
+    G*  schedlink;      // 指向链表的下一个G
+    uintptr gopc;       // 创建此goroutine的Go语句的程序计数器PC，通过PC可以获得具体的函数和代码行数
+};
+struct P
+{
+    Lock;       // plan9 C的扩展语法，相当于Lock lock;
+    int32   id;  // P的标识id
+    uint32  status;     // P的四个状态
+    P*  link;       // 指向链表的下一个P
+    M*  m;      // 它当前绑定的M，Pidle状态下，该值为nil
+    MCache* mcache; // 内存池
+    // Grunnable状态的G队列
+    uint32  runqhead;
+    uint32  runqtail;
+    G*  runq[256];
+    // Gdead状态的G链表（通过G的schedlink）
+    // gfreecnt是链表上节点的个数
+    G*  gfree;
+    int32   gfreecnt;
+};
+struct  M
+{
+    G*  g0;     // M默认执行G
+    void    (*mstartfn)(void);  // OS线程执行的函数指针
+    G*  curg;       // 当前运行的G
+    P*  p;      // 当前关联的P，要是当前不执行G，可以为nil
+    P*  nextp;  // 即将要关联的P
+    int32   id; // M的标识id
+    M*  alllink;    // 加到allm，使其不被垃圾回收(GC)
+    M*  schedlink;  // 指向链表的下一个M
+};
+```
+
+## 21.2 goroutine
+在Go中，goroutine的使用很简单，直接在代码前加上关键字 go 即可。go关键字就是用来创建一个goroutine的，后面的代码块就是这个goroutine需要执行的代码逻辑。
+
+```Go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	for i := 1; i < 10; i++ {
+		go func(i int) {
+			fmt.Println(i)
+		}(i)
+	}
+	// 暂停一会，保证打印全部结束
+	time.Sleep(1e9)
+}
+```
+有关于goroutine 之间的通信以及goroutine与主线程的控制，我们后续通过channel、context以及锁来进一步说明。
