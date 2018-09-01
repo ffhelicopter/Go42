@@ -266,13 +266,13 @@ go tool pprof study.exe cpu.prof
 
 命令执行后会进入到：
 
-![gotooblock.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/gotooblock.png)
+![gotool2.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/gotool2.png)
 
 界面和前面两种使用net/http/pprof包 一样。我们可以通过go tool pprof 生svg，png或者是pdf文件。
 
 这是生成的png文件，和前面生成的png类似，前面我们生成的是block信息：
 
-
+![gotoolblock.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/gotoolblock.png)
 
 通过上面这三种情况的分析，我们可以知道，其实就是两种情况：go tool pprof 后面可以使用http://localhost:8080/debug/pprof/profile 这种url方式，也可以使用study.exe cpu.prof  这种文件方式来进行分析。可以根据你的项目情况灵活使用。
 
