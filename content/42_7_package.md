@@ -10,6 +10,7 @@
 package main表示一个可独立执行的程序，每个 Go 应用程序都包含一个名为 main 的包。package main包下可以有多个文件，但所有文件中只能有一个main()方法，main()方法代表程序入口。
 
 一个应用程序可以包含不同的包，而且即使你只使用 main 包也不必把所有的代码都写在一个巨大的文件里：你可以用一些较小的文件，并且在每个文件非注释的第一行都使用 package main 来指明这些文件都属于 main 包。如果你打算编译包名不是为 main 的源文件，如 pack1，编译后产生的对象文件将会是 pack1.a 而不是可执行程序。另外要注意的是，所有的包名都应该使用小写字母。当然，main包是不能在其他文档import的，编译器会报错：
+
 ```Go
 import "xx/xx" is a program, not an importable package。
 ```
@@ -20,7 +21,7 @@ import "xx/xx" is a program, not an importable package。
 
 import "fmt" 告诉 Go 编译器这个程序需要使用 fmt 包（的函数，或其他元素），fmt 包实现了格式化 IO（输入/输出）的函数。包名被封闭在半角双引号 "" 中。如果你打算从已编译的包中导入并加载公开声明的方法，不需要插入已编译包的源代码。
 
-** import 其实是导入目录**，而不是定义的package名字，虽然我们一般都会保持一致，但其实是可以随便定义目录名，只是使用时会很容易混乱，不建议这么做。
+<b>import 其实是导入目录</b>，而不是定义的package名字，虽然我们一般都会保持一致，但其实是可以随便定义目录名，只是使用时会很容易混乱，不建议这么做。
 
 例如：package big ，我们import  "math/big" ，其实是在src中的src/math目录。在代码中使用big.Int时，big指的才是Go文件中定义的package名字。
 
@@ -35,12 +36,17 @@ import "fmt" 告诉 Go 编译器这个程序需要使用 fmt 包（的函数，�
 导入包的路径的几种情况：
 
 * 第一种方式相对路径
+
+```Go
 import   "./module"   //当前文件同一目录的module目录， 此方式没什么用容易出错，不建议用
-
+```
 * 第二种方式绝对路径
-import  "LearnGo/init"  //加载Gopath/src/LearnGo/init模块，一般建议这样使用""
 
+```Go
+import  "LearnGo/init"  //加载Gopath/src/LearnGo/init模块，一般建议这样使用""
+```
 导入多个包的常见的方式是：
+
 ```Go
 import  (
 "fmt"
@@ -48,6 +54,7 @@ import  (
  )
 ```
 调用导入的包函数的一般方式：
+
 ```Go
 fmt.Println("Hello World!")
 ```
@@ -59,6 +66,7 @@ import( . "fmt" )
 
 * 别名操作
 别名操作顾名思义我们可以把包命名成另一个我们用起来容易记忆的名字。
+
 ```Go
 import(
     f "fmt"
@@ -68,6 +76,7 @@ import(
 
 * \_操作
 \_操作其实是引入该包，而不直接使用包里面的函数，而是调用了该包里面的init函数。
+
 ```Go
 import (
 	_ "github.com/revel/modules/testrunner/app"
@@ -127,10 +136,12 @@ import (
 
 ## 7.4 从 GitHub 安装包
 如果有人想安装您的远端项目到本地机器，打开终端并执行（ffhelicopter是我在 GitHub 上的用户名）：
+
 ```Go
 go get -u github.com/ffhelicopter/tmm
 ```
 这样现在这台机器上的其他 Go 应用程序也可以通过导入路径："github.com/ffhelicopter/tmm" 代替 "./ffhelicopter/tmm" 来使用。 也可以将其缩写为：import ind "github.com/ffhelicopter/tmm"；开发中一般这样操作：
+
 ```Go
 import "github.com/ffhelicopter/tmm"
 ```
@@ -141,7 +152,7 @@ Go 对包的版本管理做的不是很友好，不过现在有些第三方项�
 
 在包安装前的先决条件是要自动处理包自身依赖关系的安装。被依赖的包也会安装到子目录下，但是没有文档和示例：可以到网上浏览。
 
-** Go install 使用了 GoPATH 变量**
+<b>Go install 使用了 GoPATH 变量</b>
 
 假设你想使用https://github.com/gocolly/colly 这种托管在 Google Code、GitHub 和 Launchpad 等代码网站上的包。
 

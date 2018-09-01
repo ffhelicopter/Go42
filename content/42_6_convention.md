@@ -9,6 +9,7 @@
 
 因此，在导入一个外部包后，能够且只能够访问该包中导出的对象。
 假设在包 pack1 中我们有一个变量或函数叫做 Thing（以 T 开头，所以它能够被导出），那么在当前包中导入 pack1 包，Thing 就可以像面向对象语言那样使用点标记来调用：
+
 ```Go
 pack1.Thing //（pack1 在这里是不可以省略的）
 ```
@@ -28,12 +29,14 @@ pack1.Thing //（pack1 在这里是不可以省略的）
 Go 语言虽然看起来不使用分号作为语句的结束，但实际上这一过程是由编译器自动完成，因此才会引发像上面这样的错误。
 
 右大括号 } 需要被放在紧接着函数体的下一行。如果你的函数非常简短，你也可以将它们放在同一行：
+
 ```Go
 func Sum(a, b int) int { return a + b }
 ```
 对于大括号 {} 的使用规则在任何时候都是相同的（如：if 语句等）。
 
 因此符合规范的函数一般写成如下的形式：
+
 ```Go
 func functionName(parameter_list) (return_value_list) {
    …
@@ -63,6 +66,7 @@ func functionName(parameter_list) (return_value_list) {
 每一个包应该有相关注释，在 package 语句之前的块注释将被默认认为是这个包的文档说明，其中应该提供一些相关信息并对整体功能做简要的介绍。一个包可以分散在多个文件中，但是只需要在其中一个进行注释说明即可。当开发人员需要了解包的一些情况时，自然会用 Godoc 来显示包的文档说明，在首行的简要注释之后可以用成段的注释来进行更详细的说明，而不必拥挤在一起。
 
 另外，在多段注释之间应以空行分隔加以区分，单行注释的//后面空一格，方便godoc生成标准文档。
+
 ```Go
 // Copyright 2009 The Go Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
@@ -73,6 +77,7 @@ package hash
  ```
 
 几乎所有全局作用域的类型、常量、变量、函数和被导出的对象都应该有一个合理的注释。如果这种注释（称为文档注释）出现在函数前面，例如函数 Abcd，则要以 "Abcd..." 作为开头。
+
 ```Go
 // enterOrbit causes Superman to fly into low Earth orbit, a position
 // that presents several possibilities for planet salvation.

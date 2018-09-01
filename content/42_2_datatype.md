@@ -69,6 +69,7 @@ float32大约可以提供小数点后6位的精度，作为对比，float64可�
 
 ## 字符串：
 只读的Unicode字节序列，Go语言使用UTF-8格式编码Unicode字符，每个字符对应一个rune类型。一旦字符串变量赋值之后，内部的字符就不能修改，英文是一个字节，中文是三个字节。
+
 ```Go
 string转int：    int, err := strconv.Atoi(string)
 string转int64：  int64, err := strconv.ParseInt(string, 10, 64)
@@ -79,6 +80,7 @@ int64转string：  string := strconv.FormatInt(int64, 10)
 而一个range循环会在每次迭代时，解码一个UTF-8编码的符文。每次循环时，循环的索引是当前文字的起始位置，以字节为单位，代码点是它的值（rune）。
 
 使用range迭代字符串时，需要注意的是range迭代的是Unicode而不是字节。返回的两个值，第一个是被迭代的字符的UTF-8编码的第一个字节在字符串中的索引，第二个值的为对应的字符且类型为rune(实际就是表示unicode值的整形数据）。
+
 ```Go
 const s = "Go语言"
 for i, r := range s {
@@ -124,11 +126,13 @@ complex128 (64 位实数和虚数)<br>
 
 复数使用 re+imI 来表示，其中 re 代表实数部分，im 代表虚数部分，I 代表根号负 1。
 示例：
+
 ```Go
 var c1 complex64 = 5 + 10i
 fmt.Printf("The value is: %v", c1)// 输出： 5 + 10i
 ```
 如果 re 和 im 的类型均为 float32，那么类型为 complex64 的复数 c 可以通过以下方式来获得：
+
 ```Go
 c = complex(re, im)
 ```
