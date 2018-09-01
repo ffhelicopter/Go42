@@ -33,7 +33,7 @@ Windows系统下安装
 
 ![goversion.png](https://upload-images.jianshu.io/upload_images/6324013-5e10325d23d966c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-** 在本书中，所有代码和标准库的讲解都基于go1.11，还没有升级的用户请及时升级。**
+>在本书中，所有代码和标准库的讲解都基于go1.11，还没有升级的用户请及时升级。
 
 $GOPATH允许多个目录，当有多个目录时，请注意分隔符，多个目录的时候Windows是分号;
 当有多个$GOPATH时默认将go get获取的包存放在第一个目录下。
