@@ -13,7 +13,7 @@
 	* 3.1 变量以及声明
 	* 3.2 零值nil
 
-### [第四章 常量](content/42_4_const.md)
+* ### [第四章 常量](content/42_4_const.md)
 	* 4.1 常量以及iota
 
 * ### [第五章 作用域](content/42_5_scope.md)
