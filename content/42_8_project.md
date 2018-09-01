@@ -88,7 +88,7 @@ func NewWriter(w io.Writer) * Writer {
 在浏览器打开地址：http://localhost:6060
 
 然后你会看到本地的 Godoc 页面，从左到右一次显示出目录中的包。
-![goversion.png](https://upload-images.jianshu.io/upload_images/6324013-5e10325d23d966c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![godoc.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/godoc.png)
 
 
 ## 8.3 Go程序的编译
