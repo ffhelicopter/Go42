@@ -1,0 +1,209 @@
+# <center>第二十二章 通道(channel)</center>
+
+## 22.1 通道(channel)
+
+Go 奉行通过通信来共享内存，而不是共享内存来通信。所以，**channel 是goroutine之间互相通信的通道**，goroutine之间可以通过它发消息和接收消息。
+
+channel是进程内的通信方式，因此通过channel传递对象的过程和调用函数时的参数传递行为比较一致，比如也可以传递指针等。
+
+channel是类型相关的，一个channel只能传递一种类型的值，这个类型需要在声明channel时指定。
+
+默认的，信道的存消息和取消息都是阻塞的 (叫做无缓冲的信道)
+
+使用make来建立一个通道：
+
+```Go
+var channel chan int = make(chan int)
+// 或
+channel := make(chan int)
+```
+Go中channel可以是只读、只写、同时可读写的。
+
+```Go
+// 定义只读的channel
+read_only := make (<-chan int)
+ 
+// 定义只写的channel
+write_only := make (chan<- int)
+
+// 可同时读写
+read_write := make (chan int)
+```
+
+* chan<- 表示数据进入通道，要把数据写进通道，对于调用者就是输出。
+* <-chan 表示数据从通道出来，对于调用者就是得到通道的数据，当然就是输入。
+
+定义只读和只写的channel意义不大，一般用于在参数传递中：
+
+```Go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	c := make(chan int) // 不使用带缓冲区的channel
+	go send(c)
+	go recv(c)
+	time.Sleep(3 * time.Second)
+close(c)
+}
+
+// 只能向chan里写数据
+func send(c chan<- int) {
+	for i := 0; i < 10; i++ {
+
+		fmt.Println("send readey ", i)
+		c <- i
+		fmt.Println("send ", i)
+	}
+}
+
+// 只能取channel中的数据
+func recv(c <-chan int) {
+	for i := range c {
+		fmt.Println("received ", i)
+	}
+}
+```
+```Go
+程序输出：
+
+send readey  0
+send  0
+send readey  1
+received  0
+received  1
+send  1
+send readey  2
+send  2
+send readey  3
+received  2
+received  3
+send  3
+send readey  4
+send  4
+send readey  5
+received  4
+received  5
+send  5
+send readey  6
+send  6
+send readey  7
+received  6
+received  7
+send  7
+send readey  8
+send  8
+send readey  9
+received  8
+received  9
+send  9
+```
+运行结果上我们可以发现一个现象，往channel 发送数据后，这个数据如果没有取走，channel是阻塞的，也就是不能继续向channel 里面发送数据。因为上面代码中，我们没有指定channel 缓冲区的大小，默认是阻塞的。
+
+我们可以建立带缓冲区的 channel：
+
+```Go
+c := make(chan int, 1024)
+```
+我们把前面的程序修改下：
+
+```Go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	c := make(chan int, 10) // 使用带缓冲区的channel
+	go send(c)
+	go recv(c)
+	time.Sleep(3 * time.Second)
+	close(c)
+}
+
+// 只能向chan里写数据
+func send(c chan<- int) {
+	for i := 0; i < 10; i++ {
+
+		fmt.Println("send readey ", i)
+		c <- i
+		fmt.Println("send ", i)
+	}
+}
+
+// 只能取channel中的数据
+func recv(c <-chan int) {
+	for i := range c {
+		fmt.Println("received ", i)
+	}
+}
+```
+
+```Go
+程序输出：
+
+send readey  0
+send  0
+send readey  1
+send  1
+send readey  2
+send  2
+send readey  3
+send  3
+send readey  4
+send  4
+send readey  5
+received  0
+received  1
+received  2
+received  3
+received  4
+received  5
+send  5
+send readey  6
+send  6
+send readey  7
+send  7
+send readey  8
+send  8
+send readey  9
+send  9
+received  6
+received  7
+received  8
+received  9
+```
+
+从运行结果我们可以看到（每次执行顺序不一定相同，goroutine 运行导致的原因），带有缓冲区的channel，在缓冲区有数据而未填满前，读取不会出现阻塞的情况。
+
+
+* 无缓冲的通道（unbuffered channel）是指在接收前没有能力保存任何值的通道。
+
+这种类型的通道要求发送 goroutine 和接收 goroutine 同时准备好，才能完成发送和接收操作。如果两个goroutine没有同时准备好，通道会导致先执行发送或接收操作的 goroutine 阻塞等待。
+
+这种对通道进行发送和接收的交互行为本身就是同步的。
+
+* 有缓冲的通道（buffered channel）是一种在被接收前能存储一个或者多个值的通道。
+
+这种类型的通道并不强制要求 goroutine 之间必须同时完成发送和接收。通道会阻塞发送和接收动作的条件也会不同。只有在通道中没有要接收的值时，接收动作才会阻塞。只有在通道没有可用缓冲区容纳被发送的值时，发送动作才会阻塞。
+
+这导致有缓冲的通道和无缓冲的通道之间的一个很大的不同：无缓冲的通道保证进行发送和接收的 goroutine 会在同一时间进行数据交换；有缓冲的通道没有这种保证。
+
+如果给定了一个缓冲区容量，通道就是异步的。只要缓冲区有未使用空间用于发送数据，或还包含可以接收的数据，那么其通信就会无阻塞地进行。
+
+可以通过内置的close函数来关闭channel实现。
+
+* channel不像文件一样需要经常去关闭，只有当你确实没有任何发送数据了，或者你想显式的结束range循环之类的，才去关闭channel；
+
+* 关闭channel后，无法向channel 再发送数据(引发 panic 错误后导致接收立即返回零值)；
+
+* 关闭channel后，可以继续向channel接收数据，不能继续发送数据；
+
+* 对于nil channel，无论收发都会被阻塞。
+
