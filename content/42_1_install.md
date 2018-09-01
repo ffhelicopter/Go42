@@ -30,6 +30,7 @@ Windows系统下安装
 设置$GOPATH=D:\goproject以及 $GOROOT=D:\Go\ 。
 
 打开CMD，输入 go version，如下显示说明go运行环境已经安装成功：
+
 ![goversion.png](https://upload-images.jianshu.io/upload_images/6324013-5e10325d23d966c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ** 在本书中，所有代码和标准库的讲解都基于go1.11，还没有升级的用户请及时升级。**
