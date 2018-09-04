@@ -1,4 +1,6 @@
-# <center>第十八章 Struct 结构体</center>
+# <center>《Go语言四十二章经》第十八章 Struct 结构体</center>
+
+作者：李骁
 
 ## 18.1结构体(struct)
 Go 通过结构体的形式支持用户自定义类型，或者叫定制类型。

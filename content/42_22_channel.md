@@ -1,4 +1,6 @@
-# <center>第二十二章 通道(channel)</center>
+# <center>《Go语言四十二章经》第二十二章 通道(channel)</center>
+
+作者：李骁
 
 ## 22.1 通道(channel)
 

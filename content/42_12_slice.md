@@ -1,4 +1,6 @@
-# <center>第十二章 切片(slice)</center>
+# <center>《Go语言四十二章经》第十二章 切片(slice)</center>
+
+作者：李骁
 
 ## 12.1 切片(slice)
 

@@ -1,4 +1,6 @@
-# <center>第十章 string</center>
+# <center>《Go语言四十二章经》第十章 string</center>
+
+作者：李骁
 
 ## 10.1 有关string
 Go 语言中的string类型存储的字符串是不可变的， 如果要修改string内容需要将string转换为[]byte或[]rune，并且修改后的string内容是重新分配的。

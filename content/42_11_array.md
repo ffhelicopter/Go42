@@ -1,4 +1,6 @@
-# <center>第十一章 数组(Array)</center>
+# <center>《Go语言四十二章经》第十一章 数组(Array)</center>
+
+作者：李骁
 
 ## 11.1 数组(Array)
 
