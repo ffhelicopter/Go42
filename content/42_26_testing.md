@@ -278,4 +278,4 @@ go tool pprof study.exe cpu.prof
 
 通过上面这三种情况的分析，我们可以知道，其实就是两种情况：go tool pprof 后面可以使用http://localhost:8080/debug/pprof/profile 这种url方式，也可以使用study.exe cpu.prof  这种文件方式来进行分析。可以根据你的项目情况灵活使用。
 
-有关pprof，我们就讲这么多，在实际项目有，我们多使用就会发现这个工具还是蛮有用处的。
+有关pprof，我们就讲这么多，在实际项目中，我们多使用就会发现这个工具还是蛮有用处的。

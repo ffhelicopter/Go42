@@ -16,6 +16,8 @@ Go语言支持以下系统：
 * Windows
 
 安装包下载地址为：https://golang.org/dl/
+国内可以正常下载地址：https://golang.google.cn/dl/
+
 
 UNIX/Linux/Mac OS X，和FreeBSD系统下使用源码安装方法：
 
