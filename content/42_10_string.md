@@ -72,7 +72,7 @@ fmt.Print(buffer.String())
 ```
 这个比较理想，可以当成可变字符使用，对内存的增长也有优化，如果能预估字符串的长度，还可以用 buffer.Grow() 接口来设置 capacity。
 
-* trings.Builder
+* strings.Builder
 
 ```Go
 var b1 strings.Builder
