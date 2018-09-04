@@ -15,7 +15,7 @@ Go 项目目录下一般有三个子目录：
 
 我们重点要关注的其实就是src文件夹中的目录结构。
 
-为了进行一个项目，我们会在$GoPATH目录下的src目录中，新建立一个项目的主要目录，比如我写的一个WEB项目《使用gin快速搭建WEB站点以及提供RestFull接口》。
+为了进行一个项目，我们会在GoPATH目录下的src目录中，新建立一个项目的主要目录，比如我写的一个WEB项目《使用gin快速搭建WEB站点以及提供RestFull接口》。
 https://github.com/ffhelicopter/tmm
 项目主要目录“tmm”： $GoPATH/src/github.com/ffhelicopter/tmm
 在这个目录(tmm)下面还有其他目录，分别放置了其他代码，大概结构如下：
