@@ -42,3 +42,9 @@ var arrAge = [5]int{18, 20, 15, 22, 16}
 var arrLazy = [...]int{5, 6, 7, 8, 22}
 var arrKeyValue = [5]string{3: "Chris", 4: "Ron"}
 ```
+
+>本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
+>本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963
+>
+>虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
+>联系邮箱：roteman@163.com
