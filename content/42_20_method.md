@@ -186,11 +186,15 @@ First 3 chars: 201
 ```
 
 ## 20.2 函数和方法的区别
+
 函数将变量作为参数：Function1(recv)
+
 方法在变量上被调用：recv.Method1()
+
 在接收器是指针时，方法可以改变接收器的值（或状态），这点函数也可以做到（当参数作为指针传递，即通过引用调用时，函数也可以改变参数的状态）。
 
 接收器必须有一个显式的名字，这个名字必须在方法中被使用。
+
 receiver_type 叫做 （接收器）基本类型，这个类型必须在和方法同样的包中被声明。
 
 在 Go 中，（接收器）类型关联的方法不写在类型结构里面，就像类那样；耦合更加宽松；类型和方法之间的关联由接收器来建立。
@@ -201,6 +205,7 @@ receiver_type 叫做 （接收器）基本类型，这个类型必须在和方�
 * 表示（数据）和行为（方法）是独立的。
 
 ## 20.3 指针或值方法
+
 鉴于性能的原因，recv 最常见的是一个指向 receiver_type 的指针（因为我们不想要一个实例的拷贝，如果按值调用的话就会是这样），特别是在 receiver 类型是结构体时，就更是如此了。
 
 >如果想要方法改变接收器的数据，就在接收器的指针类型上定义该方法；否则，就在普通的值类型上定义方法；分别叫做指针方法，值方法。
@@ -312,6 +317,7 @@ M2调用后： name2
 ```Go
 *T 类型的变量也是拥有这两个方法的。
 ```
+
 从上面我们可以得知：无论你声明方法的接收器是指针接收器还是值接收器，Go都可以帮你隐式转换为正确的值供方法使用。
 
 无论是T类型变量还是*T类型变量，都拥有值方法或指针方法。但如果是接口变量呢，那么这两个方法都可以调用吗？
@@ -502,15 +508,28 @@ M2
 当一个匿名类型被内嵌在结构体中时，匿名类型的可见方法也同样被内嵌，这在效果上等同于外层类型继承了这些方法：将父类型放在子类型中来实现亚型。这个机制提供了一种简单的方式来模拟经典面向对象语言中的子类和继承相关的效果。
 
 当我们嵌入一个类型，这个类型的方法就变成了外部类型的方法，但是当它被调用时，方法的接收器是内部类型(嵌入类型)，而非外部类型。
-
-因此嵌入类型的名字充当着字段名，同时嵌入类型作为内部类型存在，我们可以使用下面的调用方法：
-
 ```Go
-admin.User.Notify()
+type People struct {
+	Age    int
+	gender string
+	Name   string
+}
+
+type OtherPeople struct {
+	People
+}
+
+func (p People) PeInfo() {
+	fmt.Println("People ", p.Name, ": ", p.Age, "岁, 性别:", p.gender)
+}
+```
+因此嵌入类型的名字充当着字段名，同时嵌入类型作为内部类型存在，我们可以使用下面的调用方法：
+```Go
+OtherPeople.People.PeInfo()
 ```
 这儿我们通过类型名称来访问内部类型的字段和方法。然而，这些字段和方法也同样被提升到了外部类型：
 ```Go
-admin.Notify()
+OtherPeople.PeInfo()
 ```
 下面是 Go 语言中内嵌类型方法集提升的规则：
 
@@ -528,10 +547,110 @@ admin.Notify()
 
     这条规则说的是当我们嵌入一个类型的指针，嵌入类型的接收器为值类型或指针类型的方法将被提升，可以被外部类型的值或者指针调用。
 
-* **这就是语言规范里方法提升中仅有的三条规则，根据这个推导出一条规则：**
+这就是语言规范里方法提升中仅有的三条规则，根据这个推导出一条规则：
 
-    S 包含一个匿名字段 T，S 的方法集不包含接收器为 *T 的方法提升。
+* **如果 S 包含一个匿名字段 T，S 的方法集不包含接收器为 \*T 的方法提升。**
 
 这条规则说的是当我们嵌入一个类型，嵌入类型的接收器为指针的方法将不能被外部类型的值访问。这也是跟我们陈述的接口规则一致。
+
+简单地说也是两条规则：
+
+```Go
+规则一：如果S包含嵌入字段T，则S和*S的方法集都包括具有接收方T的提升方法。*S的方法集还包括具有接收方*T的提升方法。
+
+规则二：如果S包含嵌入字段*T，则S和*S的方法集都包括具有接收器T或*T的提升方法。
+```
+我们通过下面代码验证下：
+```Go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+type People struct {
+	Age    int
+	gender string
+	Name   string
+}
+
+type OtherPeople struct {
+	People
+}
+
+type NewPeople People
+
+func (p *NewPeople) PeName(pname string) {
+	fmt.Println("pold name:", p.Name)
+	p.Name = pname
+	fmt.Println("pnew name:", p.Name)
+}
+
+func (p NewPeople) PeInfo() {
+	fmt.Println("NewPeople ", p.Name, ": ", p.Age, "岁, 性别:", p.gender)
+}
+
+func (p *People) PeName(pname string) {
+	fmt.Println("old name:", p.Name)
+	p.Name = pname
+	fmt.Println("new name:", p.Name)
+}
+
+func (p People) PeInfo() {
+	fmt.Println("People ", p.Name, ": ", p.Age, "岁, 性别:", p.gender)
+}
+
+func methodSet(a interface{}) {
+	t := reflect.TypeOf(a)
+	for i, n := 0, t.NumMethod(); i < n; i++ {
+		m := t.Method(i)
+		fmt.Println(m.Name, m.Type)
+	}
+}
+
+func main() {
+	p := OtherPeople{People{26, "Male", "张三"}}
+	p.PeInfo()
+	p.PeName("Joke")
+
+	methodSet(p) // T方法提升
+
+	methodSet(&p) // *T和T方法提升
+
+	pp := NewPeople{42, "Male", "李四"}
+	pp.PeInfo()
+	pp.PeName("Haw")
+
+	methodSet(&pp)
+}
+```
+```Go
+程序输出：
+
+People  张三 :  26 岁, 性别: Male
+old name: 张三
+new name: Joke
+PeInfo func(main.OtherPeople)
+PeInfo func(*main.OtherPeople)
+PeName func(*main.OtherPeople, string)
+NewPeople  李四 :  42 岁, 性别: Male
+pold name: 李四
+pnew name: Haw
+PeInfo func(*main.NewPeople)
+PeName func(*main.NewPeople, string)
+```
+我们可以从上面输出看到，*OtherPeople 下有两个方法，而OtherPeople只有一个方法。
+
+但是在Go中存在一个语法糖，比如上面代码：
+```Go
+	p.PeInfo()
+	p.PeName("Joke")
+
+	methodSet(p) // T方法提升
+```
+虽然P 只有一个方法：PeInfo func(main.OtherPeople)，但我们依然可以调用p.PeName("Joke")。
+
+这里Go自动转为(&p).PeName("Joke")，让我们以为p有两个方法，其实这里p只有一个方法。这就是上面所谓的几条法则，初学者留意下这个规则。
 
 结合前面的自定义类型赋值接口类型的规则，与内嵌类型的方法集提升规则这两个大规则一定要弄清楚，只有彻底弄清楚这些规则，我们在阅读和写代码时才能做到气闲神定。
