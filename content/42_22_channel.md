@@ -8,7 +8,7 @@ Go 奉行通过通信来共享内存，而不是共享内存来通信。所以�
 
 channel是进程内的通信方式，因此通过channel传递对象的过程和调用函数时的参数传递行为比较一致，比如也可以传递指针等。
 
-channel是类型相关的，一个channel只能传递一种类型的值，这个类型需要在声明channel时指定。
+channel是类型相关的，一个channel只能传递（发送或接受 | send or receive）一种类型的值，这个类型需要在声明channel时指定。
 
 默认的，信道的存消息和取消息都是阻塞的 (叫做无缓冲的信道)
 
@@ -19,23 +19,23 @@ var channel chan int = make(chan int)
 // 或
 channel := make(chan int)
 ```
-Go中channel可以是只读、只写、同时可读写的。
+Go中channel可以是发送（send）、接收（receive）、同时发送（send）和接收（receive）。
 
 ```Go
-// 定义只读的channel
-read_only := make (<-chan int)
+// 定义接收的channel
+receive_only := make (<-chan int)
  
-// 定义只写的channel
-write_only := make (chan<- int)
+// 定义发送的channel
+send_only := make (chan<- int)
 
-// 可同时读写
-read_write := make (chan int)
+// 可同时发送接收
+send_receive := make (chan int)
 ```
 
-* chan<- 表示数据进入通道，要把数据写进通道，对于调用者就是输出。
-* <-chan 表示数据从通道出来，对于调用者就是得到通道的数据，当然就是输入。
+* chan<- 表示数据进入通道，要把数据写进通道，对于调用者就是发送。
+* <-chan 表示数据从通道出来，对于调用者就是得到通道的数据，当然就是接收。
 
-定义只读和只写的channel意义不大，一般用于在参数传递中：
+定义只发送或只接收的channel意义不大，一般用于在参数传递中：
 
 ```Go
 package main
@@ -53,7 +53,7 @@ func main() {
 close(c)
 }
 
-// 只能向chan里写数据
+// 只能向chan里send数据
 func send(c chan<- int) {
 	for i := 0; i < 10; i++ {
 
@@ -63,7 +63,7 @@ func send(c chan<- int) {
 	}
 }
 
-// 只能取channel中的数据
+// 只能接收channel中的数据
 func recv(c <-chan int) {
 	for i := range c {
 		fmt.Println("received ", i)
@@ -129,7 +129,7 @@ func main() {
 	close(c)
 }
 
-// 只能向chan里写数据
+// 只能向chan里send发送数据
 func send(c chan<- int) {
 	for i := 0; i < 10; i++ {
 
@@ -139,7 +139,7 @@ func send(c chan<- int) {
 	}
 }
 
-// 只能取channel中的数据
+// 只能接收channel中的数据
 func recv(c <-chan int) {
 	for i := range c {
 		fmt.Println("received ", i)
