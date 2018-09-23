@@ -19,7 +19,7 @@ import (
 )
 ```
 
-    通常来说，不应该直接使用驱动所提供的方法，而是应该使用 sql.DB，因此在导入 mysql 驱动时，这里使用了匿名导入的方式(在包路径前添加 _)，当导入了一个数据库驱动后，此驱动会自行初始化并注册自己到Go的database/sql上下文中，因此我们就可以通过 database/sql 包提供的方法访问数据库了。
+通常来说，不应该直接使用驱动所提供的方法，而是应该使用 sql.DB，因此在导入 mysql 驱动时，这里使用了匿名导入的方式(在包路径前添加 _)，当导入了一个数据库驱动后，此驱动会自行初始化并注册自己到Go的database/sql上下文中，因此我们就可以通过 database/sql 包提供的方法访问数据库了。
 
 ## 39.2 Mysql数据库操作
 
@@ -116,8 +116,9 @@ func (dbw *DbWorker) insertData() {
 	defer stmt.Close()
 	
 	ret,  err := stmt.Exec("栏目1",  time.Now().Unix(),  10)
+
 	// 通过返回的ret可以进一步查询本次插入数据影响的行数
-// RowsAffected和最后插入的Id(如果数据库支持查询最后插入Id)
+	// RowsAffected和最后插入的Id(如果数据库支持查询最后插入Id)
 	if err != nil {
 		fmt.Printf("insert data error: %v\n",  err)
 		return
@@ -139,7 +140,7 @@ func (dbw *DbWorker) deleteData() {
 	stmt,  err := dbw.Db.Prepare(`DELETE FROM t_article_cate WHERE cid=?`)
 	ret,  err := stmt.Exec(122)
 	// 通过返回的ret可以进一步查询本次插入数据影响的行数RowsAffected和
-// 最后插入的Id(如果数据库支持查询最后插入Id).
+	// 最后插入的Id(如果数据库支持查询最后插入Id).
 	if err != nil {
 		fmt.Printf("insert data error: %v\n",  err)
 		return
