@@ -99,7 +99,7 @@ func protect(g func()) {
 
 * 规则一 当defer被声明时，其参数就会被实时解析
 * 规则二 defer执行顺序为先进后出
-* 规则三 defer可以读取有名返回值
+* 规则三 defer可以读取有名返回值，也就是可以改变有名返回参数的值。
 
 必须要先声明defer，否则不能捕获到panic异常。recover() 的调用仅当它在 defer 函数中被直接调用时才有效。
 
@@ -142,6 +142,111 @@ func main() {
 
 }
 //输出:  hello  world  !!!
+```
+
+上面讲了两条规则，第三条规则其实也不难理解，只要记住是可以改变有名返回值：
+
+这是由于在Go语言中，return 语句不是原子操作，最先是所有结果值在进入函数时都会初始化为其类型的零值（姑且称为ret赋值），然后执行defer命令,最后才是return操作。如果是有名返回值，返回值变量其实可视为是引用赋值，可以能被defer修改。而在匿名返回值时，给ret的值相当于拷贝赋值，defer命令时不能直接修改。
+
+```Go
+func fun1() (i int)
+```
+上面函数签名中的 i 就是有名返回值，如果fun1()中定义了 defer 代码块，是可以改变返回值 i 的，函数返回语句return i 可以简写为 return 。
+
+这里综合了一下，在下面这个例子里列举了几种情况，可以好好琢磨下；
+
+```Go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println("=========================")
+	fmt.Println("return:", fun1())
+
+	fmt.Println("=========================")
+	fmt.Println("return:", fun2())
+	fmt.Println("=========================")
+
+	fmt.Println("return:", fun3())
+	fmt.Println("=========================")
+
+	fmt.Println("return:", fun4())
+}
+
+func fun1() (i int) {
+	defer func() {
+		i++
+		fmt.Println("defer2:", i) // 打印结果为 defer: 2
+	}()
+
+	// 规则二 defer执行顺序为先进后出
+
+	defer func() {
+		i++
+		fmt.Println("defer1:", i) // 打印结果为 defer: 1
+	}()
+
+	// 规则三 defer可以读取有名返回值（函数指定了返回参数名）
+	return 0 //实际为2 。  换句话说其实怎么写都是直接 return 的效果
+}
+
+func fun2() int {
+	var i int
+	defer func() {
+		i++
+		fmt.Println("defer2:", i) // 打印结果为 defer: 2
+	}()
+
+	defer func() {
+		i++
+		fmt.Println("defer1:", i) // 打印结果为 defer: 1
+	}()
+	return i
+}
+
+func fun3() (r int) {
+	t := 5
+	defer func() {
+		t = t + 5
+		fmt.Println(t)
+	}()
+	return t
+}
+
+func fun4() int {
+	i := 8
+	// 规则一 当defer被声明时，其参数就会被实时解析
+	defer func(i int) {
+		i = 99
+		fmt.Println(i)
+	}(i)
+	i = 19
+	return i
+}
+```
+
+下面是输出，在有名返回值情况下，return语句怎么写都改变不了最终返回的实际值，在上面fun1() (i int) 中，return 100和return 0 没有任何作用，返回的还是i的实际值，所以我们一般直接写为return。这点要注意，有时函数可能返回非我们希望的值，所以改为匿名返回也是一种办法。
+
+```Go
+程序输出：
+=========================
+defer1: 1
+defer2: 2
+return: 2
+=========================
+defer1: 1
+defer2: 2
+return: 0
+=========================
+10
+return: 5
+=========================
+99
+return: 19
+
 ```
 
 使用defer计算函数执行时间
