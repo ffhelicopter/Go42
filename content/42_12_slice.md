@@ -60,7 +60,7 @@ v := make([]int, 10, 50)
 ```Go
 a[low : high : max]
 ```
-max-high的结果表示容量。
+max-low的结果表示容量。
 
 ```Go
 a := [5]int{1, 2, 3, 4, 5}
