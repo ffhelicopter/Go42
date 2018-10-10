@@ -37,6 +37,7 @@ t = new(T)
 声明 var t T 也会给 t 分配内存，并零值化内存，但是这个时候 t 是类型T。在这两种方式中，t 通常被称做类型 T 的一个实例（instance）或对象（object）。
 
 同样的，使用点号符可以获取结构体字段的值：structname.fieldname。
+
 在 Go 语言中这叫 选择器（selector）。无论变量是一个结构体类型还是一个结构体类型指针，都使用同样的 选择器符（selector-notation） 来引用结构体的字段：
 
 ```Go
