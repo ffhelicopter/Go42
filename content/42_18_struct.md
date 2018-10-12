@@ -26,12 +26,14 @@ type identifier struct {
 结构体里的字段都有 名字，像 field1、field2 等，如果字段在代码中从来也不会被用到，那么可以命名它为 _。
 
 **使用 new**
+
 使用 new 函数给一个新的结构体变量分配内存，它返回指向已分配内存的指针：var t *T = new(T)，如果需要可以把这条语句放在不同的行（比如定义是包范围的，但是分配却没有必要在开始就做）。
 
 ```Go
 var t *T
 t = new(T)
 ```
+
 写这条语句的惯用方法是：t := new(T)，变量 t 是一个指向 T的指针，此时结构体字段的值是它们所属类型的零值。
 
 声明 var t T 也会给 t 分配内存，并零值化内存，但是这个时候 t 是类型T。在这两种方式中，t 通常被称做类型 T 的一个实例（instance）或对象（object）。
@@ -62,14 +64,14 @@ intr := Interval{end:5}           (C)
 初始化一个结构体实例（一个结构体字面量：struct-literal）的更简短和惯用的方式如下：
 
 ```Go
-    ms := &struct1{10, 15.5, "Chris"}
-    // 此时ms的类型是 *struct1
+ms := &struct1{10, 15.5, "Chris"}
+// 此时ms的类型是 *struct1
 ```
 或者：
 
 ```Go
-    var ms struct1
-    ms = struct1{10, 15.5, "Chris"}
+var ms struct1
+ms = struct1{10, 15.5, "Chris"}
 ```
 
 **混合字面量语法**（composite literal syntax）
