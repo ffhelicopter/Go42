@@ -110,10 +110,12 @@
 * ### [第二十二章 通道(channel)](content/42_22_channel.md)
 	* 22.1 通道(channel)
 
-* ### [第二十三章 锁](content/42_23_sync.md)
+* ### [第二十三章 同步与锁](content/42_23_sync.md)
 	* 23.1 同步锁
 	* 23.2 读写锁
 	* 23.3 sync.WaitGroup
+	* 23.4 sync.Once
+	* 23.5 sync.Map
 
 * ### [第二十四章 指针和内存](content/42_24_pointer.md)
 	* 24.1 指针
