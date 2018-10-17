@@ -1,4 +1,4 @@
-# <center>《Go语言四十二章经》第十五章 错误处理</center>
+《Go语言四十二章经》第十五章 错误处理
 
 作者：李骁
 
@@ -25,6 +25,9 @@ if f < 0 {
 ```
 
 ## 15.2 Panic
+
+在Go语言中 panic 是一个内置函数，用来表示非常严重的不可恢复的错误。必须要先声明defer，否则不能捕获到panic异常。普通函数在执行的时候发生panic了，则开始运行defer（如有），defer处理完再返回。
+
 在多层嵌套的函数调用中调用 panic，可以马上中止当前函数的执行，所有的 defer 语句都会保证执行并把控制权交还给接收到 panic 的函数调用者。这样向上冒泡直到最顶层，并执行（每层的） defer，在栈顶处程序崩溃，并在命令行中用传给 panic 的值报告错误情况：这个终止过程就是 panicking。
 
 标准库中有许多包含 Must 前缀的函数，像 regexp.MustComplie 和 template.Must；当正则表达式或模板中转入的转换字符串导致错误时，这些函数会 panic。
@@ -101,16 +104,7 @@ func protect(g func()) {
 * 规则二 defer执行顺序为先进后出
 * 规则三 defer可以读取有名返回值，也就是可以改变有名返回参数的值。
 
-必须要先声明defer，否则不能捕获到panic异常。recover() 的调用仅当它在 defer 函数中被直接调用时才有效。
-
-panic 是用来表示非常严重的不可恢复的错误的。在Go语言中这是一个内置函数，接收一个interface{}类型的值（也就是任何值了）作为参数。
-
-函数执行的时候panic了，函数不往下走，开始运行defer，defer处理完再返回。这时候（defer的时候），recover内置函数可以捕获到当前的panic（如果有的话），被捕获到的panic就不会向上传递了。
-recover之后，逻辑并不会恢复到panic那个点去，函数还是会在defer之后返回。
-
-大致过程：
-
-Panic--->defer-->recover
+这三个规则用起来需要注意下，避免出现代码陷阱，下面是具体代码：
 
 ```Go
 // 规则一，当defer被声明时，其参数就会被实时解析
@@ -190,7 +184,8 @@ func fun1() (i int) {
 	}()
 
 	// 规则三 defer可以读取有名返回值（函数指定了返回参数名）
-	return 0 //实际为2 。  换句话说其实怎么写都是直接 return 的效果
+
+	return 0 //这里实际结果为2。如果是return 100呢
 }
 
 func fun2() int {
@@ -228,7 +223,11 @@ func fun4() int {
 }
 ```
 
-下面是输出，在有名返回值情况下，return语句怎么写都改变不了最终返回的实际值，在上面fun1() (i int) 中，return 100和return 0 没有任何作用，返回的还是i的实际值，所以我们一般直接写为return。这点要注意，有时函数可能返回非我们希望的值，所以改为匿名返回也是一种办法。
+在上面fun1() (i int)有名返回值情况下，return最终返回的实际值和期望的return 0有较大出入。因为在上面fun1() (i int) 中，如果return 100或return 0 ，这样的区别在于i的值实际上分别是100或0。而在上面中，如果return 100，则因为改变了有名返回值i，而defer可以读取有名返回值，所以返回值最终为102，而defer1打印101，defer打印102。因此我们一般直接写为return。
+
+这点要注意，有时函数可能返回非我们希望的值，所以改为匿名返回也是一种办法。具体请看下面输出。
+
+
 
 ```Go
 程序输出：
@@ -280,3 +279,9 @@ end := time.Now()
 delta := end.Sub(start)
 fmt.Printf("longCalculation took this amount of time: %s\n", delta)
 ```
+
+>本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
+>本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963
+>
+>虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
+>联系邮箱：roteman@163.com
