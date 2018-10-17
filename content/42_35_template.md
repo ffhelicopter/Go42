@@ -39,7 +39,7 @@ type Book struct {
 }
 
 func main() {
-	Data := []Book{{"《三国演义》", 19.82}, {"《儒林外史》", 99.09}, {"《史记》", 26.89}}
+	Data := []Book{ {"《三国演义》", 19.82}, {"《儒林外史》", 99.09}, {"《史记》", 26.89} }
 	if err := report.Execute(os.Stdout, Data); err != nil {
 		log.Fatal(err)
 	}
@@ -86,7 +86,7 @@ type Book struct {
 }
 
 func main() {
-	Data := []Book{{"《三国演义》", 19.82}, {"《儒林外史》", 99.09}, {"《史记》", 26.89}}
+	Data := []Book{ {"《三国演义》", 19.82}, {"《儒林外史》", 99.09}, {"《史记》", 26.89} }
 	if err := report.Execute(os.Stdout, Data); err != nil {
 		log.Fatal(err)
 	}
