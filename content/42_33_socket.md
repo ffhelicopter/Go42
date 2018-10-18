@@ -1,4 +1,4 @@
-# <center>《Go语言四十二章经》第三十三章 Socket网络</center>
+# 《Go语言四十二章经》第三十三章 Socket网络
 
 作者：李骁
 

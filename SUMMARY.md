@@ -186,7 +186,7 @@
 	* 37.1 context包
 	* 37.2 context应用
 
-* ### [第三十八章 Json数据格式](content/42_38_json.md)
+* ### [第三十八章 数据编码(encoding)](content/42_38_json.md)
 	* 38.1 序列化与反序列化
 	* 38.2 Json格式处理
 	* 38.3 XML 数据格式
