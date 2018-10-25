@@ -139,3 +139,11 @@ fmt.Printf("The value is: %v", c1)// 输出： 5 + 10i
 c = complex(re, im)
 ```
 函数 real(c) 和 imag(c) 可以分别获得相应的实数和虚数部分。
+
+
+
+>本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
+>本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963
+>
+>虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
+>联系邮箱：roteman@163.com

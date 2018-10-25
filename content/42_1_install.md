@@ -1,4 +1,4 @@
-# <center>《Go语言四十二章经》第一章 Go安装与运行</center>
+《Go语言四十二章经》第一章 Go安装与运行
 
 作者：李骁
 
@@ -79,6 +79,7 @@ LiteIDE是一款开源、跨平台的轻量级 Go 语言集成开发环境（IDE
 
 下载地址：http://sourceforge.net/projects/liteide/files/
 源码地址：https://github.com/visualfc/liteide
+
 
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963

@@ -42,8 +42,9 @@
 	* 9.3 几个特殊运算符
 
 * ### [第十章 string](content/42_10_string.md)
-	* 10.1 有关string
+	* 10.1 字符串介绍
 	* 10.2 字符串拼接
+	* 10.3 有关string处理
 
 * ### [第十一章 数组(Array)](content/42_11_array.md)
 	* 11.1 数组(Array)
@@ -163,7 +164,7 @@
 	* 33.1 Socket基础知识
 	* 33.2 TCP 与 UDP 
 
-* ### [第三十四章 命令行 flag 包 ](content/42_34_flag.md)
+* ### [第三十四章 命令行flag包 ](content/42_34_flag.md)
 	* 34.1 命令行
 	* 34.2 flag包
 
@@ -186,10 +187,10 @@
 	* 37.1 context包
 	* 37.2 context应用
 
-* ### [第三十八章 数据编码(encoding)](content/42_38_json.md)
+* ### [第三十八章 数据序列化](content/42_38_json.md)
 	* 38.1 序列化与反序列化
-	* 38.2 Json格式处理
-	* 38.3 XML 数据格式
+	* 38.2 json数据格式
+	* 38.3 Protocol Buffer数据格式
 	* 38.4 用 Gob 传输数据
 
 * ### [第三十九章 Mysql数据库](content/42_39_mysql.md)
