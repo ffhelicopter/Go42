@@ -1,4 +1,4 @@
-# <center>《Go语言四十二章经》第二十六章 测试</center>
+# 《Go语言四十二章经》第二十六章 测试
 
 作者：李骁
 
@@ -279,3 +279,11 @@ go tool pprof study.exe cpu.prof
 通过上面这三种情况的分析，我们可以知道，其实就是两种情况：go tool pprof 后面可以使用http://localhost:8080/debug/pprof/profile 这种url方式，也可以使用study.exe cpu.prof  这种文件方式来进行分析。可以根据你的项目情况灵活使用。
 
 有关pprof，我们就讲这么多，在实际项目中，我们多使用就会发现这个工具还是蛮有用处的。
+
+
+
+>本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
+>本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963
+>
+>虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
+>联系邮箱：roteman@163.com

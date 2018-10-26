@@ -1,4 +1,4 @@
-# <center>《Go语言四十二章经》第二十四章 指针和内存</center>
+# 《Go语言四十二章经》第二十四章 指针和内存
 
 作者：李骁
 
@@ -131,3 +131,10 @@ runtime.SetFinalizer(obj, func(obj *typeObj))
 func(obj *typeObj) 需要一个 typeObj 类型的指针参数 obj，特殊操作会在它上面执行。func 也可以是一个匿名函数。
 
 在对象被 GC 进程选中并从内存中移除以前，SetFinalizer 都不会执行，即使程序正常结束或者发生错误。
+
+
+>本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
+>本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963
+>
+>虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
+>联系邮箱：roteman@163.com

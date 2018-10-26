@@ -149,3 +149,10 @@ Review 3: Between the Buried and Me - Automata II
 Review 4: Chelsea Grin - Eternal Nightmare
 ```
 Colly + goquery 是抓取网络内容的利器，使用上极其方便。如今动态渲染的页面越来越多，爬虫们或多或少都需要用到headless browser来渲染待爬取的页面，这里推荐chromedp，开源网址：https://github.com/chromedp/chromedp
+
+
+>本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
+>本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963
+>
+>虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
+>联系邮箱：roteman@163.com

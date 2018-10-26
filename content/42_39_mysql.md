@@ -1,17 +1,20 @@
-# 《Go语言四十二章经》第三十九章 Mysql数据库
+# 《Go语言四十二章经》第三十九章 MySql数据库
 
 作者：李骁
 
 ## 39.1 database/sql包
 
-Go 提供了database/sql包用于对SQL数据库的访问，作为操作数据库的入口对象sql.DB，主要为我们提供了两个重要的功能：
+Go 提供了database/sql包用于对关系型数据库的访问，作为操作数据库的入口对象sql.DB，主要为我们提供了两个重要的功能：
 
 * sql.DB 通过数据库驱动为我们提供管理底层数据库连接的打开和关闭操作.
 * sql.DB 为我们管理数据库连接池
 
 需要注意的是，sql.DB表示操作数据库的抽象访问接口, 而非一个数据库连接对象;它可以根据driver打开关闭数据库连接，管理连接池。正在使用的连接被标记为繁忙，用完后回到连接池等待下次使用。所以，如果你没有把连接释放回连接池，会导致过多连接使系统资源耗尽。
 
-导入mysql数据库驱动
+具体到某一类型的关系型数据库，需要导入对应的数据库驱动。下面以MySql8.0为例，来讲讲怎么在Go语言中调用。
+
+首先，导入mysql数据库驱动：
+
 ```Go
 import (
    "database/sql"
@@ -21,9 +24,11 @@ import (
 
 通常来说，不应该直接使用驱动所提供的方法，而是应该使用 sql.DB，因此在导入 mysql 驱动时，这里使用了匿名导入的方式(在包路径前添加 _)，当导入了一个数据库驱动后，此驱动会自行初始化并注册自己到Go的database/sql上下文中，因此我们就可以通过 database/sql 包提供的方法访问数据库了。
 
+
 ## 39.2 Mysql数据库操作
 
 我们先建立表结构：
+
 ```Go
 CREATE TABLE t_article_cate (
 `cid` int(10) NOT NULL AUTO_INCREMENT, 
@@ -39,7 +44,10 @@ CREATE TABLE t_article_cate (
 ) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 ```
 
-下面代码使用预编译的方式，来进行增删改查的操作，并通过事务来批量提交一批数据。预编译语句(PreparedStatement)提供了诸多好处，可以实现自定义参数的查询，通常来说，比手动拼接字符串 SQL 语句高效，可以防止SQL注入攻击。
+由于预编译语句(PreparedStatement)提供了诸多好处，可以实现自定义参数的查询，通常来说，比手动拼接字符串 SQL 语句高效，可以防止SQL注入攻击。
+
+下面代码使用预编译的方式，来进行增删改查的操作，并通过事务来批量提交一批数据。
+
 ```Go
 package main
 
@@ -264,3 +272,10 @@ func (dbw *DbWorker) transaction() {
 	stmt.Close()
 }
 ```
+
+
+>本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
+>本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963
+>
+>虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
+>联系邮箱：roteman@163.com
