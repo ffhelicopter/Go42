@@ -13,7 +13,11 @@ Go 提供了database/sql包用于对关系型数据库的访问，作为操作�
 
 具体到某一类型的关系型数据库，需要导入对应的数据库驱动。下面以MySql8.0为例，来讲讲怎么在Go语言中调用。
 
-首先，导入mysql数据库驱动：
+首先，需要下载第三方包：
+
+go get github.com/go-sql-driver/mysql
+
+在代码中导入mysql数据库驱动：
 
 ```Go
 import (
@@ -48,6 +52,9 @@ CREATE TABLE t_article_cate (
 
 下面代码使用预编译的方式，来进行增删改查的操作，并通过事务来批量提交一批数据。
 
+在Go语言中对数据类型要求很严格，一般查询数据时先定义数据类型，但是查询数据库中的数据存在三种可能:
+存在值，存在零值，未赋值NULL 三种状态，因为可以将待查询的数据类型定义为sql.Nullxxx类型，可以通过判断Valid值来判断查询到的值是否为赋值状态还是未赋值NULL状态。如// sql.NullInt64 sql.NullString 
+
 ```Go
 package main
 
@@ -72,12 +79,7 @@ type Cate struct {
 	scope   int
 }
 
-// sql.NullInt64 sql.NullString
-// 因为Go是强类型语言，所以查询数据时先定义数据类型，
-// 但是查询数据库中的数据存在三种可能:
-// 存在值，存在零值，未赋值NULL 三种状态，因为可以将待查询的数据类型
-// 定义为sql.Nullxxx类型，
-// 可以通过判断Valid值来判断查询到的值是否为赋值状态还是未赋值NULL状态。
+
 
 func main() {
 	dbw := DbWorker{Dsn: "root:123456@tcp(localhost:3306)/mydb?charset=utf8mb4"}
