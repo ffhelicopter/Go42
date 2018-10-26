@@ -1,44 +1,167 @@
-# <center>《Go语言四十二章经》第二十七章 反射(reflect)</center>
+# 《Go语言四十二章经》第二十七章 反射(reflect)
 
 作者：李骁
 
 ## 27.1 反射(reflect)
 
-反射是用程序检查其所拥有的结构，尤其是类型的一种能力；这是元编程的一种形式。
+反射是应用程序检查其所拥有的结构，尤其是类型的一种能力；这是元编程的一种形式。每种语言的反射模型都不同，并且有些语言根本不支持反射。Go语言实现了反射，反射机制就是在运行时动态调用对象的方法和属性，标准库reflect提供了相关的功能。在reflect包中，通过reflect.TypeOf()，reflect.ValueOf()分别从类型、值的角度来描述一个Go对象。
 
-反射可以在运行时检查类型和变量，例如它的大小、方法和 动态 的调用这些方法。这对于没有源代码的包尤其有用。
+```Go
+func TypeOf(i interface{}) Type
+type Type interface 
 
-这是一个强大的工具，除非真得有必要，否则应当避免使用或小心使用。
+func ValueOf(i interface{}) Value
+type Value struct 
+```
 
-变量的最基本信息就是类型和值。反射包的 Type 用来表示一个 Go 类型，反射包的 Value 为 Go 值提供了反射接口。
+在Go语言的实现中，一个interface类型的变量存储了2个信息, 一个<值，类型>对，<value,type> :
 
-两个简单的函数，reflect.TypeOf 和 reflect.ValueOf，返回被检查对象的类型和值。
+```Go
+(value, type)
+```
 
-例如，x 被定义为：var x float64 = 3.4，那么 reflect.TypeOf(x) 返回 float64，reflect.ValueOf(x) 返回 <float64 Value>
+value是实际变量值，type是实际变量的类型。两个简单的函数，reflect.TypeOf 和 reflect.ValueOf，返回被检查对象的类型和值。
 
-实际上，反射是通过检查一个接口的值，变量首先被转换成空接口。这从下面两个函数签名能够很明显的看出来：
+例如，x 被定义为：var x float64 = 3.4，那么 reflect.TypeOf(x) 返回 float64，reflect.ValueOf(x) 返回 <float64 Value>。实际上，反射是通过检查一个接口的值，变量首先被转换成空接口。这从下面两个函数签名能够很明显的看出来：
 
 ```Go
 func TypeOf(i interface{}) Type
 func ValueOf(i interface{}) Value
 ```
 
-接口的值包含一个 type 和 value。
+reflect.Type 和 reflect.Value 都有许多方法用于检查和操作它们。 
 
-反射可以从接口值反射到对象，也可以从对象反射回接口值。
+Type主要有：
+Kind() 将返回一个常量，表示具体类型的底层类型
+Elem()方法返回指针、数组、切片、map、通道的基类型，这个方法要慎用，如果用在其他类型上面会出现panic
 
-reflect.Type 和 reflect.Value 都有许多方法用于检查和操作它们。一个重要的例子是 Value 有一个 Type 方法返回 reflect.Value 的 Type。另一个是 Type 和 Value 都有 Kind 方法返回一个常量来表示类型：Uint、Float64、Slice 等等。同样 Value 有叫做 Int 和 Float 的方法可以获取存储在内部的值（跟 int64 和 float64 一样）
+Value主要有：
+Type() 将返回具体类型所对应的 reflect.Type（静态类型）
+Kind() 将返回一个常量，表示具体类型的底层类型
 
-问题的原因是 v 不是可设置的（这里并不是说值不可寻址）。是否可设置是 Value 的一个属性，并且不是所有的反射值都有这个属性：可以使用 CanSet() 方法测试是否可设置。反射中有些内容是需要用地址去改变它的状态的。
-当 v := reflect.ValueOf(x) 函数通过传递一个 x 拷贝创建了 v，那么 v 的改变并不能更改原始的 x。要想 v 的更改能作用到 x，那就必须传递 x 的地址 v = reflect.ValueOf(&x)。
+反射可以在运行时检查类型和变量，例如它的大小、方法和 动态 的调用这些方法。这对于没有源代码的包尤其有用。
 
-通过 Type() 我们看到 v 现在的类型是 *float64 并且仍然是不可设置的。
-要想让其可设置我们需要使用 Elem() 函数，这间接的使用指针：v = v.Elem()
-现在 v.CanSet() 返回 true 并且 v.SetFloat(3.1415) 设置成功了！
+由于反射是一个强大的工具，但反射对性能有一定的影响，除非有必要，否则应当避免使用或小心使用。下面代码针对int、数组以及结构体分别使用反射机制，其中的差异请看注释。
+
+```Go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+type Student struct {
+	name string
+}
+
+func main() {
+
+	var a int = 50
+	v := reflect.ValueOf(a) // 返回Value类型对象，值为50
+	t := reflect.TypeOf(a)  // 返回Type类型对象，值为int
+	fmt.Println(v, t, v.Type(), t.Kind())
+
+	var b [5]int = [5]int{5, 6, 7, 8}
+	fmt.Println(reflect.TypeOf(b), reflect.TypeOf(b).Kind(),reflect.TypeOf(b).Elem()) // [5]int array int
+
+	var Pupil Student
+	p := reflect.ValueOf(Pupil) // 使用ValueOf()获取到结构体的Value对象
+
+	fmt.Println(p.Type()) // 输出:Student
+	fmt.Println(p.Kind()) // 输出:struct
+
+}
+```
+
+在Go语言中，类型包括 static type和concrete type. 简单说 static type是你在编码是看见的类型(如int、string)，concrete type是实际的类型，runtime系统看见的类型。
+
+Type()返回的是静态类型，而kind()返回的是concrete type。上面代码中，在int，数组以及结构体三种类型情况中，可以看到kind()，type()返回值的差异。
+
+
+**通过反射可以修改原对象**
+
+d.CanAddr()方法：判断它是否可被取地址
+d.CanSet()方法：判断它是否可被取地址并可被修改
+
+通过一个settable的Value反射对象来访问、修改其对应的变量值：
+
+```Go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+type Student struct {
+	name string
+	Age  int
+}
+
+func main() {
+
+	var a int = 50
+	v := reflect.ValueOf(a) // 返回Value类型对象，值为50
+	t := reflect.TypeOf(a)  // 返回Type类型对象，值为int
+	fmt.Println(v, t, v.Type(), t.Kind(), reflect.ValueOf(&a).Elem())
+	seta := reflect.ValueOf(&a).Elem() // 这样才能让seta保存a的值
+	fmt.Println(seta, seta.CanSet())
+	seta.SetInt(1000)
+	fmt.Println(seta)
+
+	var b [5]int = [5]int{5, 6, 7, 8}
+	fmt.Println(reflect.TypeOf(b), reflect.TypeOf(b).Kind(), reflect.TypeOf(b).Elem())
+
+	var Pupil Student = Student{"joke", 18}
+	p := reflect.ValueOf(Pupil) // 使用ValueOf()获取到结构体的Value对象
+
+	fmt.Println(p.Type()) // 输出:Student
+	fmt.Println(p.Kind()) // 输出:struct
+
+	setStudent := reflect.ValueOf(&Pupil).Elem()
+	//setStudent.Field(0).SetString("Mike") // 未导出字段，不能修改，panic会发生
+	setStudent.Field(1).SetInt(19)
+	fmt.Println(setStudent)
+
+}
+```
+
+虽然反射可以越过Go语言的导出规则的限制读取结构体中未导出的成员，但不能修改这些未导出的成员。因为一个struct中只有被导出的字段才是settable的。
+
+在结构体中有tag标签，通过反射可获取结构体成员变量的tag信息。
+
+```Go
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+type Student struct {
+	name string
+	Age  int `json:"years"`
+}
+
+func main() {
+	var Pupil Student = Student{"joke", 18}
+	setStudent := reflect.ValueOf(&Pupil).Elem()
+
+	sSAge, _ := setStudent.Type().FieldByName("Age")
+	fmt.Println(sSAge.Tag.Get("json")) // years
+}
+
+```
+
+```Go
+程序输出：
+years
+```
 
 ## 27.2 反射结构体
 
-有些时候需要反射一个结构类型。下面例子较为完整反射了一个结构体的字段和方法：
+为了完整说明反射的情况，通过反射一个结构体类型，综合来说明。下面例子较为系统地利用一个结构体，来充分举例说明反射：
 
 ```Go
 package main
@@ -149,3 +272,52 @@ func PrintValue(v reflect.Value) {
 	}
 }
 ```
+
+```Go
+程序输出：
+String             : <main.ss Value>
+Type               : main.ss
+Kind               : struct
+CanAddr            : false
+CanSet             : false
+NumMethod          : 1
+    ┗ <func(int) string Value>
+MethodByName       : <invalid Value>
+=== 结构体 ===
+NumField           : 4
+    ├ int      <int Value>
+    ├ string   结构体
+    ├ bool     <bool Value>
+    └ float64  <float64 Value>
+--------------------
+String             : <*main.ss Value>
+Type               : *main.ss
+Kind               : ptr
+CanAddr            : false
+CanSet             : false
+NumMethod          : 2
+    ┣ <func(int) string Value>
+    ┗ <func(int) string Value>
+MethodByName       : <invalid Value>
+--------------------
+String             : <func(int) string Value>
+Type               : func(int) string
+Kind               : func
+CanAddr            : false
+CanSet             : false
+NumMethod          : 0
+--------------------
+String             : <func(int) string Value>
+Type               : func(int) string
+Kind               : func
+CanAddr            : false
+CanSet             : false
+NumMethod          : 0
+
+```
+
+>本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
+>本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963
+>
+>虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
+>联系邮箱：roteman@163.com
