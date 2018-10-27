@@ -53,7 +53,7 @@ CREATE TABLE t_article_cate (
 下面代码使用预编译的方式，来进行增删改查的操作，并通过事务来批量提交一批数据。
 
 在Go语言中对数据类型要求很严格，一般查询数据时先定义数据类型，但是查询数据库中的数据存在三种可能:
-存在值，存在零值，未赋值NULL 三种状态，因为可以将待查询的数据类型定义为sql.Nullxxx类型，可以通过判断Valid值来判断查询到的值是否为赋值状态还是未赋值NULL状态。如// sql.NullInt64 sql.NullString 
+存在值，存在零值，未赋值NULL 三种状态，因此可以将待查询的数据类型定义为sql.Nullxxx类型，可以通过判断Valid值来判断查询到的值是否为赋值状态还是未赋值NULL状态。如// sql.NullInt64 sql.NullString 
 
 ```Go
 package main

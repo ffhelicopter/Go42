@@ -202,8 +202,8 @@
 	* 40.2 BoltDB
 
 * ### [第四十一章 网络爬虫](content/42_41_crawler.md)
-	* 41.1 go-colly
-	* 41.2 goquery 
+	* 41.1 go-colly网络爬虫框架
+	* 41.2 goquery HTML解析
 
 * ### [第四十二章 WEB框架(Gin)](content/42_42_gin.md)
 	* 42.1 有关于Gin
