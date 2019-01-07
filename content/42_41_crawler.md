@@ -271,7 +271,7 @@ func main() {
 }
 ```
 
-上面代码中，goquery先通过 goquery.NewDocumentFromReader生成文档对象htmlDoc。有了htmlDoc就可以使用选择器，而选择器的目的主要是定位：htmlDoc.Find(".hotnews a").Each(func(i int, s *goquery.Selection)，找到文档中的<div class="hotnews" alog-group="focustop-hotnews">。
+上面代码中，goquery先通过 goquery.NewDocumentFromReader生成文档对象htmlDoc。有了htmlDoc就可以使用选择器，而选择器的目的主要是定位：htmlDoc.Find(".hotnews a").Each(func(i int, s *goquery.Selection)，找到文档中的&lt;div class="hotnews" alog-group="focustop-hotnews"&gt;。
 
 有关选择器Find()方法的使用语法，是不是有些熟悉的感觉，没错就是jQuery的样子。
 
@@ -285,13 +285,21 @@ Class选择器   Find(".class")
 
 选择器 	说明
 Find(“div[lang]“) 	筛选含有lang属性的div元素
+
 Find(“div[lang=zh]“) 	筛选lang属性为zh的div元素
+
 Find(“div[lang!=zh]“) 	筛选lang属性不等于zh的div元素
+
 Find(“div[lang¦=zh]“) 	筛选lang属性为zh或者zh-开头的div元素
+
 Find(“div[lang*=zh]“) 	筛选lang属性包含zh这个字符串的div元素
+
 Find(“div[lang~=zh]“) 	筛选lang属性包含zh这个单词的div元素，单词以空格分开的
+
 Find(“div[lang$=zh]“) 	筛选lang属性以zh结尾的div元素，区分大小写
+
 Find(“div[lang^=zh]“) 	筛选lang属性以zh开头的div元素，区分大小写
+
 
 parent>child选择器
 如果我们想筛选出某个元素下符合条件的子元素，我们就可以使用子元素筛选器，它的语法为Find("parent>child"),表示筛选parent这个父元素下，符合child这个条件的最直接（一级）的子元素。
