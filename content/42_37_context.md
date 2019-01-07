@@ -72,23 +72,21 @@ select {
 }
 ```
 
-WithDeadline函数的作用也差不多，它返回的Context类型值同样是parent的副本，但其过期时间由deadline和parent的过期时间共同决定。当parent的过期时间早于传入的deadline时间时，返回的过期时间应与parent相同。父节点过期时，其所有的子孙节点必须同时关闭；反之，返回的父节点的过期时间则为deadline。
+WithDeadline函数的作用也差不多，它返回的Context类型值同样是parent的副本，但其过期时间由deadline和parent的过期时间共同决定。这是因为父节点过期时，其所有的子孙节点必须同时关闭；反之，返回的父节点的过期时间则为deadline。
 
-WithTimeout函数与WithDeadline类似，只不过它传入的是从现在开始Context剩余的生命时长。他们都同样也都返回了所创建的子Context的控制权，一个CancelFunc类型的函数变量。
+WithTimeout函数与WithDeadline类似，不过它传入的是从现在开始Context剩余的生命时长。他们都同样也都返回了所创建的子Context的控制权，一个CancelFunc类型的函数变量。
 
-当顶层的Request请求函数结束后，我们就可以cancel掉某个context，从而层层goroutine根据判断cxt.Done()来结束。
+当顶层的Request请求函数结束后，我们就可以cancel掉某个context，从而再在对应协程中根据cxt.Done()来决定是否结束。
 
-WithValue函数，它返回parent的一个副本，调用该副本的Value(key)方法将得到val。这样我们不光将根节点原有的值保留了，还在子孙节点中加入了新的值，注意若存在Key相同，则会被覆盖。
-
-context包通过构建树型关系的Context，来达到上一层goroutine能对传递给下一层goroutine的控制。对于处理一个Request请求操作，需要采用context来层层控制goroutine，以及传递一些变量来共享。
+WithValue函数，它返回parent的一个副本，调用该副本的Value(key)方法将得到对应key的值。这样我们不光将根节点原有的值保留了，还可以在子孙节点中加入了新的值，注意若存在Key相同，则会被覆盖。
 
 Context对象的生存周期一般仅为一个请求的处理周期。即针对一个请求创建一个Context变量（它为Context树结构的根）；在请求处理结束后，撤销此ctx变量，释放资源。
 
-每次创建一个goroutine，要么将原有的Context传递给goroutine，要么创建一个子Context并传递给goroutine。
+每次创建一个协程时，可以将原有的Context传递给这个子协程，或者新创建一个子Context传递给这个协程。
 
-Context能灵活地存储不同类型、不同数目的值，并且使多个goroutine安全地读写其中的值。
+Context能灵活地存储不同类型、不同数目的值，并且使多个协程安全地读写其中的值。
 
-当通过父Context对象创建子Context对象时，可同时获得子Context的一个撤销函数，这样父Context对象的创建环境就获得了对子Context将要被传递到的goroutine的撤销权。
+当通过父Context对象创建子Context对象时，即可获得子Context的一个撤销函数，这样父Context对象的创建环境就获得了对子Context的撤销权。
 
 注意：使用时遵循context规则
 
@@ -105,6 +103,20 @@ Context能灵活地存储不同类型、不同数目的值，并且使多个goro
 
 ## 37.2 context应用
 
+前面介绍协程(goroutine)时，对协程的管理和控制我们并没有进行讨论。到目前我们已经清楚认识了channel、context以及sync包，通过这三者，我们完全可以达到完美控制协程运行的目的。
+
+通过go关键字让我们很容易启动一个协程，但难的是很好的管理和控制他们的运行。有几种方法我们可以根据场景使用：
+
+（1）使用sync.WaitGroup，它用于线程总同步，会等待一组线程集合完成，才会继续向下执行，这对监控所有子协程全部完成情况特别有用，但要控制某个协程就无能为力了；
+
+（2）使用channel来传递消息，一个协程来发送channel信号，另一个协程通过select来得到channel信息，这种方式可以满足协程之间的通信，来控制协程运行。但如果协程数量达到一定程度，就很难把控了；或者这两个协程还和其他协程也有类似通信，比如A与B，B与C，如果A发信号B退出了，C有可能等不到B的channel信号而被遗忘；
+
+（3）使用Context来传递消息，Context是层层传递机制，根节点完全控制了子节点，根节点（父节点）可以根据需要选择自动还是手动结束子节点。而每层节点所在的协程就可以根据信息来决定下一步的操作。
+
+下面我们来看看具体使用Context怎么来控制协程的运行：
+
+这里用Context同时控制2个协程，这2个协程都可以收到cancel()发出的信号，甚至doNothing这样不结束协程可反复接收cancel信息。
+
 ```Go
 package main
 
@@ -115,65 +127,192 @@ import (
 	"time"
 )
 
-var logg *log.Logger
+var logs *log.Logger
 
-func someHandler() {
-	// 新建一个ctx
-	ctx, cancel := context.WithCancel(context.Background())
-
-	//传递ctx
-	go doStuff(ctx)
-
-	//10秒后取消doStuff
-	time.Sleep(10 * time.Second)
-	log.Println("cancel")
-
-	//调用cancel：context.WithCancel 返回的CancelFunc
-	cancel()
-
-}
-
-func doStuff(ctx context.Context) {
-
+func doClearn(ctx context.Context) {
 	// for 循环来每1秒work一下，判断ctx是否被取消了，如果是就退出
-
 	for {
 		time.Sleep(1 * time.Second)
-
 		select {
 		case <-ctx.Done():
-			logg.Printf("done")
+			logs.Println("doClearn:收到Cancel，做好收尾工作后马上退出。")
 			return
 		default:
-			logg.Printf("work")
+			logs.Println("doClearn:每隔1秒观察信号，继续观察...")
+		}
+	}
+}
+
+func doNothing(ctx context.Context) {
+	for {
+		time.Sleep(3 * time.Second)
+		select {
+		case <-ctx.Done():
+			logs.Println("doNothing:收到Cancel，但不退出......")
+
+			// 注释return可以观察到，ctx.Done()信号是可以一直接收到的，return不注释意味退出协程
+			//return
+		default:
+			logs.Println("doNothing:每隔3秒观察信号，一直运行")
 		}
 	}
 }
 
 func main() {
-	logg = log.New(os.Stdout, "", log.Ltime)
-	someHandler()
-	logg.Printf("down")
+	logs = log.New(os.Stdout, "", log.Ltime)
+
+	// 新建一个ctx
+	ctx, cancel := context.WithCancel(context.Background())
+
+	// 传递ctx
+	go doClearn(ctx)
+	go doNothing(ctx)
+
+	// 主程序阻塞20秒，留给协程来演示
+	time.Sleep(20 * time.Second)
+	logs.Println("cancel")
+
+	// 调用cancel：context.WithCancel 返回的CancelFunc
+	cancel()
+
+	// 发出cancel 命令后，主程序阻塞10秒，再看协程的运行情况
+	time.Sleep(10 * time.Second)
 }
 
+程序输出：
+......
+cancel
+doClearn:收到Cancel，做好收尾工作后马上退出。
+doNothing:收到Cancel，但不退出......
+doNothing:收到Cancel，但不退出......
+doNothing:收到Cancel，但不退出......
 ```
+
+这里用Context嵌套控制3个协程，A，B，C。在主程序发出cancel信号后，每个协程都能接收根Context的Done()信号而退出。
 
 ```Go
-程序输出：
-16:28:21 work
-16:28:22 work
-16:28:23 work
-16:28:24 work
-16:28:25 work
-16:28:26 work
-16:28:27 work
-16:28:28 work
-16:28:29 work
-2018/08/22 16:28:30 cancel
-16:28:30 down
+package main
+
+import (
+	"context"
+	"fmt"
+	"time"
+)
+
+func A(ctx context.Context) int {
+	ctx = context.WithValue(ctx, "AFunction", "Great")
+
+	go B(ctx)
+
+	select {
+	// 监测自己上层的ctx ...
+	case <-ctx.Done():
+		fmt.Println("A Done")
+		return -1
+	}
+	return 1
+}
+
+func B(ctx context.Context) int {
+	fmt.Println("A value in B:", ctx.Value("AFunction"))
+	ctx = context.WithValue(ctx, "BFunction", 999)
+
+	go C(ctx)
+
+	select {
+	// 监测自己上层的ctx ...
+	case <-ctx.Done():
+		fmt.Println("B Done")
+		return -2
+	}
+	return 2
+}
+
+func C(ctx context.Context) int {
+	fmt.Println("B value in C:", ctx.Value("AFunction"))
+	fmt.Println("B value in C:", ctx.Value("BFunction"))
+	select {
+	// 结束时候做点什么 ...
+	case <-ctx.Done():
+		fmt.Println("C Done")
+		return -3
+	}
+	return 3
+}
+
+func main() {
+	// 自动取消(定时取消)
+	{
+		timeout := 10 * time.Second
+		ctx, _ := context.WithTimeout(context.Background(), timeout)
+
+		fmt.Println("A 执行完成，返回：", A(ctx))
+		select {
+		case <-ctx.Done():
+			fmt.Println("context Done")
+			break
+		}
+	}
+	time.Sleep(20 * time.Second)
+}
 ```
 
-someHandler() 作为顶层的Request请求函数，处理完主要任务后，主动cancel掉context，而子层goroutine  doStuff(ctx context.Context) 根据判断cxt.Done()来结束。
+最后我们看看Context在http 是怎么传递的：
+
+```Go
+package main
+
+import (
+	"context"
+	"net/http"
+	"time"
+)
+
+// ContextMiddle是http服务中间件，统一读取通行cookie并使用ctx传递
+func ContextMiddle(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		cookie, _ := r.Cookie("Check")
+		if cookie != nil {
+			ctx := context.WithValue(r.Context(), "Check", cookie.Value)
+			next.ServeHTTP(w, r.WithContext(ctx))
+		} else {
+			next.ServeHTTP(w, r)
+		}
+	})
+}
+
+// 强制设置通行cookie
+func CheckHandler(w http.ResponseWriter, r *http.Request) {
+	expitation := time.Now().Add(24 * time.Hour)
+	cookie := http.Cookie{Name: "Check", Value: "42", Expires: expitation}
+	http.SetCookie(w, &cookie)
+}
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	// 通过取中间件传过来的context值来判断是否放行通过
+	if chk := r.Context().Value("Check"); chk == "42" {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("Let's go! \n"))
+	} else {
+		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte("No Pass!"))
+	}
+}
+
+func main() {
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/", indexHandler)
+
+	// 人为设置通行cookie
+	mux.HandleFunc("/chk", CheckHandler)
+
+	ctxMux := ContextMiddle(mux)
+	http.ListenAndServe(":8080", ctxMux)
+}
+```
+
+我们打开浏览器访问：http://localhost:8080/chk，然后在访问：http://localhost:8080/，将会看到我们正常通行后结果，否则将会看到没有正常通行下的信息。Context信息的传递主要靠中间件ContextMiddle来进行。
 
 
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
