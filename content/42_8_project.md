@@ -173,9 +173,13 @@ why       解释为什么需要依赖
 为了使用modules来管理项目，我们可以以下几个步骤来操作：
 
 （1）首先需要设置GO111MODULE ，这里我们设置为auto。
+
 （2）考虑和原来GOPATH有所隔离，新建立了一个目录D:\gomodules来存放modules管理的项目。
+
 （3）在D:\gomodules下建立ind项目，建立对应的目录，D:\gomodules\ind
+
 （4）在ind目录中，我们编写了该项目的主要文件main.go
+
 
 ```Go
 
