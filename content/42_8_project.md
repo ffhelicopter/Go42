@@ -123,11 +123,11 @@ go build用于编译指定的代码包以及它们的依赖包。如果用来编
 
 Go 1.11 新增了对模块的支持，希望借此解决“包依赖管理”。可以通过设置环境变量 GO111MODULE来开启或关闭模块支持，它有三个可选值： off、 on、 auto，默认值是 auto。
 
-*GO111MODULE=off
+* GO111MODULE=off
     无模块支持，go 会从 GOPATH 和 vendor 文件夹寻找包。
-*GO111MODULE=on
+* GO111MODULE=on
     模块支持，go 会忽略 GOPATH 和 vendor 文件夹，只根据 go.mod下载依赖。
-*GO111MODULE=auto
+* GO111MODULE=auto
 在 $GOPATH/src外面且根目录有 go.mod文件时，开启模块支持。
 
 在使用模块的时候， GOPATH是无意义的，不过它还是会把下载的依赖储存在 $GOPATH/pkg/mod 中。
@@ -201,7 +201,9 @@ func main() {
 ```
 
 1、第一次需要我们运行init命令初始化：
+
 D:\gomodules\ind>go mod init ind
+
 go: creating new go.mod: module ind
 
 可以在ind目录看到新生成了一个文件：go.mod ，这个modules名字叫ind。
@@ -248,8 +250,11 @@ require (
 go.mod文件可以通过require，replace和exclude语句使用的精确软件包集。
 
 （1）require语句指定的依赖项模块
+
 （2）replace语句可以替换依赖项模块
+
 （3）exclude语句可以忽略依赖项模块
+
 
 go.sum文件
 
