@@ -306,13 +306,13 @@ go tool pprof 3.exe cpu.prof
 
 命令执行后会进入到：
 
-![gotool2.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/gotool2.png)
+![132.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/132.png)
 
 命令界面和前面两种使用net/http/pprof包 一样。我们可以通过go tool pprof 生svg，png或者是pdf文件。
 
 这是生成的png文件，和前面生成的png类似，前面我们生成的是block信息：
 
-![gotoolblock.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/gotoolblock.png)
+![profile001.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/profile001.png)
 
 通过上面这三种情况的分析，我们可以知道，其实就是两种情况：
 go tool pprof http://localhost:8080/debug/pprof/profile 这种url方式，或者
