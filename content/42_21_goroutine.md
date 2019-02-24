@@ -12,7 +12,9 @@
 
 并发是在同一时间处理（dealing with）多件事情。并行是在同一时间做（doing）多件事情。并发的目的在于把当个 CPU 的利用率使用到最高。并行则需要多核 CPU 的支持。
 
-Go 语言从语言层面上就支持了并发，goroutine是Go语言提供的一种用户态线程，有时我们也称之为协程。所谓的协程，某种程度上也可以叫做轻量线程，它不由os，而由应用程序创建和管理，因此使用开销较低（一般为4K）。我们可以创建很多的goroutine，并且它们跑在同一个内核线程之上的时候，就需要一个调度器来维护这些goroutine，确保所有的goroutine都使用cpu，并且是尽可能公平的使用cpu资源。调度器的主要有4个重要部分，分别是M、G、P、Sched，前三个定义在runtime.h中，Sched定义在proc.c中。
+Go 语言在语言层面上支持了并发，goroutine是Go语言提供的一种用户态线程，有时我们也称之为协程。所谓的协程，某种程度上也可以叫做轻量线程，它不由os而由应用程序创建和管理，因此使用开销较低（一般为4K）。我们可以创建很多的goroutine，并且它们跑在同一个内核线程之上的时候，就需要一个调度器来维护这些goroutine，确保所有的goroutine都能使用cpu，并且是尽可能公平地使用cpu资源。
+
+调度器的主要有4个重要部分，分别是M、G、P、Sched，前三个定义在runtime.h中，Sched定义在proc.c中。
 
 * M (work thread) 代表了系统线程OS Thread，由操作系统管理。
 
@@ -20,7 +22,7 @@ Go 语言从语言层面上就支持了并发，goroutine是Go语言提供的一
 
 * G (goroutine)    goroutine的实体，包括了调用栈，重要的调度信息，例如channel等。
 
-在操作系统的OS Thread和编程语言的User Thread之间，实际上存在3中线程对应模型，也就是：1:1，1:N，M:N。
+在操作系统的OS Thread和编程语言的User Thread之间，实际上存在3种线程对应模型，也就是：1:1，1:N，M:N。
 
 N:1 多个（N）用户线程始终在一个内核线程上跑，context上下文切换很快，但是无法真正的利用多核。 
 1:1 一个用户线程就只在一个内核线程上跑，这时可以利用多核，但是上下文切换很慢，切换效率很低。 
@@ -28,9 +30,9 @@ M:N 多个goroutine在多个内核线程上跑，这个可以集齐上面两者�
 
 M:N 综合两种方式（N:1，1:1）的优势。多个 goroutines 可以在多个 OS threads 上处理。既能快速切换上下文，也能利用多核的优势，而Go正是选择这种实现方式。
 
-Go 的goroutine是运行在虚拟CPU中的(通过runtime.GOMAXPROCS(1)所设定的虚拟CPU个数)。 虚拟CPU个数未必会和实际CPU个数相吻合。
+Go 语言中的goroutine是运行在多核CPU中的(通过runtime.GOMAXPROCS(1)设定CPU核数)。 实际中运行的CPU核数未必会和实际物理CPU数相吻合。
 
-每个goroutine都会被一个特定的P(虚拟CPU)选定维护，而M(物理计算资源)每次挑选一个有效P，然后执行P中的goroutine。
+每个goroutine都会被一个特定的P(某个CPU)选定维护，而M(物理计算资源)每次挑选一个有效P，然后执行P中的goroutine。
 
 每个P会将自己所维护的goroutine放到一个G队列中，其中就包括了goroutine堆栈信息，是否可执行信息等等。
 
@@ -45,6 +47,7 @@ runtime.NumCPU()        // 返回当前CPU内核数
 runtime.GOMAXPROCS(2)  // 设置运行时最大可执行CPU数
 runtime.NumGoroutine() // 当前正在运行的goroutine 数
 ```
+
 P维护着这个队列（称之为runqueue），Go语言里，启动一个goroutine很容易：go function 就行，所以每有一个go语句被执行，runqueue队列就在其末尾加入一个goroutine，在下一个调度点，就从runqueue中取出一个goroutine执行。
 
 假如有两个M，即两个OS Thread线程，分别对应一个P，每一个P调度一个G队列。如此一来，就组成的goroutine运行时的基本结构：
@@ -103,8 +106,84 @@ struct  M
 };
 ```
 
+我们可以运行下面代码体验下Go语言中通过设定runtime.GOMAXPROCS(2) ，也即手动指定CPU运行的核数，来体验多核CPU在并发处理时的威力。不得不提，递归函数的计算很费CPU和内存，运行时可以根据电脑配置修改循环或递归数量。
+
+```Go
+package main
+
+import (
+	"fmt"
+	"runtime"
+	"sync"
+	"time"
+)
+
+var quit chan int = make(chan int)
+
+func loop() {
+	for i := 0; i < 1000; i++ {
+		Factorial(uint64(1000))
+	}
+	quit <- 1
+}
+func Factorial(n uint64) (result uint64) {
+	if n > 0 {
+		result = n * Factorial(n-1)
+		return result
+	}
+	return 1
+}
+
+var wg1, wg2 sync.WaitGroup
+
+func main() {
+	fmt.Println("1:", time.Now())
+	fmt.Println(runtime.NumCPU()) // 默认CPU核数
+	a := 5000
+	for i := 1; i <= a; i++ {
+		wg1.Add(1)
+		go loop()
+	}
+
+	for i := 0; i < a; i++ {
+		select {
+		case <-quit:
+			wg1.Done()
+		}
+	}
+	fmt.Println("2:", time.Now())
+	wg1.Wait()
+
+	fmt.Println("3:", time.Now())
+	runtime.GOMAXPROCS(2) // 设置执行使用的核数
+	a = 5000
+	for i := 1; i <= a; i++ {
+		wg2.Add(1)
+		go loop()
+	}
+
+	for i := 0; i < a; i++ {
+		select {
+		case <-quit:
+			wg2.Done()
+		}
+	}
+
+	fmt.Println("4:", time.Now())
+	wg2.Wait()
+	fmt.Println("5:", time.Now())
+}
+```
+
+我的测试电脑CPU默认是4核，对比手动设置CPU在2核时的运行耗时，4核耗时约8秒，2核约14秒，当然这是一种比较理想化的测试，因为阶乘很快导致unit64为0，所以这个测试并不严谨，但从中我们仍然可以体验到Go语言在处理并发（cpu）时代码之简单，控制之方便。
+
+在实际中运行速度延缓可能不一定仅仅是由于CPU的竞争，可能还有内存或者I/O的原因导致的，我们需要根据情况仔细分析。
+
+最后，runtime.Gosched()用于让出CPU时间片，让出当前goroutine的执行权限，调度器安排其他等待的任务运行，并在下次某个时候从该位置恢复执行。
+
 ## 21.2 goroutine
-在Go中，goroutine的使用很简单，直接在代码前加上关键字 go 即可。go关键字就是用来创建一个goroutine的，后面的代码块就是这个goroutine需要执行的代码逻辑。
+
+在Go语言中，协程(goroutine)的使用很简单，直接在函数（代码块）前加上关键字 go 即可。go关键字就是用来创建一个协程(goroutine)的，后面的代码块就是这个协程(goroutine)需要执行的代码逻辑。
 
 ```Go
 package main
@@ -124,8 +203,10 @@ func main() {
 	time.Sleep(1e9)
 }
 ```
-有关于goroutine 之间的通信以及goroutine与主线程的控制，我们后续通过channel、context以及锁来进一步说明。
 
+time.Sleep(1e9)让主程序不会马上退出，以便让协程(goroutine)运行完成，避免主程序退出时协程(goroutine)未处理完成甚至没有开始运行。
+
+有关于协程(goroutine)之间的通信以及协程(goroutine)与主线程的控制以及多个协程(goroutine)的管理和控制，我们后续通过channel、context以及锁来进一步说明。
 
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963
