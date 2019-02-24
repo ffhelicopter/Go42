@@ -153,8 +153,12 @@ Linux x86 (32-bit or 64-bit)
 LiteIDE可以通过以下途径下载：
 
 下载地址：https://sourceforge.net/projects/liteide/files/ 
+
 源码地址：https://github.com/visualfc/liteide
-golang中国：https://www.golangtc.com/download/liteide也提供下载，国内下载速度可能会快一些，但版本更新较慢，建议还是选择官方地址下载。
+
+golang中国：https://www.golangtc.com/download/liteide
+
+也提供下载，国内下载速度可能会快一些，但版本更新较慢，建议还是选择官方地址下载。
 
 
 Windows直接安装：
