@@ -32,19 +32,19 @@
 	* [7.6 包的分级声明和初始化](content/42_7_package.md#76-包的分级声明和初始化)
 
 * ### [第八章 Go项目开发与编译](content/42_8_project.md)
-	* [8.1 项目结构](content/42_8_project.md)
-	* [8.2 使用 Godoc](content/42_8_project.md)
-	* [8.3 Go程序的编译](content/42_8_project.md)
+	* [8.1 项目结构](content/42_8_project.md#81-项目结构)
+	* [8.2 使用 Godoc](content/42_8_project.md#82-使用-godoc)
+	* [8.3 Go程序的编译](content/42_8_project.md#83-go程序的编译)
 
 * ### [第九章 运算符](content/42_9_operator.md)
-	* [9.1 内置运算符](content/42_9_operator.md)
-	* [9.2 运算符优先级](content/42_9_operator.md)
-	* [9.3 几个特殊运算符](content/42_9_operator.md)
+	* [9.1 内置运算符](content/42_9_operator.md#91-内置运算符)
+	* [9.2 运算符优先级](content/42_9_operator.md#92-运算符优先级)
+	* [9.3 几个特殊运算符](content/42_9_operator.md#93-几个特殊运算符)
 
 * ### [第十章 string](content/42_10_string.md)
-	* [10.1 字符串介绍](content/42_10_string.md)
-	* [10.2 字符串拼接](content/42_10_string.md)
-	* [10.3 有关string处理](content/42_10_string.md)
+	* [10.1 字符串介绍](content/42_10_string.md#101-字符串介绍)
+	* [10.2 字符串拼接](content/42_10_string.md#102-字符串拼接)
+	* [10.3 有关string处理](content/42_10_string.md#103-有关string处理)
 
 * ### [第十一章 数组(Array)](content/42_11_array.md)
 	* [11.1 数组(Array)](content/42_11_array.md)
