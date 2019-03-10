@@ -1,8 +1,8 @@
 * ### [前言](README.md)
 * ### [第一章 Go安装与运行](content/42_1_install.md)
 
-	*  1.1 Go安装
-	*  1.2 Go 语言开发工具
+	*  [1.1 Go 安装](content/42_1_install.md#11-go安装--)
+	*  [1.2 Go 语言开发工具](content/42_1_install.md#12-go语言开发工具-)
 
 * ### [第二章 数据类型](content/42_2_datatype.md)
 	* 2.1 基本数据类型
@@ -162,7 +162,7 @@
 
 * ### [第三十三章 Socket网络](content/42_33_socket.md)
 	* 33.1 Socket基础知识
-	* 33.2 TCP 与 UDP 
+	* 33.2 TCP 与 UDP
 
 * ### [第三十四章 命令行flag包 ](content/42_34_flag.md)
 	* 34.1 命令行
