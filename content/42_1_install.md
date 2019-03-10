@@ -12,7 +12,7 @@ Go语言有两快，一是编译运行快，还有一个是学习上手快。Go�
 
 让我们开始Go语言学习之旅吧！
 
-## 1.1 Go安装  [](#c1)
+## 1.1 Go安装
 
 要用Go语言来进行开发，需要先搭建开发环境。Go 语言支持以下系统：
 
@@ -144,7 +144,7 @@ D:\goproject>go run test.go
 Hello，World!
 
 
-## 1.2 Go语言开发工具 [](#c2)
+## 1.2 Go语言开发工具
 
 LiteIDE是一款开源、跨平台的轻量级 Go 语言集成开发环境（IDE）。在安装LiteIDE之前一定要先安装Go语言环境。LiteIDE支持以下的操作系统：
 Windows x86 (32-bit or 64-bit)
