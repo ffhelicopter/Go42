@@ -16,11 +16,11 @@ Function，Method，Interface，Type等名词是程序员们接触比较多的�
 
 这本书适合Go语言新手来细细阅读，对于有一定经验的开发人员，也可以根据自己的情况，选择一些章节来看。
 
-第一章到第二十六主要讲Go语言的基础知识，其中第十七章的type，第十八章的struct，第十九章的interface，以及第二十章的方法，都是Go语言中非常非常重要的部分。
+第一章到第二十六章主要讲Go语言的基础知识，其中第十七章的type，第十八章的struct，第十九章的interface，以及第二十章的方法，都是Go语言中非常非常重要的部分。
 
 而第二十一章的协程，第二十二章的通道以及第二十三章的同步与锁，这三章在并发处理中我们通常都需要用到，需要弄清楚他们的概念和彼此间联系。
 
-从二十七章开始，到第三十八章，讲述了Go标准包中比较重要的几个包，可以仔细看源代码来学习大师们的编程风格。
+从第二十七章开始，到第三十八章，讲述了Go标准包中比较重要的几个包，可以仔细看源代码来学习大师们的编程风格。
 
 从第三十九章开始到结尾，主要讲述了比较常用的第三方包，但由于篇幅有限，也就不展开来讲述，有兴趣的朋友可直接到相关开源项目详细了解。
 
@@ -40,9 +40,9 @@ Function，Method，Interface，Type等名词是程序员们接触比较多的�
 联系邮箱：roteman@163.com 
 
 
-感谢以下网友对本书提出的修改建议： Joyboo 、林远鹏、Mr_RSI、magic-joker、3lackrush、Jacky2、tanjibo
+感谢以下网友对本书提出的修改建议： Joyboo 、林远鹏、Mr_RSI、magic-joker、3lackrush、Jacky2、tanjibo、wisecsj、eternal-flame-AD、isLishude、morya、adophper、ivanberry、xjl662750
 
-
+ 
 
 ## 更新
 
