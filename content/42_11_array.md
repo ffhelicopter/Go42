@@ -20,7 +20,7 @@ var arrName = [5]string{3: "Chris", 4: "Ron"} //指定索引位置初始化
 // {"","","","Chris","Ron"}
 var arrCount = [4]int{500, 2: 100} //指定索引位置初始化 {500,0,100,0}
 var arrLazy = [...]int{5, 6, 7, 8, 22} //数组长度初始化时根据元素多少确定
-var arrPack = [...]int{10, 5: 100} //指定索引位置初始化，数组长度与此有关 {10,0,0,0,100}
+var arrPack = [...]int{10, 5: 100} //指定索引位置初始化，数组长度与此有关 {10,0,0,0,0,100}
 var arrRoom [20]int
 var arrBed = new([20]int)
 ```
