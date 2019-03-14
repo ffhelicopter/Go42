@@ -173,14 +173,14 @@ func main() {
 func fun1() (i int) {
 	defer func() {
 		i++
-		fmt.Println("defer2:", i) // 打印结果为 defer: 2
+		fmt.Println("defer2:", i) // 打印结果为 defer2: 2
 	}()
 
 	// 规则二 defer执行顺序为先进后出
 
 	defer func() {
 		i++
-		fmt.Println("defer1:", i) // 打印结果为 defer: 1
+		fmt.Println("defer1:", i) // 打印结果为 defer1: 1
 	}()
 
 	// 规则三 defer可以读取有名返回值（函数指定了返回参数名）
@@ -192,12 +192,12 @@ func fun2() int {
 	var i int
 	defer func() {
 		i++
-		fmt.Println("defer2:", i) // 打印结果为 defer: 2
+		fmt.Println("defer2:", i) // 打印结果为 defer2: 2
 	}()
 
 	defer func() {
 		i++
-		fmt.Println("defer1:", i) // 打印结果为 defer: 1
+		fmt.Println("defer1:", i) // 打印结果为 defer1: 1
 	}()
 	return i
 }
