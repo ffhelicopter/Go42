@@ -155,9 +155,10 @@
 	* [31.3 ioutil包](content/42_31_io.md#313-ioutil包)
 	* [31.4 bufio包](content/42_31_io.md#314-bufio包)
 
-* ### [第三十二章 fmt包](content/42_32_fmt.md)
+* ### [第三十二章 fmt包与日志log包](content/42_32_fmt.md)
 	* [32.1 fmt包格式化I/O](content/42_32_fmt.md#321-fmt包格式化io)
 	* [32.2 格式化verb应用](content/42_32_fmt.md#322-格式化verb应用)
+	* [32.3 日志log包](content/42_32_fmt.md#323-日志log包) 
 
 * ### [第三十三章 Socket网络](content/42_33_socket.md)
 	* [33.1 Socket基础知识](content/42_33_socket.md#331-socket基础知识)
