@@ -297,8 +297,8 @@ const c = imag(b)               // 无类型常量 -1.4
 
 |内置函数	|说明|
 |:--|:--|
-|panic	|从浮点实部和虚部构造复数值|
-|recover	|提取复数值的实部|
+|panic	|用来表示非常严重的不可恢复的错误|
+|recover	|用于从 panic 或 错误场景中恢复|
 
 ```Go
 func panic(interface{})
