@@ -304,8 +304,8 @@ Go 语言动态类型的实现通常需要编译器静态检查的支持：当�
 
 ```Go
 type ReaderWriter struct {
-    *io.Reader
-    *io.Writer
+    io.Reader
+    io.Writer
 }
 ```
 
