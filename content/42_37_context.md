@@ -312,7 +312,7 @@ func main() {
 }
 ```
 
-我们打开浏览器访问：http://localhost:8080/chk，然后在访问：http://localhost:8080/，将会看到我们正常通行后结果，否则将会看到没有正常通行下的信息。Context信息的传递主要靠中间件ContextMiddle来进行。
+我们打开浏览器访问：http://localhost:8080/chk ，然后再访问：http://localhost:8080/ ，将会看到我们正常通行后结果，否则将会看到没有正常通行下的信息。Context信息的传递主要靠中间件ContextMiddle来进行。
 
 
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
