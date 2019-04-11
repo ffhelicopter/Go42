@@ -112,17 +112,6 @@ Go 开发者不需要写代码来释放程序中不再使用的变量和结构�
 
 通过调用 runtime.GC() 函数可以显式的触发 GC，但这只在某些罕见的场景下才有用，比如当内存资源不足时调用 runtime.GC()，它会在此函数执行的点上立即释放一大片内存，此时程序可能会有短时的性能下降（因为 GC 进程在执行）。
 
-如果想知道当前的内存状态，可以使用：
-
-```Go
-var m runtime.MemStats
-runtime.ReadMemStats(&m)
-fmt.Printf("%d Kb\n", m.Alloc / 1024)
-```
-
-上面的程序会给出已分配内存的总量，单位是 Kb。进一步的测量参考文档页面。
-
-如果需要在一个对象 obj 被从内存移除前执行一些特殊操作，比如写到日志文件中，可以通过如下方式调用函数来实现：
 
 ```Go
 runtime.SetFinalizer(obj, func(obj *typeObj))
@@ -132,6 +121,69 @@ func(obj *typeObj) 需要一个 typeObj 类型的指针参数 obj，特殊操作
 
 在对象被 GC 进程选中并从内存中移除以前，SetFinalizer 都不会执行，即使程序正常结束或者发生错误。
 
+下面代码演示了具体使用：
+
+
+```Go
+package main
+
+import (
+	"log"
+	"runtime"
+	"time"
+)
+
+type Person struct {
+	Name string
+	Age  int
+}
+
+func (p *Person) Close() {
+	p.Name = "NewName"
+	log.Println(p)
+	log.Println("Close")
+}
+
+func (p *Person) NewOpen() {
+	log.Println("Init")
+	runtime.SetFinalizer(p, (*Person).Close)
+}
+
+func Tt(p *Person) {
+	p.Name = "NewName"
+	log.Println(p)
+	log.Println("Tt")
+}
+
+// 查看内存情况
+func Mem(m *runtime.MemStats) {
+	runtime.ReadMemStats(m)
+	log.Printf("%d Kb\n", m.Alloc/1024)
+}
+
+func main() {
+	var m runtime.MemStats
+	Mem(&m)
+
+	var p *Person = &Person{Name: "lee", Age: 4}
+	p.NewOpen()
+	log.Println("Gc完成第一次")
+	log.Println("p:", p)
+	runtime.GC()
+	time.Sleep(time.Second * 5)
+	Mem(&m)
+
+	var p1 *Person = &Person{Name: "Goo", Age: 9}
+	runtime.SetFinalizer(p1, Tt)
+	log.Println("Gc完成第二次")
+	time.Sleep(time.Second * 2)
+	runtime.GC()
+	time.Sleep(time.Second * 2)
+	Mem(&m)
+
+}
+
+```
 
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963
