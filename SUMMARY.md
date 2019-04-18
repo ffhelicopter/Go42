@@ -25,10 +25,10 @@
 * ### [第七章 代码结构化](content/42_07_package.md)
 	* [7.1 包的概念](content/42_07_package.md#71-包的概念)
 	* [7.2 包的导入](content/42_07_package.md#72-包的导入)
-	* [7.3 标准库](content/42_07_package.md#73-标准库)
+	* [7.3 标准库](content/42_07_package.md#73-标准包)
 	* [7.4 从 GitHub 安装包](content/42_07_package.md#74-从-github-安装包)
 	* [7.5 导入外部安装包](content/42_07_package.md#75-导入外部安装包)
-	* [7.6 包的分级声明和初始化](content/42_07_package.md#76-包的分级声明和初始化)
+	* [7.6 包的分级声明和初始化](content/42_07_package.md#76-包的初始化)
 
 * ### [第八章 Go项目开发与编译](content/42_08_project.md)
 	* [8.1 项目结构](content/42_08_project.md#81-项目结构)
