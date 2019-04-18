@@ -97,7 +97,7 @@ go build用于编译指定的代码包以及它们的依赖包。如果用来编
 
 使用go build时有一个地方需要注意，对外发布编译文件如果不希望被人看到源代码，请使用go build -ldflags 命令，设置编译参数-ldflags "-w -s" 再编译后发布。避免使用gdb来调试而清楚看到源代码。
 
-![goch.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/ch.png)
+![ch5.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/ch5.png)
 
 ## 8.4 Go modules 包依赖管理
 
