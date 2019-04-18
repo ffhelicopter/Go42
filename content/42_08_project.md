@@ -97,6 +97,8 @@ go build用于编译指定的代码包以及它们的依赖包。如果用来编
 
 使用go build时有一个地方需要注意，对外发布编译文件如果不希望被人看到源代码，请使用go build -ldflags 命令，设置编译参数-ldflags "-w -s" 再编译后发布。避免使用gdb来调试而清楚看到源代码。
 
+![goch.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/ch.png)
+
 ## 8.4 Go modules 包依赖管理
 
 Go 1.11 新增了对模块的支持，希望借此解决“包依赖管理”。可以通过设置环境变量 GO111MODULE来开启或关闭模块支持，它有三个可选值： off、 on、 auto，默认值是 auto。
