@@ -75,9 +75,9 @@ import (
 )
 ```
 
-## 7.3 标准包
+## 7.3 标准库
 
-在 Go 的安装文件里包含了一些可以直接使用的标准包。在$GOROOT/src中可以看到源码，也可以根据情况自行重新编译。
+在 Go 的安装文件里包含了一些可以直接使用的标准库。在$GOROOT/src中可以看到源码，也可以根据情况自行重新编译。
 
 完整列表可以访问GoWalker（https://gowalker.org/）查看。
 
@@ -130,7 +130,7 @@ import (
 ```Go
 go get -u github.com/ffhelicopter/tmm
 ```
-这样现在这台机器上的其他 Go 应用程序也可以通过导入路径："github.com/ffhelicopter/tmm" 代替 "./ffhelicopter/tmm" 来使用。 也可以将其缩写为：import ind "github.com/ffhelicopter/tmm"；开发中一般这样操作：
+这样现在这台机器上的其他 Go 应用程序也可以通过导入路径："github.com/ffhelicopter/tmm" 来使用。 开发中一般这样操作：
 
 ```Go
 import "github.com/ffhelicopter/tmm"
@@ -142,19 +142,19 @@ Go 对包的版本管理做的不是很友好，不过现在有些第三方项�
 
 在包安装前的先决条件是要自动处理包自身依赖关系的安装。被依赖的包也会安装到子目录下，但是没有文档和示例：可以到网上浏览。
 
-**Go install 使用了 GoPATH 变量**
+**Go install 使用了 GOPATH 变量**
 
 假设你想使用https://github.com/gocolly/colly 这种托管在 Google Code、GitHub 和 Launchpad 等代码网站上的包。
 
-你可以通过如下命令安装： Go install github.com/gocolly/colly 将一个名为 github.com/gocolly/colly   安装在$GoPATH/pkg/ 目录下。
+你可以通过如下命令安装： Go install github.com/gocolly/colly 将一个名为 github.com/gocolly/colly   安装在$GOPATH/pkg/ 目录下。
 
 Go install/build都是用来编译包和其依赖的包。
 
-区别： Go build只对main包有效，在当前目录编译生成一个可执行的二进制文件（依赖包生成的静态库文件放在$GoPATH/pkg）。
+区别： Go build只对main包有效，在当前目录编译生成一个可执行的二进制文件（依赖包生成的静态库文件放在$GOPATH/pkg）。
 
-Go install一般生成静态库文件放在$GoPATH/pkg目录下，文件扩展名a。
+Go install一般生成静态库文件放在$GOPATH/pkg目录下，文件扩展名a。
 
->如果为main包，运行Go buil则会在$GoPATH/bin 生成一个可执行的二进制文件。
+>如果为main包，运行Go buil则会在$GOPATH/bin 生成一个可执行的二进制文件。
 
 ## 7.6 包的初始化
 
