@@ -115,11 +115,11 @@ Use "go help <topic>" for more information about that topic.
 
 **在本书中，所有代码编译运行和标准库的说明讲解都基于go1.11，还没有升级的用户请及时升级。**
 
-$GOPATH允许多个目录，当有多个目录时，请注意分隔符，多个目录的时候Windows是分号;
+GOPATH允许多个目录，当有多个目录时，请注意分隔符，多个目录的时候Windows是分号;
 
-当有多个$GOPATH时默认将go get获取的包存放在第一个目录下。
+当有多个GOPATH时默认将go get获取的包存放在第一个目录下。
 
-$GOPATH目录约定有三个子目录
+GOPATH目录约定有三个子目录
 
 * src存放源代码(比如：.go .c .h .s等)   按照Go 默认约定，go run，go install等命令的当前工作路径（即在此路径下执行上述命令）。
 * pkg编译时生成的中间文件（比如：.a）

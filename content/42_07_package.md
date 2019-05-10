@@ -77,14 +77,14 @@ import (
 
 ## 7.3 标准库
 
-在 Go 的安装文件里包含了一些可以直接使用的标准库。在$GOROOT/src中可以看到源码，也可以根据情况自行重新编译。
+在 Go 的安装文件里包含了一些可以直接使用的标准库。在GOROOT/src中可以看到源码，也可以根据情况自行重新编译。
 
 完整列表可以访问GoWalker（https://gowalker.org/）查看。
 
 ```Go
     unsafe: 包含了一些打破 Go 语言“类型安全”的命令，一般的程序中不会被使用，可用在 C/C++ 程序的调用中。
     syscall-os-os/exec:
-    	os: 提供给我们一个平台无关性的操作系统功能接口，采用类Unix设计，隐藏了不同操作系统间差异，让不同的文件系统和操作系统对象表现一致。
+    	os: 提供给我们一个平台无关性的操作系统功能接口，采用类UNIX设计，隐藏了不同操作系统间差异，让不同的文件系统和操作系统对象表现一致。
     	os/exec: 提供我们运行外部操作系统命令和程序的方式。
     	syscall: 底层的外部包，提供了操作系统底层调用的基本接口。
     archive/tar 和 /zip-compress：压缩(解压缩)文件功能。
@@ -146,15 +146,15 @@ Go 对包的版本管理做的不是很友好，不过现在有些第三方项�
 
 假设你想使用https://github.com/gocolly/colly 这种托管在 Google Code、GitHub 和 Launchpad 等代码网站上的包。
 
-你可以通过如下命令安装： Go install github.com/gocolly/colly 将一个名为 github.com/gocolly/colly   安装在$GOPATH/pkg/ 目录下。
+你可以通过如下命令安装： Go install github.com/gocolly/colly 将一个名为 github.com/gocolly/colly   安装在GOPATH/pkg/ 目录下。
 
 Go install/build都是用来编译包和其依赖的包。
 
-区别： Go build只对main包有效，在当前目录编译生成一个可执行的二进制文件（依赖包生成的静态库文件放在$GOPATH/pkg）。
+区别： Go build只对main包有效，在当前目录编译生成一个可执行的二进制文件（依赖包生成的静态库文件放在GOPATH/pkg）。
 
-Go install一般生成静态库文件放在$GOPATH/pkg目录下，文件扩展名a。
+Go install一般生成静态库文件放在GOPATH/pkg目录下，文件扩展名a。
 
->如果为main包，运行Go buil则会在$GOPATH/bin 生成一个可执行的二进制文件。
+>如果为main包，运行Go buil则会在GOPATH/bin 生成一个可执行的二进制文件。
 
 ## 7.6 包的初始化
 

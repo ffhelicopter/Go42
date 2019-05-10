@@ -15,9 +15,9 @@ Go 项目目录下一般有三个子目录：
 
 我们重点要关注的其实就是src文件夹中的目录结构。
 
-为了进行一个项目，我们会在GoPATH目录下的src目录中，新建立一个项目的主要目录，比如我写的一个WEB项目《使用gin快速搭建WEB站点以及提供RestFull接口》。
+为了进行一个项目，我们会在GOPATH目录下的src目录中，新建立一个项目的主要目录，比如我写的一个WEB项目《使用gin快速搭建WEB站点以及提供RESTful接口》。
 https://github.com/ffhelicopter/tmm
-项目主要目录“tmm”： $GoPATH/src/github.com/ffhelicopter/tmm
+项目主要目录“tmm”： GOPATH/src/github.com/ffhelicopter/tmm
 在这个目录(tmm)下面还有其他目录，分别放置了其他代码，大概结构如下：
 
 ```Go
@@ -91,7 +91,7 @@ func NewWriter(w io.Writer) * Writer {
 
 go run只能作用于main包文件，先运行compile 命令编译生成.a文件，然后 link 生成最终可执行文件并运行程序，这过程的产生的是临时文件，在go run 退出前会删除这些临时文件（含.a文件和可执行文件）。最后直接在命令行输出程序执行结果。go run 命令在第二次执行的时候，如果发现导入的代码包没有发生变化，那么 go run 不会再次编译这个导入的代码包，直接进行链接生成最终可执行文件并运行程序。
 
-go install用于编译并安装指定的代码包及它们的依赖包，并且将编译后生成的可执行文件放到 bin 目录下（$GOPATH/bin），编译后的包文件放到当前工作区的 pkg 的平台相关目录下。
+go install用于编译并安装指定的代码包及它们的依赖包，并且将编译后生成的可执行文件放到 bin 目录下（GOPATH/bin），编译后的包文件放到当前工作区的 pkg 的平台相关目录下。
 
 go build用于编译指定的代码包以及它们的依赖包。如果用来编译非main包的源码，则只做检查性的编译，而不会输出任何结果文件。如果是一个可执行程序的源码（即是 main 包），这个过程与go run 大体相同，除了会在当前目录生成一个可执行文件外。
 
@@ -108,9 +108,9 @@ Go 1.11 新增了对模块的支持，希望借此解决“包依赖管理”。
 * GO111MODULE=on
     模块支持，go 会忽略 GOPATH 和 vendor 文件夹，只根据 go.mod下载依赖。
 * GO111MODULE=auto
-在 $GOPATH/src外面且根目录有 go.mod文件时，开启模块支持。
+在 GOPATH/src外面且根目录有 go.mod文件时，开启模块支持。
 
-在使用模块的时候， GOPATH是无意义的，不过它还是会把下载的依赖储存在 $GOPATH/pkg/mod 中。
+在使用模块的时候， GOPATH是无意义的，不过它还是会把下载的依赖储存在 GOPATH/pkg/mod 中。
  
 运行命令，go help mod ，我们可以看到mod的操作子命令，主要是init、 edit、 tidy。
 
@@ -267,7 +267,7 @@ github.com/temoto/robotstxt v0.0.0-20180810133444-97ee4a9ee6ea h1:hH8P1IiDpzRU6Z
 github.com/temoto/robotstxt v0.0.0-20180810133444-97ee4a9ee6ea/go.mod h1:aOux3gHPCftJ3KHq6Pz/AlDjYJ7Y+yKfm1gU/3B0u04=
 ```
 
-打开目录$GPATH/pkg/mod，我们可以看到这个项目下的依赖包都下载过来了。
+打开目录GOPATH/pkg/mod，我们可以看到这个项目下的依赖包都下载过来了。
 
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963

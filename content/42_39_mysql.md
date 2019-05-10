@@ -125,7 +125,7 @@ func (dbw *DbWorker) insertData() {
 	stmt,  _ := dbw.Db.Prepare(`INSERT INTO t_article_cate (cname, addtime, scope) VALUES (?, ?, ?)`)
 	defer stmt.Close()
 	
-	ret,  err := stmt.Exec("栏目1",  time.Now().Unix(),  10)
+	ret,  err := stmt.Exec("栏目1",  time.Now().UNIX(),  10)
 
 	// 通过返回的ret可以进一步查询本次插入数据影响的行数
 	// RowsAffected和最后插入的Id(如果数据库支持查询最后插入Id)
@@ -260,7 +260,7 @@ func (dbw *DbWorker) transaction() {
 
 	for i := 100; i < 110; i++ {
 		cname := strings.Join([]string{"栏目-",  string(i)},  "-")
-		_,  err = stmt.Exec(cname,  time.Now().Unix(),  i+20)
+		_,  err = stmt.Exec(cname,  time.Now().UNIX(),  i+20)
 		if err != nil {
 			fmt.Printf("insert data error: %v\n",  err)
 			return
