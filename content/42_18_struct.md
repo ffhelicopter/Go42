@@ -426,7 +426,7 @@ Student.Human.string is: Monitor
 
 通过对结构体使用new(T)，struct{filed:value}两种方式来声明初始化，分别可以得到*T指针变量，和T值变量。
 
-从上面程序输出结果中stu is: &{{Titan 男 14 Student} 102 0} 可以得知，stu 是指针变量。但是程序在调用此结构体变量的字段时并没有使用到指针，这是因为这里的 stu.name  相当于(*stu).name，这是一个语法糖，一般都使用stu.name方式来调用，但要知道有这个语法糖存在。
+从上面程序输出结果中stu is: &{ {Titan 男 14 Student} 102 0} 可以得知，stu 是指针变量。但是程序在调用此结构体变量的字段时并没有使用到指针，这是因为这里的 stu.name  相当于(*stu).name，这是一个语法糖，一般都使用stu.name方式来调用，但要知道有这个语法糖存在。
 
 
 ## 18.5 命名冲突
