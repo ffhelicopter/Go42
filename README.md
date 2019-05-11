@@ -33,7 +33,7 @@ Function，Method，Interface，Type等名词是程序员们接触比较多的�
 本书内容在github更新：https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md<br>
 本书内容在简书更新：  https://www.jianshu.com/nb/29056963
 
-#### [开始阅读](https://github.com/ffhelicopter/Go42/blob/master/content/42_01_install.md)
+#### [>>>开始阅读](https://github.com/ffhelicopter/Go42/blob/master/content/42_01_install.md)
 
 
 
@@ -125,7 +125,7 @@ Function，Method，Interface，Type等名词是程序员们接触比较多的�
 1.Nsq  https://github.com/nsqio/nsq
 
 
-#### rpc
+#### RPC
 
 1.rpcx https://github.com/smallnest/rpcx
 
