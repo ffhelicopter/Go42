@@ -46,7 +46,7 @@ Function，Method，Interface，Type等名词是程序员们接触比较多的�
 
 感谢以下网友对本书提出的修改建议： Joyboo 、林远鹏、Mr_RSI、magic-joker、3lackrush、Jacky2、tanjibo、wisecsj、eternal-flame-AD、isLishude、morya、adophper、ivanberry、xjl662750、huanglizhuo、xianyunyh、荣怡、pannz、yaaaaaaaan、sidbusy、NHibiki、awkj、yufy、lazyou、 liov 、飞翔不能的翔哥、橡_皮泥、刘冲_54ac、henng
 
- 
+
 
 ## 更新
 
@@ -158,3 +158,11 @@ Function，Method，Interface，Type等名词是程序员们接触比较多的�
 
 
 
+## 知识星球
+
+欢迎加入知识星球《Go42》社群，持续学习Go语言。
+
+![xing1.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/xing1.png)
+
+
+![xing2.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/xing2.png)
