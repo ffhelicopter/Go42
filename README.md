@@ -162,7 +162,5 @@ Function，Method，Interface，Type等名词是程序员们接触比较多的�
 
 欢迎加入知识星球《Go42》社群，持续学习Go语言。
 
-![xing1.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/xing1.png)
-
 
 ![xing2.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/xing2.png)
