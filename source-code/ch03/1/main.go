@@ -1,12 +1,13 @@
 package main
 
-import (  
-    _ "fmt"
-    "log"
-    "time"
+import (
+	_ "fmt"
+	"log"
+	"time"
 )
 
 var _ = log.Println
-func main() {  
-    _ = time.Now
+
+func main() {
+	_ = time.Now
 }
