@@ -77,8 +77,7 @@
 	* [16.4 递归与回调](content/42_16_function.md#164-递归与回调)
 	* [16.5 匿名函数](content/42_16_function.md#165-匿名函数)
 	* [16.6 闭包函数](content/42_16_function.md#166-闭包函数)
-	* [16.7 使用闭包调试](content/42_16_function.md#167-使用闭包调试)
-	* [16.8 高阶函数](content/42_16_function.md#168-高阶函数)
+	* [16.7 变参函数](content/42_16_function.md#167-变参函数)
 
 * ### [第十七章 Type关键字](content/42_17_type.md)
 	* [17.1 Type](content/42_17_type.md#171-type)

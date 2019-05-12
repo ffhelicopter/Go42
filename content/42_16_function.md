@@ -570,22 +570,11 @@ func main() {
 1 Jasmine
 ```
 
-## 16.8 高阶函数
-
-有时在定义所需功能时我们可以利用函数作为（其它函数的）参数的事实来使用高阶函数。
-
-定义一个通用的 Process() 函数，它接收一个作用于每一辆 car 的 f 函数作参数：
-
-```Go
-// Process all cars with the given function f:
-func (cs Cars) Process(f func(car *Car)) {
-    for _, c := range cs {
-        f(c)
-    }
-}
-```
 
 
-
+>本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42 
+>
+>虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
+>联系邮箱：roteman@163.com 
 
 

@@ -209,7 +209,7 @@ time.Sleep(1e9)让主程序不会马上退出，以便让协程(goroutine)运行
 有关于协程(goroutine)之间的通信以及协程(goroutine)与主线程的控制以及多个协程(goroutine)的管理和控制，我们后续通过channel、context以及锁来进一步说明。
 
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
->本书《Go语言四十二章经》内容在简书同步地址：  https://www.jianshu.com/nb/29056963
+>
 >
 >虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
 >联系邮箱：roteman@163.com
