@@ -1,3 +1,8 @@
+
+[![travis](https://travis-ci.org/ffhelicopter/go42.svg?branch=master)](https://travis-ci.org/ffhelicopter/go42)
+
+
+
 # [《Go语言四十二章经》](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md "《Go语言四十二章经》")
 
 作者：ffhelicopter（李骁）  时间：2018-04-15
