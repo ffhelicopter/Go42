@@ -36,7 +36,8 @@ Function，Method，Interface，Type等名词是程序员们接触比较多的�
 ## 阅读
 
 本书内容在github更新：https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md<br>
-本书内容在简书更新：  https://www.jianshu.com/nb/29056963
+
+
 
 #### [>>>开始阅读](https://github.com/ffhelicopter/Go42/blob/master/content/42_01_install.md)
 
@@ -44,7 +45,7 @@ Function，Method，Interface，Type等名词是程序员们接触比较多的�
 
 ## 交流
 
-虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
+虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。本书在知识星球上建立了读书群《Go语言42》（加入方式见本页末尾），有兴趣的朋友可以加入进来。
 
 联系邮箱：roteman@163.com 
 
@@ -55,7 +56,7 @@ Function，Method，Interface，Type等名词是程序员们接触比较多的�
 
 ## 更新
 
-本书会持续更新！为了更简单表述清楚，某些章节的内容我会根据情况随时更新；当然也会随Go语言版本的不断更新，不断修改完善相关章节的内容和代码。
+本书会在GitHub持续更新！为了更简单表述清楚，某些章节的内容我会根据情况随时更新，对于新发现的错误和缺陷也会在随时更正；当然也会随Go语言版本的不断更新，不断修改完善相关章节的内容和代码。这里提醒读者朋友，在GitHub将会在第一时间得到本书的最新更新，所以如发现任何问题还请先在GitHub上看看最新文章。
 
 
 
@@ -165,7 +166,7 @@ Function，Method，Interface，Type等名词是程序员们接触比较多的�
 
 ## 知识星球
 
-欢迎加入知识星球《Go42》社群，持续学习Go语言。
+欢迎加入知识星球《Go语言42》社群，持续学习Go语言。
 
 
 ![xing2.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/xing2.png)
