@@ -10,14 +10,14 @@ func main() {
 	var i1, i2 int
 	select {
 	case i1 = <-c1:
-		fmt.Printf("received ", i1, " from c1\n")
+		fmt.Println("received ", i1, " from c1")
 	case c2 <- i2:
-		fmt.Printf("sent ", i2, " to c2\n")
+		fmt.Println("sent ", i2, " to c2")
 	case i3, ok := (<-c3):
 		if ok {
-			fmt.Printf("received ", i3, " from c3\n")
+			fmt.Println("received ", i3, " from c3")
 		} else {
-			fmt.Printf("c3 is closed\n")
+			fmt.Println("c3 is closed")
 		}
 	case <-time.After(time.Second * 3): //超时退出
 		fmt.Println("request time out")
