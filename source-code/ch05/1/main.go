@@ -4,15 +4,14 @@ import (
 	"fmt"
 )
 
-var (
-	Ga int = 99 // Ga
-)
+// Ga is global
+var Ga = 99
 
 const (
 	v int = 199
 )
 
-// GetGa
+// GetGa return Ga
 func GetGa() func() int {
 
 	if Ga := 55; Ga < 60 {
