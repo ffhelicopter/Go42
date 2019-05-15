@@ -5,13 +5,14 @@ import (
 )
 
 var (
-	Ga int = 99
+	Ga int = 99 // Ga
 )
 
 const (
 	v int = 199
 )
 
+// GetGa
 func GetGa() func() int {
 
 	if Ga := 55; Ga < 60 {
