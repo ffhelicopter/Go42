@@ -6,9 +6,9 @@
 
 Go 奉行通过通信来共享内存，而不是共享内存来通信。所以，**channel 是goroutine之间互相通信的通道**，goroutine之间可以通过它发消息和接收消息。
 
-channel是进程内的通信方式，因此通过channel传递对象的过程和调用函数时的参数传递行为比较一致，比如也可以传递指针等。
+通道是进程内的通信方式，因此通过通道传递对象的过程和调用函数时的参数传递行为比较一致，比如也可以传递指针等。
 
-channel是类型相关的，一个channel只能传递（发送或接受 | send or receive）一种类型的值，这个类型需要在声明channel时指定。
+通道是类型相关的，一个通道只能传递（发送或接受 | send or receive）一种类型的值，这个类型需要在声明通道时指定。
 
 默认的，信道的存消息和取消息都是阻塞的 (叫做无缓冲的信道)
 
@@ -19,13 +19,13 @@ var channel chan int = make(chan int)
 // 或
 channel := make(chan int)
 ```
-Go中channel可以是发送（send）、接收（receive）、同时发送（send）和接收（receive）。
+Go中通道可以是发送（send）、接收（receive）、同时发送（send）和接收（receive）。
 
 ```Go
-// 定义接收的channel
+// 定义接收的通道
 receive_only := make (<-chan int)
  
-// 定义发送的channel
+// 定义发送的通道
 send_only := make (chan<- int)
 
 // 可同时发送接收
@@ -35,7 +35,7 @@ send_receive := make (chan int)
 * chan<- 表示数据进入通道，要把数据写进通道，对于调用者就是发送。
 * <-chan 表示数据从通道出来，对于调用者就是得到通道的数据，当然就是接收。
 
-定义只发送或只接收的channel意义不大，一般用于在参数传递中：
+定义只发送或只接收的通道意义不大，一般用于在参数传递中：
 
 ```Go
 package main
@@ -46,7 +46,7 @@ import (
 )
 
 func main() {
-	c := make(chan int) // 不使用带缓冲区的channel
+	c := make(chan int) // 不使用带缓冲区的通道
 	go send(c)
 	go recv(c)
 	time.Sleep(3 * time.Second)
@@ -63,7 +63,7 @@ func send(c chan<- int) {
 	}
 }
 
-// 只能接收channel中的数据
+// 只能接收通道中的数据
 func recv(c <-chan int) {
 	for i := range c {
 		fmt.Println("received ", i)
@@ -104,9 +104,9 @@ received  8
 received  9
 send  9
 ```
-运行结果上我们可以发现一个现象，往channel 发送数据后，这个数据如果没有取走，channel是阻塞的，也就是不能继续向channel 里面发送数据。因为上面代码中，我们没有指定channel 缓冲区的大小，默认是阻塞的。
+运行结果上我们可以发现一个现象，往通道 发送数据后，这个数据如果没有取走，通道是阻塞的，也就是不能继续向通道 里面发送数据。因为上面代码中，我们没有指定通道 缓冲区的大小，默认是阻塞的。
 
-我们可以建立带缓冲区的 channel：
+我们可以建立带缓冲区的 通道：
 
 ```Go
 c := make(chan int, 1024)
@@ -122,7 +122,7 @@ import (
 )
 
 func main() {
-	c := make(chan int, 10) // 使用带缓冲区的channel
+	c := make(chan int, 10) // 使用带缓冲区的通道
 	go send(c)
 	go recv(c)
 	time.Sleep(3 * time.Second)
@@ -139,7 +139,7 @@ func send(c chan<- int) {
 	}
 }
 
-// 只能接收channel中的数据
+// 只能接收通道中的数据
 func recv(c <-chan int) {
 	for i := range c {
 		fmt.Println("received ", i)
@@ -182,7 +182,7 @@ received  8
 received  9
 ```
 
-从运行结果我们可以看到（每次执行顺序不一定相同，goroutine 运行导致的原因），带有缓冲区的channel，在缓冲区有数据而未填满前，读取不会出现阻塞的情况。
+从运行结果我们可以看到（每次执行顺序不一定相同，goroutine 运行导致的原因），带有缓冲区的通道，在缓冲区有数据而未填满前，读取不会出现阻塞的情况。
 
 
 * 无缓冲的通道（unbuffered channel）是指在接收前没有能力保存任何值的通道。
@@ -199,15 +199,15 @@ received  9
 
 如果给定了一个缓冲区容量，通道就是异步的。只要缓冲区有未使用空间用于发送数据，或还包含可以接收的数据，那么其通信就会无阻塞地进行。
 
-可以通过内置的close函数来关闭channel实现。
+可以通过内置的close函数来关闭通道实现。
 
-* channel不像文件一样需要经常去关闭，只有当你确实没有任何发送数据了，或者你想显式的结束range循环之类的，才去关闭channel；
+* 通道不像文件一样需要经常去关闭，只有当你确实没有任何发送数据了，或者你想显式的结束range循环之类的，才去关闭通道；
 
-* 关闭channel后，无法向channel 再发送数据(引发 panic 错误后导致接收立即返回零值)；
+* 关闭通道后，无法向通道 再发送数据(引发 panic 错误后导致接收立即返回零值)；
 
-* 关闭channel后，可以继续向channel接收数据，不能继续发送数据；
+* 关闭通道后，可以继续向通道接收数据，不能继续发送数据；
 
-* 对于nil channel，无论收发都会被阻塞。
+* 对于nil 通道，无论收发都会被阻塞。
 
 
 
