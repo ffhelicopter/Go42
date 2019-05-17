@@ -11,7 +11,7 @@ Go 提供了database/sql包用于对关系型数据库的访问，作为操作�
 
 需要注意的是，sql.DB表示操作数据库的抽象访问接口, 而非一个数据库连接对象;它可以根据driver打开关闭数据库连接，管理连接池。正在使用的连接被标记为繁忙，用完后回到连接池等待下次使用。所以，如果你没有把连接释放回连接池，会导致过多连接使系统资源耗尽。
 
-具体到某一类型的关系型数据库，需要导入对应的数据库驱动。下面以MySql8.0为例，来讲讲怎么在Go语言中调用。
+具体到某一类型的关系型数据库，需要导入对应的数据库驱动。下面以MySQL8.0为例，来讲讲怎么在Go语言中调用。
 
 首先，需要下载第三方包：
 
@@ -29,7 +29,7 @@ import (
 通常来说，不应该直接使用驱动所提供的方法，而是应该使用 sql.DB，因此在导入 mysql 驱动时，这里使用了匿名导入的方式(在包路径前添加 _)，当导入了一个数据库驱动后，此驱动会自行初始化并注册自己到Go的database/sql上下文中，因此我们就可以通过 database/sql 包提供的方法访问数据库了。
 
 
-## 39.2 Mysql数据库操作
+## 39.2 MySQL数据库操作
 
 我们先建立表结构：
 
@@ -83,7 +83,7 @@ type Cate struct {
 
 func main() {
 	dbw := DbWorker{Dsn: "root:123456@tcp(localhost:3306)/mydb?charset=utf8mb4"}
-	// 支持下面几种DSN写法，具体看mysql服务端配置，常见为第2种
+	// 支持下面几种DSN写法，具体看MySQL服务端配置，常见为第2种
 	// user@unix(/path/to/socket)/dbname?charset=utf8
 	// user:password@tcp(localhost:5555)/dbname?charset=utf8
 	// user:password@/dbname

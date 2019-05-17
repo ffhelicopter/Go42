@@ -189,19 +189,19 @@
 
 * ### [第三十八章 数据序列化](content/42_38_json.md)
 	* [38.1 序列化与反序列化](content/42_38_json.md#381-序列化与反序列化)
-	* [38.2 json数据格式](content/42_38_json.md#382-json数据格式)
+	* [38.2 JSON数据格式](content/42_38_json.md#382-json数据格式)
 	* [38.3 Protocol Buffer数据格式](content/42_38_json.md#383-protocol-buffer数据格式)
 
 * ### [第三十九章 Mysql数据库](content/42_39_mysql.md)
 	* [39.1 database/sql包](content/42_39_mysql.md#391-databasesql包)
-	* [39.2 Mysql数据库操作](content/42_39_mysql.md#392-mysql数据库操作)
+	* [39.2 MySQL数据库操作](content/42_39_mysql.md#392-mysql数据库操作)
 
 * ### [第四十章 LevelDB与BoltDB](content/42_40_kvdb.md)
 	* [40.1 LevelDB](content/42_40_kvdb.md#401-leveldb)
 	* [40.2 BoltDB](content/42_40_kvdb.md#402-boltdb)
 
 * ### [第四十一章 网络爬虫](content/42_41_crawler.md)
-	* [41.1 go-colly网络爬虫框架](content/42_41_crawler.md#411-go-colly网络爬虫框架)
+	* [41.1 Colly网络爬虫框架](content/42_41_crawler.md#411Colly网络爬虫框架)
 	* [41.2 goquery HTML解析](content/42_41_crawler.md#412-goquery-html解析)
 
 * ### [第四十二章 WEB框架(Gin)](content/42_42_gin.md)
