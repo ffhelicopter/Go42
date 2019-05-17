@@ -59,53 +59,6 @@ P维护着这个队列（称之为runqueue），Go语言里，启动一个gorout
 * 当一个OS Thread线程被阻塞时，P可以转而投奔另一个OS线程。
 
 
-下面是G、 M、 P的具体结构，这不是Go代码：
-
-```C
-struct  G
-{
-    uintptr stackguard0;// 用于栈保护，但可以设置为StackPreempt，用于实现抢占式调度
-    uintptr stackbase;  // 栈顶
-    Gobuf   sched;      // 执行上下文，G的暂停执行和恢复执行，都依靠它
-    uintptr stackguard; // 跟stackguard0一样，但它不会被设置为StackPreempt
-    uintptr stack0;     // 栈底
-    uintptr stacksize;  // 栈的大小
-    int16   status;     // G的六个状态
-    int64   goid;       // G的标识id
-    int8*   waitreason; // 当status==Gwaiting有用，等待的原因，可能是调用time.Sleep之类
-    G*  schedlink;      // 指向链表的下一个G
-    uintptr gopc;       // 创建此goroutine的Go语句的程序计数器PC，通过PC可以获得具体的函数和代码行数
-};
-struct P
-{
-    Lock;       // plan9 C的扩展语法，相当于Lock lock;
-    int32   id;  // P的标识id
-    uint32  status;     // P的四个状态
-    P*  link;       // 指向链表的下一个P
-    M*  m;      // 它当前绑定的M，Pidle状态下，该值为nil
-    MCache* mcache; // 内存池
-    // Grunnable状态的G队列
-    uint32  runqhead;
-    uint32  runqtail;
-    G*  runq[256];
-    // Gdead状态的G链表（通过G的schedlink）
-    // gfreecnt是链表上节点的个数
-    G*  gfree;
-    int32   gfreecnt;
-};
-struct  M
-{
-    G*  g0;     // M默认执行G
-    void    (*mstartfn)(void);  // OS线程执行的函数指针
-    G*  curg;       // 当前运行的G
-    P*  p;      // 当前关联的P，要是当前不执行G，可以为nil
-    P*  nextp;  // 即将要关联的P
-    int32   id; // M的标识id
-    M*  alllink;    // 加到allm，使其不被垃圾回收(GC)
-    M*  schedlink;  // 指向链表的下一个M
-};
-```
-
 我们可以运行下面代码体验下Go语言中通过设定runtime.GOMAXPROCS(2) ，也即手动指定CPU运行的核数，来体验多核CPU在并发处理时的威力。不得不提，递归函数的计算很费CPU和内存，运行时可以根据电脑配置修改循环或递归数量。
 
 ```Go
