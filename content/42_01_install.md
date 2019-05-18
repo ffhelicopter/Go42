@@ -180,6 +180,15 @@ LiteIDE源码位于https://github.com/visualfc/liteide上。需要使用Qt4/Qt5�
 现在Go 语言和开发工具我们都已经安装完成，接下来我们开始学习Go的基础知识，并实际使用他们来进行练习和开发。
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[前言](https://github.com/ffhelicopter/Go42/blob/master/README.md)
+
+[第一章 Go安装与运行](content/42_01_install.md)
+
+[第二章 数据类型](content/42_02_datatype.md)
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >
