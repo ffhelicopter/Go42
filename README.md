@@ -40,7 +40,7 @@ Function，Method，Interface，Type等名词是程序员们接触比较多的�
 
 
 
-#### [>>>开始阅读](https://github.com/ffhelicopter/Go42/blob/master/content/42_01_install.md)
+#### [>>>开始阅读 第一章 Go安装与运行](https://github.com/ffhelicopter/Go42/blob/master/content/42_01_install.md)
 
 
 

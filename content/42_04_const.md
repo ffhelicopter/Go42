@@ -112,6 +112,14 @@ complex64Var (5+0i)
 当然，常量之所以为常量就是恒定不变的量，因此我们无法在程序运行过程中修改它的值；如果你在代码中试图修改常量的值则会引发编译错误。同时，在const 定义中，对常量名没有强制要求全部大写，不过我们一般都会全部字母大写，以便阅读。
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第三章 变量](https://github.com/ffhelicopter/Go42/blob/master/content/42_03_var.md)
+
+[第五章 作用域](https://github.com/ffhelicopter/Go42/blob/master/content/42_05_scope.md)
+
+
+
 
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >

@@ -137,6 +137,16 @@ func main() {
 这段代码运行结果是什么，你能写出来吗？
 
 
+
+
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第四章 常量](https://github.com/ffhelicopter/Go42/blob/master/content/42_04_const.md)
+
+[第六章 约定和惯例](https://github.com/ffhelicopter/Go42/blob/master/content/42_06_convention.md)
+
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42 
 >
 >虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
