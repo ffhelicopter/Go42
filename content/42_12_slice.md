@@ -221,6 +221,15 @@ func main() {
 ```
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第十一章 数组(Array)](https://github.com/ffhelicopter/Go42/blob/master/content/42_11_array.md)
+
+[第十三章 字典(Map)](https://github.com/ffhelicopter/Go42/blob/master/content/42_13_map.md)
+
+
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

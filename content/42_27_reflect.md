@@ -316,6 +316,15 @@ NumMethod          : 0
 
 ```
 
+
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第二十六章 测试](https://github.com/ffhelicopter/Go42/blob/master/content/42_26_testing.md)
+
+[第二十八章 unsafe包](https://github.com/ffhelicopter/Go42/blob/master/content/42_28_unsafe.md)
+
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

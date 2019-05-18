@@ -115,6 +115,13 @@ println(arrRoom == arrBed) //true
 
 ```
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第十章 string](https://github.com/ffhelicopter/Go42/blob/master/content/42_10_string.md)
+
+[第十二章 切片(slice)](https://github.com/ffhelicopter/Go42/blob/master/content/42_12_slice.md)
+
+
 
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >

@@ -313,6 +313,13 @@ prev~next选择器
 Colly + goquery 是抓取网络内容的利器，使用上极其方便。如今动态渲染的页面越来越多，爬虫们或多或少都需要用到headless browser来渲染待爬取的页面，这里推荐chromedp，开源网址：https://github.com/chromedp/chromedp
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第四十章 LevelDB与BoltDB](https://github.com/ffhelicopter/Go42/blob/master/content/42_40_kvdb.md)
+
+[第四十二章 WEB框架(Gin)](https://github.com/ffhelicopter/Go42/blob/master/content/42_42_gin.md)
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

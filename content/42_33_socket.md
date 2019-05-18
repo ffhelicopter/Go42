@@ -186,6 +186,13 @@ func onMessageRecived(conn *net.TCPConn) {
 用Socket进行通信，发送的数据包一定是有结构的，类似于：数据头+数据长度+数据内容+校验码+数据尾。而在TCP流传输的过程中，可能会出现分包与黏包的现象。我们为了解决这些问题，需要我们自定义通信协议进行封包与解包。对这方面内容如有兴趣可以去了解更多相关知识。
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第三十二章 fmt包与日志log包](https://github.com/ffhelicopter/Go42/blob/master/content/42_32_fmt.md)
+
+[第三十四章 命令行flag包 ](https://github.com/ffhelicopter/Go42/blob/master/content/42_34_flag.md)
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

@@ -269,6 +269,16 @@ github.com/temoto/robotstxt v0.0.0-20180810133444-97ee4a9ee6ea/go.mod h1:aOux3gH
 
 打开目录GOPATH/pkg/mod，我们可以看到这个项目下的依赖包都下载过来了。
 
+
+
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第七章 代码结构化](https://github.com/ffhelicopter/Go42/blob/master/content/42_07_package.md)
+
+[第九章 运算符](https://github.com/ffhelicopter/Go42/blob/master/content/42_09_operator.md)
+
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

@@ -571,6 +571,14 @@ func main() {
 ```
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第十五章 错误处理](https://github.com/ffhelicopter/Go42/blob/master/content/42_15_errors.md)
+
+[第十七章 Type关键字](https://github.com/ffhelicopter/Go42/blob/master/content/42_17_type.md)
+
+
+
 
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42 
 >

@@ -276,6 +276,14 @@ func (dbw *DbWorker) transaction() {
 ```
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第三十八章 数据序列化](https://github.com/ffhelicopter/Go42/blob/master/content/42_38_json.md)
+
+[第四十章 LevelDB与BoltDB](https://github.com/ffhelicopter/Go42/blob/master/content/42_40_kvdb.md)
+
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

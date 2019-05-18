@@ -450,6 +450,16 @@ var c C
 解决直接选择使用c.a引发二义性的问题一般应该由程序员逐级完整写出避免错误。
 
 
+
+
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第十七章 Type关键字](https://github.com/ffhelicopter/Go42/blob/master/content/42_17_type.md)
+
+[第十九章 接口](https://github.com/ffhelicopter/Go42/blob/master/content/42_19_interface.md)
+
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

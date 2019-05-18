@@ -211,6 +211,14 @@ received  9
 
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第二十一章 协程(goroutine)](https://github.com/ffhelicopter/Go42/blob/master/content/42_21_goroutine.md)
+
+[第二十三章 同步与锁](https://github.com/ffhelicopter/Go42/blob/master/content/42_23_sync.md)
+
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

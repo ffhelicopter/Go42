@@ -130,6 +130,14 @@ func Old(a int)(int){
 
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第五章 作用域](https://github.com/ffhelicopter/Go42/blob/master/content/42_05_scope.md)
+
+[第七章 代码结构化](https://github.com/ffhelicopter/Go42/blob/master/content/42_07_package.md)
+
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

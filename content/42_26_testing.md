@@ -322,6 +322,13 @@ go tool pprof 3.exe cpu.prof   这种文件方式来进行分析。
 
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第二十五章 面向对象](https://github.com/ffhelicopter/Go42/blob/master/content/42_25_oo.md)
+
+[第二十七章 反射(reflect)](https://github.com/ffhelicopter/Go42/blob/master/content/42_27_reflect.md)
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

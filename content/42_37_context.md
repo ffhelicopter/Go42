@@ -315,6 +315,15 @@ func main() {
 我们打开浏览器访问：http://localhost:8080/chk ，然后再访问：http://localhost:8080/ ，将会看到我们正常通行后结果，否则将会看到没有正常通行下的信息。Context信息的传递主要靠中间件ContextMiddle来进行。
 
 
+
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第三十六章 net/http包](https://github.com/ffhelicopter/Go42/blob/master/content/42_36_http.md)
+
+[第三十八章 数据序列化](https://github.com/ffhelicopter/Go42/blob/master/content/42_38_json.md)
+
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

@@ -313,6 +313,14 @@ type ReaderWriter struct {
 
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第十八章 Struct 结构体](https://github.com/ffhelicopter/Go42/blob/master/content/42_18_struct.md)
+
+[第二十章 方法](https://github.com/ffhelicopter/Go42/blob/master/content/42_20_method.md)
+
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

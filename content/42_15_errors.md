@@ -287,6 +287,15 @@ delta := end.Sub(start)
 fmt.Printf("longCalculation took this amount of time: %s\n", delta)
 ```
 
+
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第十四章 流程控制](https://github.com/ffhelicopter/Go42/blob/master/content/42_14_flow.md)
+
+[第十六章 函数](https://github.com/ffhelicopter/Go42/blob/master/content/42_16_function.md)
+
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

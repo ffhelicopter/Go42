@@ -367,6 +367,13 @@ with结构中，在其它动作中使用定义的变量
 
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第三十四章 命令行flag包 ](https://github.com/ffhelicopter/Go42/blob/master/content/42_34_flag.md)
+
+[第三十六章 net/http包](https://github.com/ffhelicopter/Go42/blob/master/content/42_36_http.md)
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >

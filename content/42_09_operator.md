@@ -162,6 +162,14 @@ i-- -> i -= 1 -> i = i - 1
 
 
 
+[目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
+
+[第八章 Go项目开发与编译](https://github.com/ffhelicopter/Go42/blob/master/content/42_08_project.md)
+
+[第十章 string](https://github.com/ffhelicopter/Go42/blob/master/content/42_10_string.md)
+
+
+
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
 >
 >
