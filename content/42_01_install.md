@@ -184,9 +184,9 @@ LiteIDE源码位于https://github.com/visualfc/liteide上。需要使用Qt4/Qt5�
 
 [前言](https://github.com/ffhelicopter/Go42/blob/master/README.md)
 
-[第一章 Go安装与运行](content/42_01_install.md)
+[第一章 Go安装与运行](https://github.com/ffhelicopter/Go42/blob/master/content/42_01_install.md)
 
-[第二章 数据类型](content/42_02_datatype.md)
+[第二章 数据类型](https://github.com/ffhelicopter/Go42/blob/master/content/42_02_datatype.md)
 
 
 >本书《Go语言四十二章经》内容在github上同步地址：https://github.com/ffhelicopter/Go42
