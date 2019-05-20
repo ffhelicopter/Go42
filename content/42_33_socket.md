@@ -4,9 +4,9 @@
 
 ## 33.1 Socket基础知识
 
-tcp/udp、ip构成了网络通信的基石，tcp/ip是面向连接的通信协议，要求建立连接时进行3次握手确保连接已被建立，关闭连接时需要4次通信来保证客户端和服务端都已经关闭，也就是我们常说的三次握手，四次挥手。在通信过程中还有保证数据不丢失，在连接不畅通时还需要进行超时重试等等。
+TCP/UDP、IP构成了网络通信的基石，TCP/IP是面向连接的通信协议，要求建立连接时进行3次握手确保连接已被建立，关闭连接时需要4次通信来保证客户端和服务端都已经关闭，也就是我们常说的三次握手，四次挥手。在通信过程中还有保证数据不丢失，在连接不畅通时还需要进行超时重试等等。
 
-socket就是封装了这一套基于tcp/udp/ip协议细节，提供了一系列套接字接口进行通信。
+socket就是封装了这一套基于TCP/UDP/IP协议细节，提供了一系列套接字接口进行通信。
 
 我们知道Socket有两种：TCP Socket和UDP Socket，TCP和UDP是协议，而要确定一个进程的需要三元组，还需要IP地址和端口。
 
@@ -24,7 +24,7 @@ IPv6是新一版本的互联网协议，也可以说是新一代互联网的协�
 
 ## 33.2 TCP 与 UDP 
 
-Go是自带runtime的跨平台编程语言，Go中暴露给语言使用者的tcp socket api是建立OS原生tcp socket接口之上的，所以在使用上相对简单。
+Go是自带runtime的跨平台编程语言，Go中暴露给语言使用者的TCP socket api是建立OS原生TCP socket接口之上的，所以在使用上相对简单。
 
 TCP Socket
 
@@ -50,7 +50,7 @@ addr表示域名或者IP地址，例如"www.google.com:80" 或者"127.0.0.1:22"�
 我们来看一个TCP 连接建立的具体代码：
 
 ```Go
-// tcp server 服务端代码
+// TCP server 服务端代码
 
 package main
 
@@ -123,7 +123,7 @@ func tcpPipe(conn *net.TCPConn) {
 
 客户端代码：
 ```Go
-// tcp client
+// TCP client
 
 package main
 
@@ -181,7 +181,7 @@ func onMessageRecived(conn *net.TCPConn) {
 ```
 客户端net.DialTCP("tcp", nil, tcpAddr) 向服务端发起一个连接请求，调用onMessageRecived(conn)，处理客户端和服务端数据的发送与接收。在func onMessageRecived(conn *net.TCPConn) 中，通过 bufio.NewReader 读取客户端发送过来的数据。
 
-上面2个例子你可以试着运行一下，程序支持多个客户端同时运行。当然，这两个例子只是简单的tcp原始连接，在实际中，我们还可能需要定义协议。
+上面2个例子你可以试着运行一下，程序支持多个客户端同时运行。当然，这两个例子只是简单的TCP原始连接，在实际中，我们还可能需要定义协议。
 
 用Socket进行通信，发送的数据包一定是有结构的，类似于：数据头+数据长度+数据内容+校验码+数据尾。而在TCP流传输的过程中，可能会出现分包与黏包的现象。我们为了解决这些问题，需要我们自定义通信协议进行封包与解包。对这方面内容如有兴趣可以去了解更多相关知识。
 
