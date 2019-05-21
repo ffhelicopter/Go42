@@ -44,11 +44,11 @@ func TestAbcde(t *testing.T)
 4）func (t *T) Fatal(args ...interface{})
     结合 先执行 3），然后执行 2）的效果。
 
-运行 Go test 来编译测试程序，并执行程序中所有的 TestXxx 函数。如果所有的测试都通过会打印出 PASS。
+运行 go test 来编译测试程序，并执行程序中所有的 TestXxx 函数。如果所有的测试都通过会打印出 PASS。
 
 当然，对于包中不能导出的函数不能进行单元或者基准测试。
 
-Gotest 可以接收一个或多个函数程序作为参数，并指定一些选项。
+gotest 可以接收一个或多个函数程序作为参数，并指定一些选项。
 
 在系统标准包中，有很多 _test.go 结尾的程序，大家可以用来测试，为节约篇幅这里我就不写具体例子了。
 
@@ -62,7 +62,7 @@ func BenchmarkReverse(b *testing.B) {
 }
 ```
 
-命令 Go test –test.bench=.* 会运行所有的基准测试函数；代码中的函数会被调用 N 次（N是非常大的数，如 N = 1000000），可以根据情况指定b.Z的值，并展示 N 的值和函数执行的平均时间，单位为 ns（纳秒，ns/op）。如果是用 testing.Benchmark 调用这些函数，直接运行程序即可。
+命令 go test –test.bench=.* 会运行所有的基准测试函数；代码中的函数会被调用 N 次（N是非常大的数，如 N = 1000000），可以根据情况指定b.N的值，并展示 N 的值和函数执行的平均时间，单位为 ns（纳秒，ns/op）。如果是用 testing.Benchmark 调用这些函数，直接运行程序即可。
 
 下面我们看一个测试的具体例子：
 
@@ -119,7 +119,7 @@ func BenchmarkFactorial(b *testing.B) {
 }
 ```
 
-现在我们可以在这个包的目录下使用命令：Go test  -test.bench=.* 来测试 even 包。
+现在我们可以在这个包的目录下使用命令：go test  -test.bench=.* 来测试 even 包。
 
 输出：
 
@@ -139,7 +139,7 @@ ok  	go42/chapter-13/13.1/1	3.628s
 
 ## 26.3 分析并优化 Go 程序
 
-如果代码使用了 Go 中 testing 包的基准测试功能，我们可以用 Gotest 标准的 -cpuprofile 和 -memprofile 标志向指定文件写入 CPU 或 内存使用情况报告。
+如果代码使用了 Go 中 testing 包的基准测试功能，我们可以用 gotest 标准的 -cpuprofile 和 -memprofile 标志向指定文件写入 CPU 或 内存使用情况报告。
 
 使用方式：
 
