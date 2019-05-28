@@ -125,7 +125,7 @@ import (
 ```
 
 ## 7.4 从 GitHub 安装包
-如果有人想安装您的远端项目到本地机器，打开终端并执行（ffhelicopter是我在 GitHub 上的用户名）：
+如果有人想安装您的远端项目到本地机器，打开终端并执行（ffhelicopter是我在GitHub上的用户名）：
 
 ```Go
 go get -u github.com/ffhelicopter/tmm
@@ -138,21 +138,21 @@ import "github.com/ffhelicopter/tmm"
 Go 对包的版本管理做的不是很友好，不过现在有些第三方项目做的不错，有兴趣的同学可以了解下（glide、godep、govendor）。
 
 ## 7.5 导入外部安装包
-如果你要在你的应用中使用一个或多个外部包，你可以使用 Go install在你的本地机器上安装它们。Go install 是 Go 中自动包安装工具：如需要将包安装到本地它会从远端仓库下载包：检出、编译和安装一气呵成。
+如果你要在你的应用中使用一个或多个外部包，你可以使用go install在你的本地机器上安装它们。go install 是Go语言中自动包安装工具：如需要将包安装到本地它会从远端仓库下载包：检出、编译和安装一气呵成。
 
 在包安装前的先决条件是要自动处理包自身依赖关系的安装。被依赖的包也会安装到子目录下，但是没有文档和示例：可以到网上浏览。
 
-**Go install 使用了 GOPATH 变量**
+**go install 使用了 GOPATH 变量**
 
 假设你想使用https://github.com/gocolly/colly 这种托管在 Google Code、GitHub 和 Launchpad 等代码网站上的包。
 
-你可以通过如下命令安装： Go install github.com/gocolly/colly 将一个名为 github.com/gocolly/colly   安装在GOPATH/pkg/ 目录下。
+你可以通过如下命令安装： go install github.com/gocolly/colly 将一个名为 github.com/gocolly/colly   安装在GOPATH/pkg/ 目录下。
 
-Go install/build都是用来编译包和其依赖的包。
+go install/build都是用来编译包和其依赖的包。
 
-区别： Go build只对main包有效，在当前目录编译生成一个可执行的二进制文件（依赖包生成的静态库文件放在GOPATH/pkg）。
+区别： go build只对main包有效，在当前目录编译生成一个可执行的二进制文件（依赖包生成的静态库文件放在GOPATH/pkg）。
 
-Go install一般生成静态库文件放在GOPATH/pkg目录下，文件扩展名a。
+go install一般生成静态库文件放在GOPATH/pkg目录下，文件扩展名a。
 
 >如果为main包，运行Go buil则会在GOPATH/bin 生成一个可执行的二进制文件。
 

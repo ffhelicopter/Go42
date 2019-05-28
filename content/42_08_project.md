@@ -41,9 +41,9 @@ main.go 文件中定义了package main 。同时也在文件中import了
 
 当我们运行go install main.go 会在GOPATH的bin 目录中生成可执行文件。
 
-## 8.2 使用 Godoc
+## 8.2 使用godoc
 
-在程序中我们一般都会注释，如果我们按照一定规则，Godoc 工具会收集这些注释并产生一个技术文档。
+在程序中我们一般都会注释，如果我们按照一定规则，godoc工具会收集这些注释并产生一个技术文档。
 
 ```Go
 // Copyright 2009 The Go Authors. All rights reserved.  
