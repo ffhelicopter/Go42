@@ -2,7 +2,7 @@
 
 作者：李骁
 
-Printf也可以做到输出格式化，当然，对于简单的例子来说足够了，但是我们有时候还是需要复杂的输出格式，甚至需要将格式化代码分离开来。这时，可以使用text/template和html/template。
+标准库fmt包中，Printf()等方法可以做到输出格式化，当然，对于简单的例子来说足够了，但是我们有时候还是需要复杂的输出格式，甚至需要将格式化代码分离开来。这时，可以使用text/template和html/template。
 
 Go 官方库提供了两个模板库： text/template 和 html/template 。这两个库类似，当需要输出html格式的代码时需要使用 html/template。
 

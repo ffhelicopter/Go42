@@ -79,10 +79,10 @@
 	* [16.6 闭包函数](content/42_16_function.md#166-闭包函数)
 	* [16.7 变参函数](content/42_16_function.md#167-变参函数)
 
-* ### [第十七章 Type关键字](content/42_17_type.md)
-	* [17.1 Type](content/42_17_type.md#171-type)
+* ### [第十七章 type关键字](content/42_17_type.md)
+	* [17.1 type](content/42_17_type.md#171-type)
 
-* ### [第十八章 Struct 结构体](content/42_18_struct.md)
+* ### [第十八章 struct 结构体](content/42_18_struct.md)
 	* [18.1 结构体(struct)](content/42_18_struct.md#181结构体struct)
 	* [18.2 结构体特性](content/42_18_struct.md#182-结构体特性)
 	* [18.3 匿名成员](content/42_18_struct.md#183-匿名成员)
@@ -149,9 +149,9 @@
 	* [30.1 启动外部命令和程序](content/42_30_os.md#301-启动外部命令和程序)
 	* [30.2 os/signal 信号处理](content/42_30_os.md#302-ossignal-信号处理)
 
-* ### [第三十一章 文件操作与IO](content/42_31_io.md)
+* ### [第三十一章 文件操作与I/O](content/42_31_io.md)
 	* [31.1 文件系统](content/42_31_io.md#311-文件系统)
-	* [31.2 IO读写](content/42_31_io.md#312-io读写)
+	* [31.2 I/O读写](content/42_31_io.md#312-io读写)
 	* [31.3 ioutil包](content/42_31_io.md#313-ioutil包)
 	* [31.4 bufio包](content/42_31_io.md#314-bufio包)
 
