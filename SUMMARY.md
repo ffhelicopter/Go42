@@ -56,18 +56,18 @@
 
 * ### [第十三章 字典(Map)](content/42_13_map.md)
 	* [13.1 字典(Map)](content/42_13_map.md#131-字典map)
-	* [13.2 "range"语句中更新引用元素的值](content/42_13_map.md#132-range语句中的值)
+	* [13.2 range语句中更新引用元素的值](content/42_13_map.md#132-range语句中的值)
 
 * ### [第十四章 流程控制](content/42_14_flow.md)
-	* [14.1 Switch 语句](content/42_14_flow.md#141-switch-语句)
-	* [14.2 Select控制](content/42_14_flow.md#142-select控制)
-	* [14.3 For循环](content/42_14_flow.md#143-for循环)
+	* [14.1 switch 语句](content/42_14_flow.md#141-switch-语句)
+	* [14.2 select控制](content/42_14_flow.md#142-select控制)
+	* [14.3 for循环](content/42_14_flow.md#143-for循环)
 	* [14.4 for-range 结构](content/42_14_flow.md#144-for-range-结构)
 
 * ### [第十五章 错误处理](content/42_15_errors.md)
 	* [15.1 错误类型](content/42_15_errors.md#151-错误类型)
-	* [15.2 Panic](content/42_15_errors.md#152-panic)
-	* [15.3 Recover：从 panic 中恢复](content/42_15_errors.md#153-recover从-panic-中恢复)
+	* [15.2 panic](content/42_15_errors.md#152-panic)
+	* [15.3 recover：从 panic 中恢复](content/42_15_errors.md#153-recover从-panic-中恢复)
 	* [15.4 有关于defer](content/42_15_errors.md#154-有关于defer)
 
 * ### [第十六章 函数](content/42_16_function.md)
@@ -145,7 +145,7 @@
 	* [29.2 自定义sort.Interface排序](content/42_29_sort.md#292-自定义sortinterface排序)
 	* [29.3 sort.Slice](content/42_29_sort.md#293-sortslice)
 
-* ### [第三十章 OS包](content/42_30_os.md)
+* ### [第三十章 os包](content/42_30_os.md)
 	* [30.1 启动外部命令和程序](content/42_30_os.md#301-启动外部命令和程序)
 	* [30.2 os/signal 信号处理](content/42_30_os.md#302-ossignal-信号处理)
 
@@ -192,7 +192,7 @@
 	* [38.2 JSON数据格式](content/42_38_json.md#382-json数据格式)
 	* [38.3 Protocol Buffer数据格式](content/42_38_json.md#383-protocol-buffer数据格式)
 
-* ### [第三十九章 Mysql数据库](content/42_39_mysql.md)
+* ### [第三十九章 MySQL数据库](content/42_39_mysql.md)
 	* [39.1 database/sql包](content/42_39_mysql.md#391-databasesql包)
 	* [39.2 MySQL数据库操作](content/42_39_mysql.md#392-mysql数据库操作)
 
