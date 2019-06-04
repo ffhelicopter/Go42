@@ -26,23 +26,21 @@ if f < 0 {
 
 ## 15.2 Panic
 
-在Go语言中 panic 是一个内置函数，用来表示非常严重的不可恢复的错误。必须要先声明defer，否则不能捕获到panic异常。普通函数在执行的时候发生panic了，则开始运行defer（如有），defer处理完再返回。
+在Go语言中 panic() 是一个内置函数，用来表示非常严重的不可恢复的错误。必须要先声明defer，否则不能捕获到异常。普通函数在执行的时候发生了异常，则开始运行defer（如有），defer处理完再返回。
 
-在多层嵌套的函数调用中调用 panic，可以马上中止当前函数的执行，所有的 defer 语句都会保证执行并把控制权交还给接收到 panic 的函数调用者。这样向上冒泡直到最顶层，并执行（每层的） defer，在栈顶处程序崩溃，并在命令行中用传给 panic 的值报告错误情况：这个终止过程就是 panicking。
+在多层嵌套的函数调用中调用 panic()，可以马上中止当前函数的执行，所有的 defer 语句都会保证执行并把控制权交还给接收到异常的函数调用者。这样向上冒泡直到最顶层，并执行（每层的） defer，在栈顶处程序崩溃，并在命令行中用传给异常的值报告错误情况：这个终止过程就是 panicking。
 
-标准库中有许多包含 Must 前缀的函数，像 regexp.MustComplie 和 template.Must；当正则表达式或模板中转入的转换字符串导致错误时，这些函数会 panic。
-
-不能随意地用 panic 中止程序，必须尽力补救错误让程序能继续执行。
+一般不要随意用 panic() 中止程序，必须尽力补救错误让程序能继续执行。
 
 自定义包中的错误处理和 panicking，这是所有自定义包实现者应该遵守的最佳实践：
 
-1）在包内部，总是应该从 panic 中 recover：不允许显式的超出包范围的 panic()
+1）在包内部，总是应该从异常中 recover：不允许显式的超出包范围的 panic()
 
-2）向包的调用者返回错误值（而不是 panic）。
+2）向包的调用者返回错误值。
 
-recover() 的调用仅当它在 defer 函数中被直接调用时才有效。
+recover() 函数的调用仅当它在 defer 函数中被直接调用时才有效。
 
-下面主函数recover 了panic：
+下面主函数捕获了异常：
 
 ```Go
 package main
@@ -56,7 +54,7 @@ func div(a, b int) {
 	defer func() {
 
 		if r := recover(); r != nil {
-			fmt.Printf("捕获到错误：%s\n", r)
+			fmt.Printf("捕获到异常：%s\n", r)
 		}
 	}()
 
@@ -70,24 +68,24 @@ func div(a, b int) {
 }
 
 func main() {
-	// 捕捉内部的Panic错误
+	// 捕捉内部的异常
 	div(10, 0)
 
-	// 捕捉主动Panic的错误
+	// 捕捉主动的异常
 	div(10, -1)
 }
 
 程序输出：
 
-捕获到错误：runtime error: integer divide by zero
-捕获到错误：除数需要大于0
+捕获到异常：runtime error: integer divide by zero
+捕获到异常：除数需要大于0
 ```
 
-## 15.3 Recover：从 panic 中恢复
+## 15.3 Recover：从异常中恢复
 
-正如名字一样，这个（recover）内建函数被用于从 panic 或 错误场景中恢复：让程序可以从 panicking 重新获得控制权，停止终止过程进而恢复正常执行。
-recover 只能在 defer 修饰的函数中使用：用于取得 panic 调用中传递过来的错误值，如果是正常执行，调用 recover 会返回 nil，且没有其它效果。
-总结：panic 会导致栈被展开直到 defer 修饰的 recover() 被调用或者程序中止。
+recover() 这个内建函数被用于从异常或错误场景中恢复：让程序可以从 panicking 重新获得控制权，停止终止过程进而恢复正常执行。
+recover() 只能在 defer 修饰的函数中使用：用于取得异常调用中传递过来的错误值，如果是正常执行，调用 recover() 会返回 nil，且没有其它效果。
+总结：异常会导致栈被展开直到 defer 修饰的 recover() 被调用或者程序中止。
 
 ```Go
 func protect(g func()) {
