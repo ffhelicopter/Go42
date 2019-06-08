@@ -276,13 +276,14 @@ func main() {
 有关选择器Find()方法的使用语法，是不是有些熟悉的感觉，没错就是jQuery的样子。
 
 在goquery中，常用大概有以下选择器：
+
 |选择器类型|说明|
 |:--|:--|
 |HTML Element |元素的选择器|
-|ID 选择器||
+|ID 选择器| |
 |Element ID 选择器| Find(element#id)|
 |Class选择器   |Find(".class")|
-|属性选择器||
+|属性选择器| |
 
 
 
