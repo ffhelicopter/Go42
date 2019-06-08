@@ -279,8 +279,7 @@ func main() {
 
 |选择器类型|说明|
 |:--|:--|
-|HTML Element |元素的选择器|
-|ID 选择器| |
+|HTML Element |元素的选择器Find("a")|
 |Element ID 选择器| Find(element#id)|
 |Class选择器   |Find(".class")|
 |属性选择器| |
