@@ -276,29 +276,26 @@ func main() {
 有关选择器Find()方法的使用语法，是不是有些熟悉的感觉，没错就是jQuery的样子。
 
 在goquery中，常用大概有以下选择器：
+|选择器类型|说明|
+|:--|:--|
+|HTML Element |元素的选择器|
+|ID 选择器||
+|Element ID 选择器| Find(element#id)|
+|Class选择器   |Find(".class")|
+|属性选择器||
 
-HTML Element 元素的选择器
-ID 选择器
-Element ID 选择器 Find(element#id)
-Class选择器   Find(".class")
-属性选择器
 
-选择器 	说明
-Find(“div[lang]“) 	筛选含有lang属性的div元素
 
-Find(“div[lang=zh]“) 	筛选lang属性为zh的div元素
-
-Find(“div[lang!=zh]“) 	筛选lang属性不等于zh的div元素
-
-Find(“div[lang¦=zh]“) 	筛选lang属性为zh或者zh-开头的div元素
-
-Find(“div[lang*=zh]“) 	筛选lang属性包含zh这个字符串的div元素
-
-Find(“div[lang~=zh]“) 	筛选lang属性包含zh这个单词的div元素，单词以空格分开的
-
-Find(“div[lang$=zh]“) 	筛选lang属性以zh结尾的div元素，区分大小写
-
-Find(“div[lang^=zh]“) 	筛选lang属性以zh开头的div元素，区分大小写
+|选择器 	|说明|
+|:--|:--|
+|Find(“div[lang]“) 	|筛选含有lang属性的div元素|
+|Find(“div[lang=zh]“) 	|筛选lang属性为zh的div元素|
+|Find(“div[lang!=zh]“) 	|筛选lang属性不等于zh的div元素|
+|Find(“div[lang¦=zh]“) 	|筛选lang属性为zh或者zh-开头的div元素|
+|Find(“div[lang*=zh]“) 	|筛选lang属性包含zh这个字符串的div元素|
+|Find(“div[lang~=zh]“) 	|筛选lang属性包含zh这个单词的div元素，单词以空格分开的|
+|Find(“div[lang$=zh]“) 	|筛选lang属性以zh结尾的div元素，区分大小写|
+|Find(“div[lang^=zh]“) 	|筛选lang属性以zh开头的div元素，区分大小写|
 
 
 parent>child选择器
