@@ -4,7 +4,7 @@
 
 ## 27.1 反射(reflect)
 
-反射是应用程序检查其所拥有的结构，尤其是类型的一种能。每种语言的反射模型都不同，并且有些语言根本不支持反射。Go语言实现了反射，反射机制就是在运行时动态调用对象的方法和属性，标准库reflect提供了相关的功能。在reflect包中，通过reflect.TypeOf()，reflect.ValueOf()分别从类型、值的角度来描述一个Go对象。
+反射是应用程序检查其所拥有的结构，尤其是类型的一种能。每种语言的反射模型都不同，并且有些语言根本不支持反射。Go语言实现了反射，反射机制就是在运行时动态调用对象的方法和属性，即可从运行时态的示例对象反求其编码阶段的定义，标准库中reflect包提供了相关的功能。在reflect包中，通过reflect.TypeOf()，reflect.ValueOf()分别从类型、值的角度来描述一个Go对象。
 
 ```Go
 func TypeOf(i interface{}) Type
@@ -74,9 +74,9 @@ func main() {
 }
 ```
 
-在Go语言中，类型包括 static type和concrete type. 简单说 static type是你在编码是看见的类型(如int、string)，concrete type是实际的类型，runtime系统看见的类型。
+在Go语言中，类型包括 static type和concrete type. 简单说 static type是你在编码是看见的类型(如int、string)，concrete type是实际具体的类型，runtime系统看见的类型。
 
-Type()返回的是静态类型，而kind()返回的是concrete type。上面代码中，在int，数组以及结构体三种类型情况中，可以看到kind()，type()返回值的差异。
+Type()返回的是静态类型，而kind()返回的是具体类型。上面代码中，在int，数组以及结构体三种类型情况中，可以看到kind()，type()返回值的差异。
 
 
 **通过反射可以修改原对象**
@@ -315,6 +315,8 @@ CanSet             : false
 NumMethod          : 0
 
 ```
+
+细心的读者可能发现了上面代码中的一个有趣的问题，那就是structValue, &structValue的反射结果是不一样的，指针对象在这里有两个方法，而值对象只有一个方法，这是因为Method2()方法是指针方法，在值对象中是不能被反射到的。
 
 
 [目录](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md)
