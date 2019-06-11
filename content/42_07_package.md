@@ -154,7 +154,7 @@ go install/build都是用来编译包和其依赖的包。
 
 go install一般生成静态库文件放在GOPATH/pkg目录下，文件扩展名a。
 
->如果为main包，运行Go buil则会在GOPATH/bin 生成一个可执行的二进制文件。
+>如果为main包，运行Go build则会在GOPATH/bin 生成一个可执行的二进制文件。
 
 ## 7.6 包的初始化
 
