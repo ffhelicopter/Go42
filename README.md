@@ -55,6 +55,30 @@ function，method，interface，type等词语是程序员们接触比较多的�
 感谢以下网友对本书提出的修改建议： Joyboo 、林远鹏、Mr_RSI、magic-joker、3lackrush、Jacky2、tanjibo、wisecsj、eternal-flame-AD、isLishude、morya、adophper、ivanberry、xjl662750、huanglizhuo、xianyunyh、荣怡、pannz、yaaaaaaaan、sidbusy、NHibiki、awkj、yufy、lazyou、 liov 、飞翔不能的翔哥、橡_皮泥、刘冲_54ac、henng、slarsar
 
 
+## 分享
+
+本人在 GitChat 的首场分享，欢迎各位踊跃报名参加！ [我要报名参加](https://gitbook.cn/gitchat/activity/5d13238387e6304e23d91260)
+
+本场 Chat 《Go 语言错误与异常处理》主要介绍 Go 语言中错误与异常，进一步深入探讨错误与异常的区别以及实际开发中合适的处理方式。
+
+带堆栈的错误信息在开发与bug追踪中都十分重要，可以帮助程序员更快定位错误发生位置。它拥有比标准库中错误处理更丰富的处理方式，可谓程序员调试之牛刀。
+
+在异常处理中，关键字 defer 与 recover() 函数配合，可捕获运行时异常的发生，提升程序运行时的稳定性。
+
+本场 Chat 主要分享的内容有：
+
+    1.什么是错误与异常
+    2.Go 语言错误处理
+    3.带堆栈的错误处理
+    4.Go 语言异常的产生
+    5.Go 语言异常的捕获
+    6.有关 defer 关键字
+    7.正确使用错误与异常
+
+
+
+#### [《Go 语言错误与异常处理》](https://gitbook.cn/gitchat/activity/5d13238387e6304e23d91260)
+
 
 ## 更新
 
