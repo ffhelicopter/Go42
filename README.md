@@ -34,7 +34,7 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 祝各位Gopher们工作开心，愉快编码！
 
-## 阅读
+## 开始阅读
 
 本书内容在github更新：https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md<br>
 
@@ -44,22 +44,11 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 
 
-## 交流
-
-虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
-
-
-本书在知识星球上建立了读书群《Go语言42》（加入方式见文尾），有兴趣的朋友可以加入进来。 
-
-
-感谢以下网友对本书提出的修改建议： Joyboo 、林远鹏、Mr_RSI、magic-joker、3lackrush、Jacky2、tanjibo、wisecsj、eternal-flame-AD、isLishude、morya、adophper、ivanberry、xjl662750、huanglizhuo、xianyunyh、荣怡、pannz、yaaaaaaaan、sidbusy、NHibiki、awkj、yufy、lazyou、 liov 、飞翔不能的翔哥、橡_皮泥、刘冲_54ac、henng、slarsar
-
-
-## 分享
+## 最新分享
 
 本人在 GitChat 的首场分享，欢迎各位踊跃报名参加！ [我要报名参加](https://gitbook.cn/gitchat/activity/5d13238387e6304e23d91260)
 
-本场 Chat 《Go 语言错误与异常处理》主要介绍 Go 语言中错误与异常，进一步深入探讨错误与异常的区别以及实际开发中合适的处理方式。
+本场 Chat [《Go 语言错误与异常处理》](https://gitbook.cn/gitchat/activity/5d13238387e6304e23d91260)主要介绍 Go 语言中错误与异常，进一步深入探讨错误与异常的区别以及实际开发中合适的处理方式。
 
 带堆栈的错误信息在开发与bug追踪中都十分重要，可以帮助程序员更快定位错误发生位置。它拥有比标准库中错误处理更丰富的处理方式，可谓程序员调试之牛刀。
 
@@ -78,6 +67,19 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 
 #### [《Go 语言错误与异常处理》](https://gitbook.cn/gitchat/activity/5d13238387e6304e23d91260)
+
+
+
+## 交流
+
+虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
+
+
+本书在知识星球上建立了读书群《Go语言42》（加入方式见文尾），有兴趣的朋友可以加入进来。 
+
+
+感谢以下网友对本书提出的修改建议： Joyboo 、林远鹏、Mr_RSI、magic-joker、3lackrush、Jacky2、tanjibo、wisecsj、eternal-flame-AD、isLishude、morya、adophper、ivanberry、xjl662750、huanglizhuo、xianyunyh、荣怡、pannz、yaaaaaaaan、sidbusy、NHibiki、awkj、yufy、lazyou、 liov 、飞翔不能的翔哥、橡_皮泥、刘冲_54ac、henng、slarsar
+
 
 
 ## 更新
