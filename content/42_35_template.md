@@ -114,7 +114,7 @@ Price:   26.89
 ```Go
 // 建立模板，自动 new("name")
 // ParseFiles接受一个字符串，字符串的内容是一个模板文件的路径。
-// ParseGlob是用正则的方式匹配多个文件。
+// ParseGlob是用glob的方式匹配多个文件。
 Tmpl, err := template.ParseFiles("tmp.txt")  
 
 // 假设一个目录里有a.txt b.txt c.txt的话，用ParseFiles需要写3行对应3个文件，

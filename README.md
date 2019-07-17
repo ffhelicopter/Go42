@@ -7,7 +7,7 @@
 作者：ffhelicopter（李骁）  时间：2018-04-15
 
 
-## 起因
+## 前言
 写《Go语言四十二章经》，纯粹是因为开发过程中碰到过的一些问题，踩到过的一些坑，感觉在Go语言学习使用过程中，有必要深刻理解这门语言的核心思维、清晰掌握语言的细节规范以及反复琢磨标准包代码设计模式，于是才有了这本书。
 
 Go语言以语法简单、门槛低、上手快著称。但入门后很多人发现要写出地道的、遵循 Go语言思维的代码却是不易。
@@ -30,7 +30,6 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 最后，希望更多的人了解和使用Go语言，也希望阅读本书的朋友们多多交流。
 
-联系邮箱：roteman@163.com
 
 祝各位Gopher们工作开心，愉快编码！
 
@@ -41,6 +40,18 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 
 #### [>>>开始阅读 第一章 Go安装与运行](https://github.com/ffhelicopter/Go42/blob/master/content/42_01_install.md)
+
+
+## 新书推荐
+
+《Go语言高级编程》从实践出发讲解 Go 语言编程的进阶知识。本书共 6 章，第 1 章简单回顾 Go 语言的发展历史；第  2章和第 3 章系统介绍 CGO 编程和 Go 汇编语言的用法；第 4 章对 RPC 和 Protobuf 技术进行深入介绍，并讲述如何打造一个自己的 RPC 系统；第 5 章介绍企业级环境的 Web 系统的设计和相关技术；第 6 章介绍 Go 语言在分布式领域的一些编程技术。
+
+
+关于本书的作者
+
+柴树杉，网名 chai2010，江湖人称柴大。Go 语言代码贡献者（https://github.com/golang/go/graphs/contributors 搜索 chai2010）,《Go语言圣经》翻译者，《WebAssembly标准入门》图书作者，是国内最早接触 Go 语言并致力推广 Go 语言的先驱之一。
+
+曹春晖，网名 Xargin，江湖人称曹大。很 Geek，其个人博客可见一斑：http://xargin.com/ ；对底层有很深的研究，https://github.com/cch123/golang-notes 这个 Repo 你应该 Star。滴滴公司的大佬。活跃于各个社区，很乐于解答大家的问题。
 
 
 
