@@ -44,16 +44,11 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 ## 新书推荐
 
-《Go语言高级编程》从实践出发讲解 Go 语言编程的进阶知识。本书共 6 章，第 1 章简单回顾 Go 语言的发展历史；第  2章和第 3 章系统介绍 CGO 编程和 Go 汇编语言的用法；第 4 章对 RPC 和 Protobuf 技术进行深入介绍，并讲述如何打造一个自己的 RPC 系统；第 5 章介绍企业级环境的 Web 系统的设计和相关技术；第 6 章介绍 Go 语言在分布式领域的一些编程技术。
+![go.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/go.png)
 
+《深入学习Go语言》详细讲述Go语言规范与语法细节及开发中常见的误区，通过研读标准库等经典代码设计模式，启发读者深刻理解Go语言的核心思维，进入Go语言开发的更高阶段。
 
-关于本书的作者
-
-柴树杉，网名 chai2010，江湖人称柴大。Go 语言代码贡献者（https://github.com/golang/go/graphs/contributors 搜索 chai2010）,《Go语言圣经》翻译者，《WebAssembly标准入门》图书作者，是国内最早接触 Go 语言并致力推广 Go 语言的先驱之一。
-
-曹春晖，网名 Xargin，江湖人称曹大。很 Geek，其个人博客可见一斑：http://xargin.com/ ；对底层有很深的研究，https://github.com/cch123/golang-notes 这个 Repo 你应该 Star。滴滴公司的大佬。活跃于各个社区，很乐于解答大家的问题。
-
-
+本书适合初次学习Go语言，以及对Go语言有初步了解的开发者，读者可通过本书努力在尽量短的时间内成长为一名合格的Go语言开发者。
 
 ## 最新分享
 
