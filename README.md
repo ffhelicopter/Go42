@@ -212,10 +212,3 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 2.goreporter https://github.com/360EntSecGroup-Skylar/goreporter
 
-
-## 知识星球
-
-欢迎加入知识星球《Go语言42》社群，持续学习Go语言。
-
-
-![xing2.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/xing2.png)
