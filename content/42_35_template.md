@@ -483,6 +483,7 @@ with结构使用了通道，等同于``` printf("%q", "output") ```。
 
 ```Go
 {{print }}
+```
 模板全局函数print，fmt.Sprint的别名。
 
 ```Go
