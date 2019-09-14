@@ -282,7 +282,7 @@ Go 语言值得你拥有！
 {{.Admpub}}
 ```
 表示输出对象中字段或方法名称为Admpub的值。
-当Admpub是匿名字段时，可以访问其内部字段或方法, 如"Com"：{{.Admpub.Com}} ，如果Com是一个方法并返回一个结构体对象，同样也可以访问其字段或方法：```Go {{.Admpub.Com.Field1}} ```。
+当Admpub是匿名字段时，可以访问其内部字段或方法, 如"Com"：{{.Admpub.Com}} ，如果Com是一个方法并返回一个结构体对象，同样也可以访问其字段或方法：```{{.Admpub.Com.Field1}} ```。
 
 
 ```Go 
@@ -297,7 +297,7 @@ Go 语言值得你拥有！
 
 在模板中定义变量，变量名称用字母和数字组成，并带上$前缀，采用简式赋值。
 
-例如：```Go {{$x := "OK"}}``` 或 ```Go{{$x := pipeline}} ```。
+例如：``` {{$x := "OK"}}``` 或 ```Go{{$x := pipeline}} ```。
  
 （4）通道函数
 ```Go 
@@ -320,17 +320,17 @@ Go 语言值得你拥有！
 ```Go 
 {{if pipeline}} T1 {{end}}
 ```
-标签结构为```Go {{if ...}} ... {{end}}```。
+标签结构为``` {{if ...}} ... {{end}}```。
 
 ```Go 
 {{if pipeline}} T1 {{else}} T0 {{end}}
 ```
-标签结构为```Go {{if ...}} ... {{else}} ... {{end}}```。
+标签结构为``` {{if ...}} ... {{else}} ... {{end}}```。
 
 ```Go 
 {{if pipeline}} T1 {{else if pipeline}} T0 {{end}}
 ```
-标签结构为```Go {{if ...}} ... {{else if ...}} ... {{end}}```。
+标签结构为``` {{if ...}} ... {{else if ...}} ... {{end}}```。
 其中if后面可以是一个条件表达式（包括通道函数表达式），也可以是一个字符窜变量或布尔值变量。当为字符窜变量时，如为空字符串则判断为false，否则判断为true。
  
 （6）循环遍历
@@ -353,7 +353,7 @@ range...end结构内部如要使用外部的变量，如.Var2，需要写为：$
 ```Go
  {{template "name"}}
 ```
-嵌入名称为"name"的子模板。使用前请确保已经用```Go {{define "name"}}子模板内容{{end}}```定义好了子模板内容。
+嵌入名称为"name"的子模板。使用前请确保已经用``` {{define "name"}}子模板内容{{end}}```定义好了子模板内容。
 
 ```Go
 {{template "name" pipeline}}
@@ -396,36 +396,36 @@ ONE TWO
 ```Go
 {{printf "%q" "output"}}
 ```
-函数调用，等同于```Go printf("%q", "output")```。
+函数调用，等同于``` printf("%q", "output")```。
  
 ```Go
 {{"output" | printf "%q"}}
 ```
-竖线"|"左边的结果作为函数最后一个参数，等同于```Go printf("%q", "output")```。
+竖线"|"左边的结果作为函数最后一个参数，等同于``` printf("%q", "output")```。
  
 ```Go
 {{printf "%q" (print "out" "put")}}
 ```
-圆括号中表达式的整体结果作为printf函数的参数，等同于```Go printf("%q", print("out", "put"))```。
+圆括号中表达式的整体结果作为printf函数的参数，等同于```printf("%q", print("out", "put"))```。
  
 ```Go
 {{"put" | printf "%s%s" "out" | printf "%q"}}
 ```
-一个更复杂的调用，等同于```Go printf("%q", printf("%s%s", "out", "put"))```。
+一个更复杂的调用，等同于``` printf("%q", printf("%s%s", "out", "put"))```。
  
 ```Go
 {{"output" | printf "%s" | printf "%q"}}
 ```
-等同于```Go printf("%q", printf("%s", "output"))```。
+等同于``` printf("%q", printf("%s", "output"))```。
  
 ```Go
 {{with "output"}}{{printf "%q" .}}{{end}}
 ```
-一个使用点号"."的with操作，等同于：```Go printf("%q", "output") ```。
+一个使用点号"."的with操作，等同于：``` printf("%q", "output") ```。
  
 ```Go
 {{with $x := "output" | printf "%q"}}{{$x}}{{end}}
-with结构定义变量，值为执行通道函数之后的结果，等同于```Go $x := printf("%q", "output") ```。
+with结构定义变量，值为执行通道函数之后的结果，等同于``` $x := printf("%q", "output") ```。
  
 ```Go
 {{with $x := "output"}}{{printf "%q" $x}}{{end}}
@@ -435,7 +435,7 @@ with结构中，在其它动作中使用定义的变量。
 ```Go
 {{with $x := "output"}}{{$x | printf "%q"}}{{end}}
 ```
-with结构使用了通道，等同于```Go printf("%q", "output") ```。
+with结构使用了通道，等同于``` printf("%q", "output") ```。
 
 （11）预定义的模板全局函数
 ```Go
