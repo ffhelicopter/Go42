@@ -425,6 +425,7 @@ ONE TWO
  
 ```Go
 {{with $x := "output" | printf "%q"}}{{$x}}{{end}}
+```
 with结构定义变量，值为执行通道函数之后的结果，等同于``` $x := printf("%q", "output") ```。
  
 ```Go
