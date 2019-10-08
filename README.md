@@ -38,12 +38,15 @@ function，method，interface，type等词语是程序员们接触比较多的�
 本书内容在github更新：https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md<br>
 
 
+#### [>>>开始阅读 第一章 Go安装与运行](https://github.com/ffhelicopter/Go42/blob/master/content/42_01_install.md)
+
+
+
 
 最新更新，框架rpcx包含了服务发现、负载均衡、故障转移等服务治理能力，特整理了一些资料来说说这款框架，推荐中小团队使用。
 ## [>>> rpcx 框架](https://github.com/ffhelicopter/Go42/blob/master/content/42_43_rpcx.md)
 
 
-#### [>>>开始阅读 第一章 Go安装与运行](https://github.com/ffhelicopter/Go42/blob/master/content/42_01_install.md)
 
 
 ## 新书推荐
