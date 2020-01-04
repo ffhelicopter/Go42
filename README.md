@@ -45,7 +45,8 @@ function，method，interface，type等词语是程序员们接触比较多的�
 ## rpcx 框架
 
 最新更新，框架rpcx包含了服务发现、负载均衡、故障转移等服务治理能力，特整理了一些资料来说说这款框架，推荐中小团队使用。
-## [>>> rpcx 框架](https://github.com/ffhelicopter/Go42/blob/master/content/42_43_rpcx.md)
+
+#### [>>> 开始阅读  rpcx 框架](https://github.com/ffhelicopter/Go42/blob/master/content/42_43_rpcx.md)
 
 
 
@@ -79,9 +80,6 @@ function，method，interface，type等词语是程序员们接触比较多的�
 本专栏图文并茂，课程中的重要实例代码均有完整代码可供测试。
 
 
-
-
-#### [《Go 语言错误与异常处理》](https://gitbook.cn/gitchat/activity/5d13238387e6304e23d91260)
 
 另外本人在 GitChat 有分享 [《Go 语言错误与异常处理》](https://gitbook.cn/gitchat/activity/5d13238387e6304e23d91260)主要介绍 Go 语言中错误与异常，进一步深入探讨错误与异常的区别以及实际开发中合适的处理方式。
 
