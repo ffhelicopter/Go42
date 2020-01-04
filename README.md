@@ -42,6 +42,7 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 
 
+## rpcx 框架
 
 最新更新，框架rpcx包含了服务发现、负载均衡、故障转移等服务治理能力，特整理了一些资料来说说这款框架，推荐中小团队使用。
 ## [>>> rpcx 框架](https://github.com/ffhelicopter/Go42/blob/master/content/42_43_rpcx.md)
@@ -54,7 +55,7 @@ function，method，interface，type等词语是程序员们接触比较多的�
 ![go.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/go.png)
 
 
-《深入学习Go语言》8月火热上市：当当，天猫，京东同步发售。在此感谢各位的支持与关注!
+《深入学习Go语言》在当当，天猫，京东有售，感谢各位对此书的支持与关注!
 
 
 本书适合初次学习Go语言，以及对Go语言有初步了解的开发者，读者可通过本书努力在尽量短的时间内成长为一名合格的Go语言开发者。
