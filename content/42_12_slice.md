@@ -45,7 +45,7 @@ var x = []int{2, 3, 5, 7, 11}
 
 
 ```Go
-var slice1 []type = make([]type, len,cap)
+var slice1 []type = make([]type, len, cap)
 ```
 
 也可以简写为 slice1 := make([]type, len)，这里 len 是数组的长度并且也是切片的初始长度。cap是容量，其中cap是可选参数。
