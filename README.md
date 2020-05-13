@@ -64,7 +64,6 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 ## 最新分享
 
-![gin.png](https://images.gitbook.cn/FoARgR_Zx-LBqTrNxvf3oaPwdkKy)
 
 本人在 GitChat 的专栏分享《Gin 框架入门实践》！ [我要报名参加](https://gitbook.cn/gitchat/column/5dab061e7d66831b22aa0b44)
 
