@@ -33,6 +33,7 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 祝各位Gopher们工作开心，愉快编码！
 
+
 ## 开始阅读
 
 本书内容在github更新：https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md<br>
@@ -41,25 +42,21 @@ function，method，interface，type等词语是程序员们接触比较多的�
 #### [>>>开始阅读 第一章 Go安装与运行](https://github.com/ffhelicopter/Go42/blob/master/content/42_01_install.md)
 
 
+## 进阶阅读
+
+《Go语言四十二章经》开源电子书升级版《深入学习Go语言》，在当当，天猫，京东有售，感谢各位对此书的支持与关注!
+
+本书适合初次学习Go语言，以及对Go语言有初步了解的开发者，读者可通过本书努力在尽量短的时间内成长为一名合格的Go语言开发者。
+
+![go.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/go.png)
+
+
 
 ## rpcx 框架
 
 最新更新，框架rpcx包含了服务发现、负载均衡、故障转移等服务治理能力，特整理了一些资料来说说这款框架，推荐中小团队使用。
 
 #### [>>> 开始阅读  rpcx 框架](https://github.com/ffhelicopter/Go42/blob/master/content/42_43_rpcx.md)
-
-
-
-
-## 新书推荐
-
-![go.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/go.png)
-
-
-《深入学习Go语言》在当当，天猫，京东有售，感谢各位对此书的支持与关注!
-
-
-本书适合初次学习Go语言，以及对Go语言有初步了解的开发者，读者可通过本书努力在尽量短的时间内成长为一名合格的Go语言开发者。
 
 
 ## 最新分享
