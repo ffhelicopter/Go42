@@ -48,7 +48,7 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 本书适合初次学习Go语言，以及对Go语言有初步了解的开发者，读者可通过本书努力在尽量短的时间内成长为一名合格的Go语言开发者。
 
-![go.png](https://github.com/ffhelicopter/Go42/blob/master/content/img/go.png)
+![go.png](https://bkimg.cdn.bcebos.com/pic/77c6a7efce1b9d16940ab8bcfddeb48f8d546419?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg)
 
 
 
