@@ -140,15 +140,18 @@ The commands are:
 Use "go help mod <command>" for more information about a command.
 ```
 
-命令含义：
-download   下载依赖的module到本地cache
-edit        编辑go.mod文件
-graph      打印模块依赖图
-init        在当前文件夹下初始化一个新的module, 创建go.mod文件
-tidy       增加丢失的module，去掉未用的module
-vendor     将依赖复制到vendor下
-verify      校验依赖
-why       解释为什么需要依赖
+
+命令含义：  
+
+download   下载依赖的module到本地cache  
+edit        编辑go.mod文件  
+graph      打印模块依赖图  
+init        在当前文件夹下初始化一个新的module, 创建go.mod文件  
+tidy       增加丢失的module，去掉未用的module  
+vendor     将依赖复制到vendor下  
+verify      校验依赖  
+why       解释为什么需要依赖  
+
 
 为了使用modules来管理项目，我们可以以下几个步骤来操作：
 
