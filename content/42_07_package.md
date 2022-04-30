@@ -6,7 +6,7 @@
 
 Go语言使用包（package）的概念来组织管理代码，包是结构化代码的一种方式。和其他语言如JAVA类似，Go语言中包的主要作用是把功能相似或相关的代码组织在同一个包中，以方便查找和使用。在Go语言中，每个.go文件都必须归属于某一个包，每个文件都可有init()函数。包名在源文件中第一行通过关键字package指定，包名要小写。如下所示：
 
-```Go
+```go
 package fmt
 ```
 
@@ -29,7 +29,7 @@ Go语言不强制要求包的名称和文件所在目录名称相同，但是这
 
 import语句一般放在包名定义的下一行，导入包示例如下：
 
-```Go
+```go
 package main
 
 import  "context"  //加载context包
@@ -37,7 +37,7 @@ import  "context"  //加载context包
 
 导入多个包的常见的方式是：
 
-```Go
+```go
 import  (
 "fmt"
 "net/http"
@@ -46,20 +46,20 @@ import  (
 
 调用导入的包函数的一般方式：
 
-```Go
+```go
 fmt.Println("Hello World!")
 ```
 
 下面介绍三种特殊的import方式。
 
 点操作的含义是某个包导入之后，在调用这个包的函数时，可以省略前缀的包名，如这里可以写成Println("Hello World!")，而不是fmt.Println("Hello World!")。例如：
-```Go
+```go
 import( . "fmt" ) 
 
 ```
 
 别名操作就是可以把包命名成另一个容易记忆的名字。例如：
-```Go
+```go
 import(
     f "fmt"
 )
@@ -68,7 +68,7 @@ import(
 
 
 \_ 操作是引入某个包，但不直接使用包里的函数，而是调用该包里面的init函数，比如下面的mysql包的导入。此外在开发中，由于某种原因某个原来导入的包现在不再使用，也可以采用这种方式处理，比如下面fmt的包。代码示例如下：
-```Go
+```go
 import (
 	_ "fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -81,7 +81,7 @@ import (
 
 完整列表可以访问GoWalker（https://gowalker.org/）查看。
 
-```Go
+```go
     unsafe: 包含了一些打破 Go 语言“类型安全”的命令，一般的程序中不会被使用，可用在 C/C++ 程序的调用中。
     syscall-os-os/exec:
     	os: 提供给我们一个平台无关性的操作系统功能接口，采用类UNIX设计，隐藏了不同操作系统间差异，让不同的文件系统和操作系统对象表现一致。
@@ -127,12 +127,12 @@ import (
 ## 7.4 从 GitHub 安装包
 如果有人想安装您的远端项目到本地机器，打开终端并执行（ffhelicopter是我在GitHub上的用户名）：
 
-```Go
+```go
 go get -u github.com/ffhelicopter/tmm
 ```
 这样现在这台机器上的其他 Go 应用程序也可以通过导入路径："github.com/ffhelicopter/tmm" 来使用。 开发中一般这样操作：
 
-```Go
+```go
 import "github.com/ffhelicopter/tmm"
 ```
 Go 对包的版本管理做的不是很友好，不过现在有些第三方项目做的不错，有兴趣的同学可以了解下（glide、godep、govendor）。

@@ -16,7 +16,7 @@ Go 官方库提供了两个模板库： text/template 和 html/template 。这�
 
 其中最后一步就是把加载的字符和数据进行格式化。
 
-```Go
+```go
 package main
 
 import (
@@ -47,7 +47,7 @@ func main() {
 }
 ```
 
-```Go
+```go
 程序输出：
 ----------------------------------------
 Name:   《三国演义》
@@ -62,7 +62,7 @@ Price:   26.89
 
 如果把模板的内容存在一个文本文件里tmp.txt：
 
-```Go
+```go
 {{range .}}----------------------------------------
 Name:   {{.Name}}
 Price:  {{.Price | printf "%6.2f"}}
@@ -70,7 +70,7 @@ Price:  {{.Price | printf "%6.2f"}}
 ```
 我们可以这样处理：
 
-```Go
+```go
 package main
 
 import (
@@ -94,7 +94,7 @@ func main() {
 }
 ```
 
-```Go
+```go
 程序输出：
 
 ----------------------------------------
@@ -111,7 +111,7 @@ Price:   26.89
 
 读取模板文件：
 
-```Go
+```go
 // 建立模板，自动 new("name")
 // ParseFiles接受一个字符串，字符串的内容是一个模板文件的路径。
 // ParseGlob是用glob的方式匹配多个文件。
@@ -134,7 +134,7 @@ var report = template.Must(template.ParseFiles("tmp.txt"))
 index.html.tmpl模板文件：
 
 index.html.tmpl：
-```Go
+```go
 <!doctype html>
  <head>
   <meta charset="UTF-8">
@@ -151,7 +151,7 @@ index.html.tmpl：
 
 main.go：
 
-```Go
+```go
 package main
 
 import (
@@ -172,7 +172,7 @@ func main() {
 
 运行程序，在浏览器打开：http://localhost:8080/    我们可以看到浏览器页面显示Hello World !即使模板文件这时有修改，刷新浏览器后页面也即更新，这个过程并不需要重启web服务。
 
-```Go
+```go
 func(t *Template) ParseFiles(filenames ...string) (*Template, error)
 func(t *Template) ParseGlob(patternstring) (*Template, error)
 ```
@@ -185,7 +185,7 @@ ExecuteTemplate()执行模板渲染的方法，这个方法可用于执行指定
 
 Layout.html.tmpl模板：
 
-```Go
+```go
 {{ define "layout" }}
 
 <!doctype html>
@@ -217,7 +217,7 @@ Layout.html.tmpl模板：
 Index.html.tmpl模板：
 
 
-```Go
+```go
 {{ define "index" }}
 
 <div>
@@ -229,7 +229,7 @@ Index.html.tmpl模板：
 通过define定义模板名字，还可以通过template action引入模板，类似include。
 
 
-```Go
+```go
 package main
 
 import (
@@ -249,7 +249,7 @@ func main() {
  ```
 运行程序，在浏览器打开：http://localhost:8080/ 
 
-```Go
+```go
 Hello World!
 Go 语言值得你拥有！
 ```
@@ -261,36 +261,36 @@ Go 语言值得你拥有！
 
 
 （1）模板标签
-```Go
+```go
 {{  }}
 ```
 模板标签用"{{"和"}}"括起来
 
 （2）注释 
-```Go
+```go
 {{/* a comment */}}
 ```
 使用{{/*和*/}}来包含注释内容。
 
 （3）变量
-```Go 
+```go 
 {{.}}
 ```
 此标签输出当前对象的值。
 
-```Go 
+```go 
 {{.Admpub}}
 ```
 表示输出对象中字段或方法名称为Admpub的值。
 当Admpub是匿名字段时，可以访问其内部字段或方法, 如"Com"：{{.Admpub.Com}} ，如果Com是一个方法并返回一个结构体对象，同样也可以访问其字段或方法：```{{.Admpub.Com.Field1}} ```。
 
 
-```Go 
+```go 
 {{.Method1 "参数值1" "参数值2"}}
 ```
 调用方法Method1，将后面的参数值依次传递给此方法，并输出其返回值。
 
-```Go 
+```go 
 {{$admpub}}
 ```
 此标签用于输出在模板中定义的名称为"admpub"的变量。当$admpub本身是一个结构体对象时，可访问其字段{{$admpub.Field1}}。
@@ -300,68 +300,68 @@ Go 语言值得你拥有！
 例如：``` {{$x := "OK"}}``` 或 ```{{$x := pipeline}} ```。
  
 （4）通道函数
-```Go 
+```go 
 {{FuncName1}}
 ```
 此标签将调用名称为"FuncName1"的模板函数（等同于执行"FuncName1()"，不传递任何参数）并输出其返回值。
 
-```Go 
+```go 
 {{FuncName1 "参数值1" "参数值2"}}
 ```
 此标签将调用FuncName1("参数值1", "参数值2")，并输出其返回值。
 
 
-```Go 
+```go 
 {{.Admpub|FuncName1}}
 ```
 此标签将调用名称为"FuncName1"的模板函数（等同于执行"FuncName1(this.Admpub)"，将竖线"|"左边的".Admpub"变量值作为函数参数传送）并输出其返回值。
 
 （5）条件判断
-```Go 
+```go 
 {{if pipeline}} T1 {{end}}
 ```
 标签结构为``` {{if ...}} ... {{end}}```。
 
-```Go 
+```go 
 {{if pipeline}} T1 {{else}} T0 {{end}}
 ```
 标签结构为``` {{if ...}} ... {{else}} ... {{end}}```。
 
-```Go 
+```go 
 {{if pipeline}} T1 {{else if pipeline}} T0 {{end}}
 ```
 标签结构为``` {{if ...}} ... {{else if ...}} ... {{end}}```。
 其中if后面可以是一个条件表达式（包括通道函数表达式），也可以是一个字符窜变量或布尔值变量。当为字符窜变量时，如为空字符串则判断为false，否则判断为true。
  
 （6）循环遍历
-```Go 
+```go 
 {{range $k, $v := .Var}} {{$k}} => {{$v}} {{end}}
 ```
 range...end结构内部如要使用外部的变量，如.Var2，需要写为：$.Var2（即在外部变量名称前加符号"$"）。
 
-```Go 
+```go 
 {{range .Var}} {{.}} {{end}}
 ```
 将遍历值直接显示出来。
 
-```Go 
+```go 
 {{range pipeline}} T1 {{else}} T0 {{end}}
 ```
 当没有可遍历的值时，将执行else部分。
 
 （7）嵌入子模板
-```Go
+```go
  {{template "name"}}
 ```
 嵌入名称为"name"的子模板。使用前请确保已经用``` {{define "name"}}子模板内容{{end}}```定义好了子模板内容。
 
-```Go
+```go
 {{template "name" pipeline}}
 ```
 将通道的值赋给子模板中的"."（即"{{.}}"）。
 
 （8）子模板嵌套
-```Go
+```go
 {{define "T1"}}ONE{{end}}
 {{define "T2"}}TWO{{end}}
 {{define "T3"}}{{template "T1"}} {{template "T2"}}{{end}}
@@ -371,7 +371,7 @@ range...end结构内部如要使用外部的变量，如.Var2，需要写为：$
 ONE TWO
 
 （9）定义局部变量
-```Go
+```go
 {{with pipeline}} T1 {{end}}
 ```
 通道的值将赋给该标签内部的"."。（注：这里的“内部”一词是指被{{with pipeline}}...{{end}}包围起来的部分，即T1所在位置）
@@ -381,165 +381,165 @@ ONE TWO
 说明：{{end}}标签是if、with、range的结束标签。
 
 （10）输出字符串
-```Go
+```go
 {{"\"output\""}}
 ```
 输出一个字符窜常量。
 
 
-```Go
+```go
 {{`"output"`}}
 ```
 输出一个原始字符串常量。
 
 
-```Go
+```go
 {{printf "%q" "output"}}
 ```
 函数调用，等同于``` printf("%q", "output")```。
  
-```Go
+```go
 {{"output" | printf "%q"}}
 ```
 竖线"|"左边的结果作为函数最后一个参数，等同于``` printf("%q", "output")```。
  
-```Go
+```go
 {{printf "%q" (print "out" "put")}}
 ```
 圆括号中表达式的整体结果作为printf函数的参数，等同于```printf("%q", print("out", "put"))```。
  
-```Go
+```go
 {{"put" | printf "%s%s" "out" | printf "%q"}}
 ```
 一个更复杂的调用，等同于``` printf("%q", printf("%s%s", "out", "put"))```。
  
-```Go
+```go
 {{"output" | printf "%s" | printf "%q"}}
 ```
 等同于``` printf("%q", printf("%s", "output"))```。
  
-```Go
+```go
 {{with "output"}}{{printf "%q" .}}{{end}}
 ```
 一个使用点号"."的with操作，等同于：``` printf("%q", "output") ```。
  
-```Go
+```go
 {{with $x := "output" | printf "%q"}}{{$x}}{{end}}
 ```
 with结构定义变量，值为执行通道函数之后的结果，等同于``` $x := printf("%q", "output") ```。
  
-```Go
+```go
 {{with $x := "output"}}{{printf "%q" $x}}{{end}}
 ```
 with结构中，在其它动作中使用定义的变量。
  
-```Go
+```go
 {{with $x := "output"}}{{$x | printf "%q"}}{{end}}
 ```
 with结构使用了通道，等同于``` printf("%q", "output") ```。
 
 （11）预定义的模板全局函数
-```Go
+```go
 {{and x y}}
 ```
 模板全局函数and，如果x为真，返回y，否则返回x。等同于Go中的x && y。
 
-```Go
+```go
 {{call .X.Y 1 2}}
 ```
 模板全局函数call，后面的第一个参数的结果必须是一个函数（即这是一个函数类型的值），其余参数作为该函数的参数。
 该函数必须返回一个或两个结果值，其中第二个结果值是error类型。
 如果传递的参数与函数定义的不匹配或返回的error值不为nil，则停止执行。
 
-```Go
+```go
 {{html }}
 ```
 模板全局函数html，转义文本中的html标签，如将"<"转义为"&lt;"，">"转义为"&gt;"等。
 
-```Go
+```go
 {{index x 1 2 3}}
 ```
 模板全局函数index，返回index后面的第一个参数的某个索引对应的元素值，其余的参数为索引值。x必须是一个map、slice或数组。
 
-```Go
+```go
 {{js}}
 ```
 模板全局函数js，返回用JavaScript的escape处理后的文本。
  
-```Go
+```go
 {{len x}}
 ```
 模板全局函数len，返回参数的长度值（int类型）。
 
-```Go
+```go
 {{not x}}
 ```
 模板全局函数not，返回单一参数的布尔否定值。
 
-```Go
+```go
 {{or x y}}
 ```
 模板全局函数or，如果x为真返回x，否则返回y。等同于Go中的：x || y。
 
-```Go
+```go
 {{print }}
 ```
 模板全局函数print，fmt.Sprint的别名。
 
-```Go
+```go
 {{printf }}
 ```
 模板全局函数printf，fmt.Sprintf的别名。
 
-```Go
+```go
 {{println }}
 ```
 模板全局函数println，fmt.Sprintln的别名。
 
-```Go
+```go
 {{urlquery }}
 ```
 模板全局函数urlquery，返回适合在URL查询中嵌入到形参中的文本转义值。类似于PHP的urlencode。
 
 （12）布尔函数
-```Go
+```go
 {{eq arg1 arg2}}
 ```
 布尔函数eq，返回表达式"arg1 == arg2"的布尔值。
 
-```Go
+```go
 {{ne arg1 arg2}}
 ```
 布尔函数ne，返回表达式"arg1 != arg2"的布尔值。
 
-```Go
+```go
 {{lt arg1 arg2}}
 ```
 布尔函数lt，返回表达式"arg1 < arg2"的布尔值。
 
-```Go
+```go
 {{le arg1 arg2}}
 ```
 布尔函数le，返回表达式"arg1 <= arg2"的布尔值。
 
-```Go
+```go
 {{gt arg1 arg2}}
 ```
 布尔函数gt，返回表达式"arg1 > arg2"的布尔值。
 
-```Go
+```go
 {{ge arg1 arg2}}
 ```
 布尔函数ge，返回表达式"arg1 >= arg2"的布尔值。
 
 布尔函数对于任何零值返回false，非零值返回true。对于简单的多路相等测试，eq只接受两个参数进行比较，后面其它的参数将分别依次与第一个参数进行比较。
 
-```Go
+```go
 {{eq arg1 arg2 arg3 arg4}}
 ```
 
 即只能作如下比较：
-```Go
+```go
 arg1==arg2 || arg1==arg3 || arg1==arg4 
 ```
 

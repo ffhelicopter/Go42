@@ -20,7 +20,7 @@ Go 通过结构体的形式支持用户自定义类型，或者叫定制类型�
 
 结构体定义的一般方式如下：
 
-```Go
+```go
 type identifier struct {
     field1 type1
     field2 type2
@@ -32,13 +32,13 @@ type identifier struct {
 
 空结构体如下所示：
 
-```Go
+```go
 struct {}
 ```
 
 具有6个字段的结构体：
 
-```Go
+```go
 struct {
 	x, y int
 	u float32
@@ -50,7 +50,7 @@ struct {
 
 对于匿名字段，必须将匿名字段指定为类型名称T或指向非接口类型名称* T的指针，并且T本身可能不是指针类型。
 
-```Go
+```go
 struct {
 	T1        // 字段名 T1
 	*T2       // 字段名 T2
@@ -62,7 +62,7 @@ struct {
 
 使用 new 函数给一个新的结构体变量分配内存，它返回指向已分配内存的指针：
 
-```Go
+```go
 type S struct { a int; b float64 }
 new(S)
 ```
@@ -77,7 +77,7 @@ new(S)为S类型的变量分配内存，并初始化（a = 0，b = 0.0），返�
 
 使用点号符“.”可以获取结构体字段的值structname.fieldname。无论变量是一个结构体类型还是一个结构体类型指针，都使用同样的表示法来引用结构体的字段。例如：
 
-```Go
+```go
 type myStruct struct { i int }
 var v myStruct    // v是结构体类型变量
 var p *myStruct   // p是指向一个结构体类型变量的指针
@@ -91,7 +91,7 @@ type Interval struct {
 ```
 
 结构体变量有下面几种初始化方式，前面一种按照字段顺序，后面两种则对应字段名来初始化赋值：
-```Go
+```go
 
 intr := Interval{0, 3}            (A)
 intr := Interval{end:5, start:1}    (B)
@@ -102,14 +102,14 @@ intr := Interval{end:5}           (C)
 
 定义结构体类型Point3D和Line：
 
-```Go
+```go
 type Point3D struct { x, y, z float64 }
 type Line struct { p, q Point3D }
 ```
 
 声明并初始化：
 
-```Go
+```go
 origin := Point3D{}                      //  Point3D 是零值
 line := Line{origin, Point3D{y: -4, z: 12.3}}  //   line.q.x 是零值
 ```
@@ -130,7 +130,7 @@ Go 语言中，结构体和它所包含的数据在内存中是以连续块的�
 
 递归结构体类型可以通过引用自身指针来定义。这在定义链表或二叉树的节点时特别有用，此时节点包含指向临近节点的链接。例如：
 
-```Go
+```go
 type Element struct {
 	// Next and previous pointers in the doubly-linked list of elements.
 	// To simplify the implementation, internally a list l is implemented
@@ -151,7 +151,7 @@ type Element struct {
 
 通过参考应用可见性规则，如果结构体名不能导出，可使用 new 函数使用工厂方法的方法达到同样的目的。例如：
 
-```Go
+```go
 type bitmap struct {
 	Size int
 	data []byte
@@ -174,7 +174,7 @@ func NewBitmap(size int) *bitmap {
 
 reflect包可以在运行时反射得到类型、属性和方法。如变量是结构体类型，可以通过 Field() 方法来索引结构体的字段，然后就可以得到Tag 属性。例如：
 
-```Go
+```go
 package main
 
 import (
@@ -209,7 +209,7 @@ Go语言结构体中可以包含一个或多个匿名（内嵌）字段，即这
 
 匿名（内嵌）字段本身也可以是一个结构体类型，即结构体可以包含内嵌结构体。
 
-```Go
+```go
 type Human struct {
 	name string
 }
@@ -228,7 +228,7 @@ Go 语言中的继承是通过内嵌或者说组合来实现的，所以可以�
 
 结构体中包含匿名（内嵌）字段叫嵌入或者内嵌；而如果结构体中字段包含了类型名，还有字段名，则是聚合。聚合的在JAVA和C++都是常见的方式，而内嵌则是Go 的特有方式。
 
-```Go
+```go
 type Human struct {
 	name string
 }
@@ -252,7 +252,7 @@ type Person3 struct{             // 聚合
 
 这里指的是在接口中定义中嵌入接口类型，而不是接口的一个实例，相当于合并了两个接口类型定义的全部函数。下面只有同时实现了Writer和 Reader 的接口，才可以说是实现了Teacher接口，即可以作为Teacher的实例。Teacher接口嵌入了Writer和 Reader 两个接口，在Teacher接口中，Writer和 Reader是两个匿名（内嵌）字段。
 
-```Go
+```go
 type Writer interface{
    Write()
 }
@@ -271,7 +271,7 @@ type Teacher interface{
 
 这种方式在Go语言中是不合法的，不能通过编译。
 
-```Go
+```go
 type Human struct {
 	name string
 }
@@ -294,7 +294,7 @@ type Teacher interface {
 存在语法错误，并不具有实际的含义，编译报错: 
 interface contains embedded non-interface Base
 
-```Go
+```go
 Interface 不能嵌入非interface的类型。
 ```
 
@@ -302,7 +302,7 @@ Interface 不能嵌入非interface的类型。
 
 初始化的时候，内嵌接口要用一个实现此接口的结构体赋值；或者定义一个新结构体，可以把新结构体作为receiver，实现接口的方法就实现了接口（先记住这句话，后面在讲述方法时会解释），这个新结构体可作为初始化时实现了内嵌接口的结构体来赋值。
 
-```Go
+```go
 package main
 
 import (
@@ -356,7 +356,7 @@ Hawking   Write.
 
 下面代码完整演示了结构体中嵌入结构体，初始化以及字段的选择调用：
 
-```Go
+```go
 package main
 
 import (
@@ -434,7 +434,7 @@ Student.Human.string is: Monitor
 
 当相同的字段名在同一层级出现了两次，而且这个名字被程序直接选择使用了，就会引发一个错误，可以采用逐级选择使用的方式来避免这个错误。例如：
 
-```Go
+```go
 type A struct {a int}
 type B struct {a int}
 

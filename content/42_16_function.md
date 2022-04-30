@@ -6,7 +6,7 @@
 
 Go语言函数基本组成：关键字func、函数名、参数列表、返回值、函数体和返回语句。语法如下：
 
-```Go
+```go
 func 函数名(参数列表) (返回值列表) {
     // 函数体
 return
@@ -19,39 +19,39 @@ return
 
 "func" 为定义函数的关键字，FunctionName 为函数名，Signature 为函数签名，FunctionBody 为函数体。以下面定义的函数为例：
 
-```Go
+```go
 func FunctionName (a typea, b typeb) (t1 type1, t2 type2)
 ```
 
 函数签名由函数参数、返回值以及它们的类型组成，被统称为函数签名。如：
 
-```Go
+```go
 (a typea, b typeb) (t1 type1, t2 type2)
 ```
 
 如果两个函数的参数列表和返回值列表的变量类型能一一对应，那么这两个函数就有相同的签名，下面testa与testb具有相同的函数签名。
 
-```Go
+```go
 func testa  (a, b int, z float32) bool
 func testb  (a, b int, z float32) (bool)
 ```
 
 函数调用传入的参数必须按照参数声明的顺序。而且Go语言没有默认参数值的说法。函数签名中的最后传入参数可以具有前缀为....的类型（...int），这样的参数称为可变参数，并且可以使用零个或多个参数来调用该函数，这样的函数称为变参函数。
 
-```Go
+```go
 func doFix (prefix string, values ...int)
 ```
 
 函数的参数和返回值列表始终带括号，但如果只有一个未命名的返回值（且只有此种情况），则可以将其写为未加括号的类型；一个函数也可以拥有多返回值，返回类型之间需要使用逗号分割，并使用小括号 () 将它们括起来。
 
-```Go
+```go
 func testa  (a, b int, z float32) bool
 func swap  (a int, b int) (t1 int, t2 int)
 ```
 
 在函数体中，参数是局部变量，被初始化为调用者传入的值。函数的参数和具名返回值是函数最外层的局部变量，它们的作用域就是整个函数。如果函数的签名声明了返回值，则函数体的语句列表必须以终止语句结束。
 
-```Go
+```go
 func IndexRune(s string, r rune) int {
 	for i, c := range s {
 		if c == r {
@@ -66,7 +66,7 @@ func IndexRune(s string, r rune) int {
 
 函数也可以作为函数类型被使用。函数类型也就是函数签名，函数类型表示具有相同参数和结果类型的所有函数的集合。函数类型的未初始化变量的值为nil。就像下面：
 
-```Go
+```go
 type  funcType func (int, int) int
 ```
 
@@ -74,13 +74,13 @@ type  funcType func (int, int) int
 
 函数也可以在表达式中赋值给变量，这样作为表达式中右值出现，我们称之为函数值字面量（function literal），函数值字面量是一种表达式，它的值被称为匿名函数，就像下面一样：
 
-```Go
+```go
 f := func() int { return 7 }  
 ```
 
 下面代码对以上2种情况都做了定义和调用：
 
-```Go
+```go
 
 package main
 
@@ -121,7 +121,7 @@ Go 语言中函数默认使用按值传递来传递参数，也就是传递参�
 
 变参函数可以接受某种类型的切片 slice 为参数：
 
-```Go
+```go
 
 package main
 
@@ -155,7 +155,7 @@ Go 语言拥有一些内置函数，内置函数是预先声明的，它们像�
 
 make()内置函数声明不同类型时的参数以及具体作用请见下面说明：
 
-```Go
+```go
 调用           T的类型     结果
 
 make(T, n)       slice        T为切片类型，长度和容量都为n
@@ -170,7 +170,7 @@ make(T, n)        channel      T为通道类型，缓冲区长度为n
 
 make()内置函数的实际使用举例见下面代码以及注释：
 
-```Go
+```go
 s := make([]int, 10, 100)       // slice with len(s) == 10, cap(s) == 100
 s := make([]int, 1e3)           // slice with len(s) == cap(s) == 1000
 s := make([]int, 1<<63)         // illegal: len(s) is not representable by a value of type int
@@ -182,7 +182,7 @@ m := make(map[string]int, 100)  // map with initial space for approximately 100 
 new(T)内置函数在运行时为该类型的变量分配内存，并返回指向它的类型* T的值。 并对变量初始化。
 
 例如：
-```Go
+```go
 type S struct { a int; b float64 }
 new(S)
 ```
@@ -195,13 +195,13 @@ new(S)为S类型的变量分配内存，并初始化（a = 0，b = 0.0），返�
 
 对于len(s)和cap(s)，如果s为nil值，则两个函数的取值都是0，我们还需要记住一个规则：
 
-```Go
+```go
 0 <= len(s) <= cap(s)
 ```
 
 在Go语言中，常量在某些计算条件下也可以通过表达式计算得到。比如：如果s是字符串常量，则表达式len(s)是常量。 如果s的类型是数组或指向数组的指针而表达式不包含通道接收或（非常量）函数调用，则表达式len(s)和cap(s)是常量；否则len和cap的调用不是常量。
 
-```Go
+```go
 const (
 	c1 = imag(2i)                  // imag(2i) = 2.0 是常量
 	c2 = len([10]float64{2})         // [10]float64{2} 无函数调用
@@ -218,13 +218,13 @@ var z complex128
 |copy	|用于复制切片|
 |delete	|从字典删除元素|
 
-```Go
+```go
 append(s S, x ...T) S  // T 是类型S的元素
 ```
 
 append内置函数是变参函数，常常用来附加切片元素，将零或多个值x附加到S类型的切片s，它的可变参数必须是切片类型，并返回结果切片，也就是是S类型。值x传递给类型为...的参数T，其中T 是S的元素类型，并且适用相应的参数传递规则：
 
-```Go
+```go
 s0 := []int{0, 0}
 s1 := append(s0, 2)            // append 附加连接单个元素   s1 == []int{0, 0, 2}
 s2 := append(s1, 3, 5, 7)        // append 附加连接多个元素  s2 == []int{0, 0, 2, 3, 5, 7}
@@ -238,7 +238,7 @@ var b []byte
 b = append(b, "bar"...)         // append 附加连接字符串内容  b == []byte{'b', 'a', 'r' }
 ```
 
-```Go
+```go
 copy(dst, src []T) int
 copy(dst []byte, src string) int
 ```
@@ -247,7 +247,7 @@ copy内置函数常常将切片元素从源src复制到目标dst，并返回复�
 
 作为特殊情况，copy函数还接受可分配给[] byte类型的目标参数，其中source参数为字符串类型。 此种情况将字符串中的字节复制到字节切片中。
 
-```Go
+```go
 var a = [...]int{0, 1, 2, 3, 4, 5, 6, 7}
 var s = make([]int, 6)
 var b = make([]byte, 5)
@@ -256,7 +256,7 @@ n2 := copy(s, s[2:])            // n2 == 4, s == []int{2, 3, 4, 5, 4, 5}
 n3 := copy(b, "Hello, World!")  // n3 == 5, b == []byte("Hello")
 ```
 
-```Go
+```go
 delete(m, k)  //从字典m中删除元素 m[k] 
 ```
 
@@ -268,7 +268,7 @@ delete(m, k)  //从字典m中删除元素 m[k]
 |real	|提取复数值的实部|
 |imag	|提取复数值的虚部|
 
-```Go
+```go
 complex(realPart, imaginaryPart floatT) complexT
 real(complexT) floatT
 imag(complexT) floatT
@@ -284,7 +284,7 @@ real和imag函数一起形成复数的逆，因此对于复数类型Z的值z，z
 
 如果这些函数的操作数都是常量，则返回值是常量。
 
-```Go
+```go
 var a = complex(2, -2)             // complex128
 const b = complex(1.0, -1.4)        // 无类型complex 常量 1 - 1.4i
 x := float32(math.Cos(math.Pi/2))   // float32
@@ -300,7 +300,7 @@ const c = imag(b)               // 无类型常量 -1.4
 |panic	|用来表示非常严重的不可恢复的异常错误|
 |recover	|用于从 panic 或 错误场景中恢复|
 
-```Go
+```go
 func panic(interface{})
 func recover() interface{}
 ```
@@ -309,7 +309,7 @@ panic和recover两个内置函数，协助报告和处理运行时异常和程�
 
 在执行函数F时，显式调用panic或者运行时发生panic都会终止F的执行。然后，由F延迟（defer）的任何函数都照常执行。 依此类推，直到执行goroutine中的顶级函数延迟。 此时，程序终止并报告错误条件，包括panic参数的值。
 
-```Go
+```go
 panic(42)
 panic("unreachable")
 panic(Error("cannot parse"))
@@ -319,7 +319,7 @@ recover函数允许程序管理发生panic的goroutine的行为。
 
 另外，Go语言中提供了几个在引导期间有用的内置函数。 这些函数不保证会保留在Go语言中，一般不建议使用。
 
-```Go
+```go
 print      打印所有参数
 println    打印所有参数并换行
 ```
@@ -328,7 +328,7 @@ println    打印所有参数并换行
 
 函数直接或间接调用函数本身，则该函数称为递归函数。使用递归函数时经常会遇到的一个重要问题就是栈溢出：一般出现在大量的递归调用导致的内存分配耗尽。有时我们可以通过循环来解决：
 
-```Go
+```go
 package main
 
 import "fmt"
@@ -367,7 +367,7 @@ Go 语言中也可以使用相互调用的递归函数：多个函数之间相�
 
 Go语言中函数可以作为其它函数的参数进行传递，然后在其它函数内调用执行，一般称之为回调。
 
-```Go
+```go
 package main
 
 import (
@@ -394,31 +394,31 @@ func callback(y int, f func(int, int)) {
 
 函数值字面量是一种表达式，它的值被称为匿名函数。从形式上看当我们不给函数起名字的时候，可以使用匿名函数，例如：
 
-```Go
+```go
 func(x, y int) int { return x + y }
 ```
 
 这样的函数不能够独立存在，但可以被赋值于某个变量，即保存函数的地址到变量中：
 
-```Go
+```go
 fplus := func(x, y int) int { return x + y }
 ```
 
 然后通过变量名对函数进行调用：
 
-```Go
+```go
 fplus(3, 4)
 ```
 
 当然，也可以直接对匿名函数进行调用，注意匿名函数的最后面加上了括号并填入了参数值，如果没有参数，也需要加上空括号，代表直接调用：
 
-```Go
+```go
 func(x, y int) int { return x + y } (3, 4)
 ```
 
 下面是一个计算从 1 到 1 百万整数的总和的匿名函数：
 
-```Go
+```go
 func() {
     sum := 0
     for i := 1; i <= 1e6; i++ {
@@ -431,7 +431,7 @@ func() {
 
 下面代码演示了上面的几种情况：
 
-```Go
+```go
 
 package main
 
@@ -474,7 +474,7 @@ hello
 
 我们通过下面代码来看看闭包的使用：
 	
-```Go
+```go
 
 package main
 
@@ -549,7 +549,7 @@ i: 0, i的地址:0xc000050118
 
 可变参数也就是不定长参数，支持可变参数列表的函数可以支持任意个传入参数，比如fmt.Println函数就是一个支持可变长参数列表的函数。
 
-```Go
+```go
 
 package main
 

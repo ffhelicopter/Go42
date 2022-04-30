@@ -14,12 +14,12 @@ Go 语言中方法和函数在形式上很像，它是作用在接收器（recei
 
 定义方法的一般格式如下：
 
-```Go
+```go
 func (recv receiver_type) methodName(parameter_list) (return_value_list) { ... }
 ```
 在方法名之前，func 关键字之后的括号中指定接收器 receiver。
 
-```Go
+```go
 type A struct {
 	Face int
 }
@@ -34,7 +34,7 @@ func (a A) f() {
 
 * 接收器类型除了不能是指针类型或接口类型外，可以是其他任何类型，不仅仅是结构体类型，也可以是函数类型，还可以是 int、bool、string 等等为基础的自定义类型。
 
-```Go
+```go
 package main
 
 import (
@@ -89,7 +89,7 @@ MyInt: 99
 
 * 接收器不能是一个接口类型，因为接口是一个抽象定义，但是方法却是具体实现；如果这样做会引发一个编译错误：invalid receiver type…。
 
-```Go
+```go
 package main
 
 import (
@@ -108,7 +108,7 @@ func main() {}
 
 * 接收器不能是一个指针类型，但是它可以是任何其他允许类型的指针。
 
-```Go
+```go
 package main
 
 import (
@@ -128,7 +128,7 @@ func main() {}
 
 接收器不能是指针类型，但可以是类型的指针，有点绕口。下面我们看个例子：
 
-```Go
+```go
 package main
 
 import (
@@ -163,7 +163,7 @@ func main() {
 
 这里我们了解下Go语言的选择器（selector），如：
 
-```Go
+```go
 x.f
 ```
 
@@ -173,7 +173,7 @@ x.f
 
 在Go语言中，我们认为方法的显式接收器(explicit receiver)x是方法x.m()的等效函数X.m()的第一个参数，所以x.m()和X.m(x)是等价的，下面我们看看具体例子：
 
-```Go
+```go
 package main
 
 import (
@@ -213,13 +213,13 @@ func main() {
 
 t.Mv(1)和T.Mv(t, 1)效果是一致的，这里显式接收器t可以当做为等效函数T.Mv()的第一个参数。而在Go语言中，我们可以利用选择器，将方法值(Method Value)取到，并可以将其赋值给其它变量。使用 t.Mv，就可以得到 Mv 方法的方法值，而且这个方法值绑定到了显式接收器（实参）t。
 
-```Go
+```go
 f0 := t.Mv // 通过选择器将方法值t.Mv赋值给一个变量 f0
 ```
 
 除了使用选择器取到方法值外，还可以使用方法表达式(Method Expression) 取到函数值(Function Value)。方法表达式(Method Expression)产生的是一个函数值(Function Value)而不是方法值(Method Value)。
 
-```Go
+```go
 f1 := T.Mv // 利用方法表达式(Method Expression) T.Mv 取到函数值
 f1(t, 5)
 f2 := (T).Mv // 利用方法表达式(Method Expression) T.Mv 取到函数值
@@ -228,7 +228,7 @@ f2(t, 6)
 
 这个函数值的第一个参数必须是一个接收器：
 
-```Go
+```go
 f1(t, 5)
 f2(t, 6)
 ```
@@ -237,7 +237,7 @@ f2(t, 6)
 
 在Go语言中不允许方法重载，因为方法是函数，所以对于一个类型只能有唯一一个特定名称的方法。但是如果基于接收器类型，我们可以通过一种变通的方法，达到这个目的：具有同样名字的方法可以在 2 个或多个不同的接收器类型上存在，比如在同一个包里这么做是允许的：
 
-```Go
+```go
 type MyInt1 int
 type MyInt2 int
 
@@ -251,7 +251,7 @@ Go语言中类型加上它的方法集等价于面向对象中的类。但在 Go
 
 下面是在非结构体类型上定义方法的例子：
 
-```Go
+```go
 type MyInt int
 
 func (m MyInt) print() { // 值方法
@@ -263,7 +263,7 @@ func (m MyInt) print() { // 值方法
 
 类型在其他的，或是非本地的包里定义，在它上面定义方法都会发生错误。
 
-```Go
+```go
 package main
 
 import (
@@ -283,7 +283,7 @@ cannot define new methods on non-local type int
 
 虽然我们不能直接为非同一包下的类型直接定义方法，但我们可以以这个类型（比如：int 或 float）为基础来自定义新类型，然后再为新类型定义方法。
 
-```Go
+```go
 package main
 
 import (
@@ -311,7 +311,7 @@ MyInt类型由int 为基础自定义的，MyInt定义了一个方法print()。
 
 如果我们采用类型别名下面程序可正常运行，Go 1.9及以上版本编译通过：
 
-```Go
+```go
 package main
 
 import (
@@ -340,7 +340,7 @@ MyInt: 99
 
 但上面代码我们稍微修改，把type NewInt = MyInt 改为type NewInt  MyInt 。一个符号“=”去掉使得NewInt 变为新类型，会报程序错误：
 
-```Go
+```go
 Ni.print undefined (type NewInt has no field or method print)
 ```
 
@@ -348,7 +348,7 @@ Ni.print undefined (type NewInt has no field or method print)
 
 我们也可以像下面这样将定义好的类型作为匿名类型嵌入在一个新的结构体中。当然新方法只在这个自定义类型上有效。
 
-```Go
+```go
 package main
 
 import (
@@ -411,7 +411,7 @@ Human
 
 下面声明一个 T 类型的变量，并调用其方法 M1() 和 M2() 。
 
-```Go
+```go
 package main
 
 import (
@@ -461,7 +461,7 @@ M2调用后： name2
 
 上面的例子同时也说明了：
 
-```Go
+```go
  T 类型的变量可以调用M1()和M2()这两个方法。
 ```
 
@@ -469,7 +469,7 @@ M2调用后： name2
 
 下面声明一个 *T 类型的变量，并调用方法 M1() 和 M2() 。
 
-```Go
+```go
 package main
 
 import (
@@ -514,7 +514,7 @@ M2调用后： name2
 >
 >t2.M2() => M2(t2)，都是指针类型，不需要转换。
 
-```Go
+```go
 *T 类型的变量也可以调用M1()和M2()这两个方法。
 ```
 
@@ -528,7 +528,7 @@ M2调用后： name2
 
 我们添加一个接口看看：
 
-```Go
+```go
 package main
 
 type T struct {
@@ -570,7 +570,7 @@ cannot use t1 (type T) as type Intf in assignment:
 
 按照上面两条规则的规则一，我们稍微修改下代码：
 
-```Go
+```go
 package main
 
 type T struct {
@@ -603,7 +603,7 @@ func main() {
 
 程序编译通过。综合起来看，接口类型的变量（实现了该接口的类型变量）调用方法时，我们需要注意方法的接收器，是不是真正实现了接口。结合接口类型断言，我们做下测试：
 
-```Go
+```go
 package main
 
 import (
@@ -705,7 +705,7 @@ M2
 
 当我们嵌入一个匿名类型，这个类型的方法就变成了外部类型的方法，但是当它的方法被调用时，方法的接收器是内部类型(嵌入的匿名类型)，而非外部类型。
 
-```Go
+```go
 type People struct {
 	Age    int
 	gender string
@@ -723,13 +723,13 @@ func (p People) PeInfo() {
 
 因此嵌入类型的名字充当着字段名，同时嵌入类型作为内部类型存在，我们可以使用下面的调用方法：
 
-```Go
+```go
 OtherPeople.People.PeInfo()
 ```
 
 这儿我们可以通过类型名称来访问内部类型的字段和方法。然而，这些字段和方法也同样被提升到了外部类型，我们可以直接访问：
 
-```Go
+```go
 OtherPeople.PeInfo()
 ```
 
@@ -749,7 +749,7 @@ OtherPeople.PeInfo()
 
 我们通过下面代码验证下：
 
-```Go
+```go
 package main
 
 import (
@@ -836,7 +836,7 @@ pnew name: Haw
 
 但是在Go中存在一个语法糖：
 
-```Go
+```go
 	p.PeInfo()
 	p.PeName("Joke")
 

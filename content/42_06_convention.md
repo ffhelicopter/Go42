@@ -28,7 +28,7 @@ Go 语言也使用分号作为语句的结束，但一般会省略分号。像�
 
 左大括号 { 不能单独一行，这是编译器的强制规定，否则你在使用 gofmt 时就会出现错误提示“ expected declaration, found '{' ”。右大括号 } 需要单独一行。
 
-```Go
+```go
 func functionName) () {
    …
 }
@@ -49,7 +49,7 @@ if mod > 0 {
 
 一般而言，注释文字尽量每行长度接近一致，过长的行应该换行以方便在编辑器阅读。注释可以是单行，多行，甚至可以使用doc.go文件来专门保存包注释。每个包只需要在一个go文件的package关键字上面注释，两者之间没有空行。对于变量，函数，结构体，接口等的注释直接加在声明前，注释与声明之间没有空行。例如：
 
-```Go
+```go
 // Copyright 2009 The Go Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
@@ -85,7 +85,7 @@ func insertionSort(data Interface, a, b int) {
 
 函数或方法的注释需要以函数名开始，且两者之间没有空行，示例如下：
 
-```Go
+```go
 // ContainsRune reports whether the rune is contained in the UTF-8-encoded byte slice b.
 func ContainsRune(b []byte, r rune) bool {
 	return IndexRune(b, r) >= 0
@@ -94,7 +94,7 @@ func ContainsRune(b []byte, r rune) bool {
 
 需要预格式化的部分，直接加空格缩进即可，示例如下：
 
-```Go
+```go
 // For example, flags Ldate | Ltime (or LstdFlags) produce,
 //	2009/01/23 01:23:23 message
 // while flags Ldate | Ltime | Lmicroseconds | Llongfile produce,
@@ -103,7 +103,7 @@ func ContainsRune(b []byte, r rune) bool {
 
 在方法，结构体或者包注释前面加上“Deprecated:”表示不建议使用，示例如下：
 
-```Go
+```go
 // Deprecated: Old 老旧方法，不建议使用
 func Old(a int)(int){
     return a
@@ -112,7 +112,7 @@ func Old(a int)(int){
 
 在注释中，还可以插入空行，示例如下：
 
-```Go
+```go
 // Search calls f(i) only for i in the range [0, n).
 //
 // A common use of Search is to find the index i for a value x in

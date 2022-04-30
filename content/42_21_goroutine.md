@@ -42,7 +42,7 @@ Go 语言中的协程是运行在多核CPU中的(通过runtime.GOMAXPROCS(1)设�
 
 P的数量由runtime.GOMAXPROCS(1)所设定，通常来说它是和内核数对应，例如在4Core的服务器上会启动4个线程。G会有很多个，每个P会将协程从一个就绪的队列中做Pop操作，为了减小锁的竞争，通常情况下每个P会负责一个队列。
 
-```Go
+```go
 runtime.NumCPU()        // 返回当前CPU内核数
 runtime.GOMAXPROCS(2)  // 设置运行时最大可执行CPU数
 runtime.NumGoroutine() // 当前正在运行的协程 数
@@ -61,7 +61,7 @@ P维护着这个队列（称之为runqueue），Go语言里，启动一个协程
 
 我们可以运行下面代码体验下Go语言中通过设定runtime.GOMAXPROCS(2) ，也即手动指定CPU运行的核数，来体验多核CPU在并发处理时的威力。不得不提，递归函数的计算很费CPU和内存，运行时可以根据电脑配置修改循环或递归数量。
 
-```Go
+```go
 package main
 
 import (
@@ -138,7 +138,7 @@ func main() {
 
 在Go语言中，协程的使用很简单，直接在函数（代码块）前加上关键字 go 即可。go关键字就是用来创建一个协程的，后面的代码块就是这个协程需要执行的代码逻辑。
 
-```Go
+```go
 package main
 
 import (

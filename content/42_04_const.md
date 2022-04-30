@@ -8,7 +8,7 @@
 存储在常量中的数据类型只可以是布尔型、数字型（整数型、浮点型和复数）和字符串型。
 常量的定义格式：const identifier [type] = value，例如：
 
-```Go
+```go
 const Pi = 3.14159
 ```
 在 Go 语言中，你可以省略类型说明符 [type]，因为编译器可以根据变量（常量）的值来推断其类型。
@@ -27,7 +27,7 @@ Go语言预定义了这些常量： true、 false和iota。布尔常量只包含
 
 在这个例子中，iota 可以被用作枚举值：
 
-```Go
+```go
 const (
     a = iota
     b = iota
@@ -37,7 +37,7 @@ const (
 
 第一个 iota 等于 0，每当 iota 在新的一行被使用时，它的值都会自动加 1；所以 a=0, b=1, c=2 可以简写为如下形式：
 
-```Go
+```go
 const (
     a = iota
     b
@@ -46,7 +46,7 @@ const (
 ```
 注意：
 
-```Go
+```go
 const (
     a = iota
     b = 8
@@ -63,7 +63,7 @@ iota 也可以用在表达式中，如：iota + 50。在每遇到一个新的常
 
 使用位左移与 iota 计数配合可优雅地实现存储单位的常量枚举：
 
-```Go
+```go
 type ByteSize float64
 const (
     _ = iota // 通过赋值给空白标识符来忽略值
@@ -80,7 +80,7 @@ const (
 
 数值常量（Numeric constants）包括整数，浮点数以及复数常量。数值常量有一些微妙之处。
 
-```Go
+```go
 package main
 
 import (
@@ -97,7 +97,7 @@ func main() {
 }
 ```
 
-```Go
+```go
 程序输出
 intVar 5 
 int32Var 5 

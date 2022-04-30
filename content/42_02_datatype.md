@@ -72,7 +72,7 @@ float32大约可以提供小数点后6位的精度，作为对比，float64可�
 ## 字符串：
 只读的Unicode字节序列，Go语言使用UTF-8格式编码Unicode字符，每个字符对应一个rune类型。一旦字符串变量赋值之后，内部的字符就不能修改，英文是一个字节，中文是三个字节。
 
-```Go
+```go
 string转int：    int, err := strconv.Atoi(string)
 string转int64：  int64, err := strconv.ParseInt(string, 10, 64)
 int转string：    string := strconv.Itoa(int)
@@ -83,7 +83,7 @@ int64转string：  string := strconv.FormatInt(int64, 10)
 
 使用range迭代字符串时，需要注意的是range迭代的是Unicode而不是字节。返回的两个值，第一个是被迭代的字符的UTF-8编码的第一个字节在字符串中的索引，第二个值的为对应的字符且类型为rune(实际就是表示unicode值的整形数据）。
 
-```Go
+```go
 const s = "Go语言"
 for i, r := range s {
 	fmt.Printf("%#U  ： %d\n", r, i)
@@ -114,7 +114,7 @@ U+8A00 '言'  ： 5<br>
 
 因为 Unicode 至少占用 2 个字节，所以我们使用 int16 或者 int 类型来表示。如果需要使用到 4 字节，则会加上 \U 前缀；前缀 \u 则总是紧跟着长度为 4 的 16 进制数，前缀 \U 紧跟着长度为 8 的 16 进制数。
 
-```Go
+```go
 var ch int = '\u0041'
 var ch2 int = '\u03B2'
 var ch3 int = '\U00101234'
@@ -129,13 +129,13 @@ complex128 (64 位实数和虚数)<br>
 复数使用 re+imi 来表示，其中 re 代表实数部分，im 代表虚数部分，i 为虚数单位。
 示例：
 
-```Go
+```go
 var c1 complex64 = 5 + 10i
 fmt.Printf("The value is: %v", c1)// 输出： 5 + 10i
 ```
 如果 re 和 im 的类型均为 float32，那么类型为 complex64 的复数 c 可以通过以下方式来获得：
 
-```Go
+```go
 c = complex(re, im)
 ```
 函数 real(c) 和 imag(c) 可以分别获得相应的实数和虚数部分。

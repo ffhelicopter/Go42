@@ -12,7 +12,7 @@ context包不仅实现了在程序单元之间共享状态变量的方法，同�
 
 Context结构
 
-```Go
+```go
 // Context包含过期，取消信号，request值传递等，方法在多个协程中协程安全
 type Context interface {
     // Done 方法在context被取消或者超时返回一个close的channel
@@ -41,14 +41,14 @@ type Context interface {
 
 要创建Context树，第一步就是要得到根节点，context.Background函数的返回值就是根节点：
 
-```Go
+```go
 func Background() Context
 ```
 该函数返回空的Context，该Context一般由接收请求的第一个协程创建，是与进入请求对应的Context根节点，它不能被取消、没有值、也没有过期时间。它常常作为处理Request的顶层context存在。
 
 有了根节点，又该怎么创建其它的子节点，孙节点呢？context包为我们提供了多个函数来创建他们：
 
-```Go
+```go
 func WithCancel(parent Context) (ctx Context, cancel CancelFunc)
 func WithDeadline(parent Context, deadline time.Time) (Context, CancelFunc)
 func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc)
@@ -60,12 +60,12 @@ func WithValue(parent Context, key interface{}, val interface{}) Context
 再回到之前的问题：该怎么通过Context传递改变后的状态呢？使用Context的协程无法取消某个操作，其实这也是符合常理的，因为这些协程是被某个父协程创建的，而理应只有父协程可以取消操作。在父协程中可以通过WithCancel方法获得一个cancel方法，从而获得cancel的权利。
 
 第一个WithCancel函数，它是将父节点复制到子节点，并且还返回一个额外的CancelFunc函数类型变量，该函数类型的定义为：
-```Go
+```go
 type CancelFunc func()
 ```
 调用CancelFunc对象将撤销对应的Context对象，这就是主动撤销Context的方法。在父节点的Context所对应的环境中，通过WithCancel函数不仅可创建子节点的Context，同时也获得了该节点Context的控制权，一旦执行该函数，则该节点Context就结束了，则子节点需要类似如下代码来判断是否已结束，并退出该协程：
 
-```Go
+```go
 select {
     case <-cxt.Done():
         // do some clean...
@@ -117,7 +117,7 @@ Context能灵活地存储不同类型、不同数目的值，并且使多个协�
 
 这里用Context同时控制2个协程，这2个协程都可以收到cancel()发出的信号，甚至doNothing这样不结束协程可反复接收cancel信息。
 
-```Go
+```go
 package main
 
 import (
@@ -190,7 +190,7 @@ doNothing:收到Cancel，但不退出......
 
 这里用Context嵌套控制3个协程，A，B，C。在主程序发出cancel信号后，每个协程都能接收根Context的Done()信号而退出。
 
-```Go
+```go
 package main
 
 import (
@@ -259,7 +259,7 @@ func main() {
 
 最后我们看看Context在http 是怎么传递的：
 
-```Go
+```go
 package main
 
 import (

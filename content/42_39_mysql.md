@@ -19,7 +19,7 @@ go get github.com/go-sql-driver/mysql
 
 在代码中导入mysql数据库驱动：
 
-```Go
+```go
 import (
    "database/sql"
    _ "github.com/go-sql-driver/mysql"
@@ -33,7 +33,7 @@ import (
 
 我们先建立表结构：
 
-```Go
+```go
 CREATE TABLE t_article_cate (
 `cid` int(10) NOT NULL AUTO_INCREMENT, 
   `cname` varchar(60) NOT NULL, 
@@ -55,7 +55,7 @@ CREATE TABLE t_article_cate (
 在Go语言中对数据类型要求很严格，一般查询数据时先定义数据类型，但是查询数据库中的数据存在三种可能:
 存在值，存在零值，未赋值NULL 三种状态，因此可以将待查询的数据类型定义为sql.Nullxxx类型，可以通过判断Valid值来判断查询到的值是否为赋值状态还是未赋值NULL状态。如: sql.NullInt64 sql.NullString 
 
-```Go
+```go
 package main
 
 import (
@@ -119,7 +119,7 @@ func main() {
 
 插入数据：
 
-```Go
+```go
 // 插入数据，sql预编译
 func (dbw *DbWorker) insertData() {
 	stmt,  _ := dbw.Db.Prepare(`INSERT INTO t_article_cate (cname, addtime, scope) VALUES (?, ?, ?)`)
@@ -144,7 +144,7 @@ func (dbw *DbWorker) insertData() {
 
 删除数据：
 
-```Go
+```go
 // 删除数据，预编译
 func (dbw *DbWorker) deleteData() {
 	stmt,  err := dbw.Db.Prepare(`DELETE FROM t_article_cate WHERE cid=?`)
@@ -163,7 +163,7 @@ func (dbw *DbWorker) deleteData() {
 
 修改数据：
 
-```Go
+```go
 // 修改数据，预编译
 func (dbw *DbWorker) editData() {
 	stmt,  err := dbw.Db.Prepare(`UPDATE t_article_cate SET scope=? WHERE cid=?`)
@@ -182,7 +182,7 @@ func (dbw *DbWorker) editData() {
 
 查询数据：
 
-```Go
+```go
 // 查询数据，预编译
 func (dbw *DbWorker) queryData() {
 	// 如果方法包含Query，那么这个方法是用于查询并返回rows的。其他用Exec()
@@ -242,7 +242,7 @@ func (dbw *DbWorker) queryData() {
 事务处理：
 db.Begin()开始事务，Commit() 或 Rollback()关闭事务。Tx从连接池中取出一个连接，在关闭之前都使用这个连接。Tx不能和DB层的BEGIN，COMMIT混合使用。
 
-```Go
+```go
 func (dbw *DbWorker) transaction() {
 	tx,  err := dbw.Db.Begin()
 	if err != nil {

@@ -27,7 +27,7 @@ _test 程序不会被普通的 Go 编译器编译，所以当放应用部署到�
 
 测试函数一般都要求这种形式的头部：
 
-```Go
+```go
 func TestAbcde(t *testing.T)
 ```
 
@@ -68,7 +68,7 @@ go test 常用参数
 
 testing 包中有一些类型和函数可以用来做简单的基准测试；测试代码中必须包含以 BenchmarkZzz 打头的函数并接收一个 *testing.B 类型的参数，比如：
 
-```Go
+```go
 func BenchmarkReverse(b *testing.B) {
     ...
 }
@@ -78,7 +78,7 @@ func BenchmarkReverse(b *testing.B) {
 
 下面我们看一个测试的具体例子：
 
-```Go
+```go
 package even
 
 func Loop(n uint64) (result uint64) {
@@ -101,7 +101,7 @@ func Factorial(n uint64) (result uint64) {
 
 在 even 包的路径下，我们创建一个名为 even_test.go 的测试程序：
 
-```Go
+```go
 package even
 
 import (
@@ -135,7 +135,7 @@ func BenchmarkFactorial(b *testing.B) {
 
 输出：
 
-```Go
+```go
 输出：
 
 goos: windows
@@ -155,7 +155,7 @@ ok  	go42/chapter-13/13.1/1	3.628s
 
 使用方式：
 
-```Go
+```go
 go test -x -v -test.cpuprofile=pprof.out
 ```
 
@@ -165,7 +165,7 @@ go test -x -v -test.cpuprofile=pprof.out
 
 要监控Go程序的堆栈，cpu的耗时等性能信息，我们可以通过使用pprof包来实现。在代码中，pprof包有两种方式导入：
 
-```Go
+```go
 "net/http/pprof"
 "runtime/prof"
 ```
@@ -180,7 +180,7 @@ go test -x -v -test.cpuprofile=pprof.out
 
 这里port是8080，也就是我们web服务器监听的端口。
 
-```Go
+```go
 package main
 
 import (
@@ -205,7 +205,7 @@ func main() {
 
 如果你的Go程序不是web服务器，而是一个服务进程，可以选择使用net/http/pprof包，然后开启一个goroutine来监听相应端口。
 
-```Go
+```go
 package main
 
 import (
@@ -253,7 +253,7 @@ go tool pprof http://localhost:8080/debug/pprof/block
 
 如果你的Go程序只是一个应用程序，那么你就不能使用net/http/pprof包了，你就需要使用到runtime/pprof。比如下面的例子：
 
-```Go
+```go
 package main
 
 import (
@@ -302,7 +302,7 @@ func compute() {
 
 编译后生成3.exe文件并运行：
 
-```Go
+```go
 3.exe --cpuprofile=cpu.prof
 ```
 
@@ -310,7 +310,7 @@ func compute() {
 
 现在有了cpu.prof 文件，我们就可以通过go tool pprof 来看相应的信息了。在命令行运行：
 
-```Go
+```go
 go tool pprof 3.exe cpu.prof 
 ```
 

@@ -8,7 +8,7 @@
 
 在Go语言中，指针类型表示指向给定类型（称为指针的基础类型）的变量的所有指针的集合。 符号 \* 可以放在一个类型前，如 \*T，那么它将以类型T为基础，生成指针类型\*T。未初始化指针的值为nil。例如：
 
-```Go
+```go
 type Point3D struct{ x, y, z float64 }
 var pointer *Point3D
 var i *[4]int
@@ -16,7 +16,7 @@ var i *[4]int
 
 上面定义了两个指针类型变量。它们的值为nil，这时对它们的反向引用是不合法的，并且会使程序崩溃。
 
-```Go
+```go
 xx := (*pointer).x
 panic: runtime error: invalid memory address or nil pointer dereference
 ```
@@ -27,7 +27,7 @@ panic: runtime error: invalid memory address or nil pointer dereference
 
 注意：不能得到一个数字或常量的地址，下面的写法是错误的：
 
-```Go
+```go
 const i = 5
 ptr := &i // error: cannot take the address of i
 ptr2 := &10 // error: cannot take the address of 10
@@ -57,7 +57,7 @@ ptr2 := &10 // error: cannot take the address of 10
 
 * 在指针类型前面加上\*号来获取指针所指向的内容。
 
-```Go
+```go
 package main
 
 import "fmt"
@@ -97,7 +97,7 @@ make(T) 返回类型T的值（不是* T）。
 如果想确切知道变量分配的位置，可在执行go build或go run时加上-m gc标志（即go run -gcflags -m app.go）。例如：
 
 
-```Go
+```go
 go run -gcflags -m main.go
 # command-line-arguments
 .\main.go:12:31: m.Alloc / 1024 escapes to heap
@@ -116,7 +116,7 @@ Go 语言开发者一般不需要写代码来释放不再使用的变量或结�
 GC过程中重要的函数func SetFinalizer(obj interface{}, finalizer interface{})有两个参数，参数一：obj必须是指针类型。参数二：finalizer是一个函数，其参数类型是obj的类型，其没有返回值。
 
 
-```Go
+```go
 package main
 
 import (

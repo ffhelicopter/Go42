@@ -10,7 +10,7 @@ Go 语言中的所有类型包括自定义类型都实现了interface{}接口，
 
 接口类型的未初始化变量的值为nil。
 
-```Go
+```go
 var i interface{} = 99 // i可以是任何类型
 i = 44.09
 i = "All"  // i 可接受任意类型的赋值
@@ -20,7 +20,7 @@ i = "All"  // i 可接受任意类型的赋值
 
 通过如下格式定义接口：
 
-```Go
+```go
 type Namer interface {
     Method1(param_list) return_type
     Method2(param_list) return_type
@@ -32,7 +32,7 @@ type Namer interface {
 
 Go 语言中的接口都很简短，通常它们会包含 0 个、最多 3 个方法。如标准库io包中定义了下面2个接口：
 
-```Go
+```go
 type Reader interface {
 	Read(p []byte) (n int, err error)
 }
@@ -51,7 +51,7 @@ type Writer interface {
 
 如下代码所示，结构体A和类型I都实现了接口B的方法f()，所有这两种类型也具有了接口B的一切特性，可以将该类型的值存储在接口B类型的变量中：
 
-```Go
+```go
 package main
 
 import (
@@ -109,7 +109,7 @@ I.f()  299
 
 下面这两种嵌入接口自身的方式都不能编译通过:
 
-```Go
+```go
 // 编译错误：invalid recursive type Bad
 type Bad interface {
 	Bad
@@ -126,7 +126,7 @@ type Bad2 interface {
 
 比如下面的接口 File 包含了 ReadWrite 和 Lock 的所有方法，它还额外有一个 Close() 方法。接口的嵌入方式和结构体的嵌入方式语法上差不多，直接写接口名即可。
 
-```Go
+```go
 type ReadWrite interface {
     Read(b Buffer) bool
     Write(b Buffer) bool
@@ -152,14 +152,14 @@ type File interface {
 
 通常我们可以使用类型断言（value, ok := element.(T)）来测试在某个时刻接口变量 varI 是否包含类型 T 的值：
 
-```Go
+```go
 value, ok := varI.(T)       // 类型断言
 ```
 **varI 必须是一个接口变量**，否则编译器会报错：invalid type assertion: varI.(T) (non-interface type (type of I) on left) 。
 
 类型断言可能是无效的，虽然编译器会尽力检查转换是否有效，但是它不可能预见所有的可能性。如果转换在程序运行时失败会导致错误发生。更安全的方式是使用以下形式来进行类型断言：
 
-```Go
+```go
 var varI I
 varI = T("Tstring")
 if v, ok := varI.(T); ok { // 类型断言
@@ -176,7 +176,7 @@ if v, ok := varI.(T); ok { // 类型断言
 
 接口变量的类型可以使用一种特殊形式的 switch 做类型断言：
 
-```Go
+```go
 // Type-switch做类型判断
 var value interface{}
 
@@ -198,7 +198,7 @@ default:
 
 我们想测试它是否实现了 I 接口，可以这样做类型断言：
 
-```Go
+```go
 // Comma-ok断言
 var varI I
 varI = T("Tstring")
@@ -212,7 +212,7 @@ if v, ok := varI.(T); ok { // 类型断言
 
 下面是上面几个代码片段的完整代码文件：
 
-```Go
+```go
 package main
 
 import (
@@ -302,7 +302,7 @@ Go 语言动态类型的实现通常需要编译器静态检查的支持：当�
 
 类型可以通过继承多个接口来提供像多重继承一样的特性：
 
-```Go
+```go
 type ReaderWriter struct {
     io.Reader
     io.Writer

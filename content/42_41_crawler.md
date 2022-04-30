@@ -25,7 +25,7 @@ Colly 特性：
 
 接下来在代码中导入包：
 
-```Go
+```go
 import "github.com/gocolly/colly"
 ```
 
@@ -33,14 +33,14 @@ import "github.com/gocolly/colly"
 
 colly的主体是Collector对象，管理网络通信和负责在作业运行时执行附加的回调函数。使用colly需要先初始化Collector：
 
-```Go
+```go
 c := colly.NewCollector() 
 ```
 我们看看NewCollector，它也是变参函数，参数类型为函数类型func(*Collector)，主要是用来初始化一个&Collector{}对象。
 
 而在Colly中有好些函数都返回这个函数类型func(*Collector)，如UserAgent(us string)用来设置UA。所以，这里其实是一种初始化对象，设置对象属性的一种模式。相比使用方法（set方法）这种传统方式来初始设置对象属性，采用回调函数的形式在Go语言中更灵活更方便：
 
-```Go
+```go
 NewCollector(options ...func(*Collector)) *Collector
 UserAgent(ua string) func(*Collector)
 ```
@@ -64,7 +64,7 @@ UserAgent(ua string) func(*Collector)
 
 下面我们看一个例子：
 
-```Go
+```go
 package main
 
 import (
@@ -140,7 +140,7 @@ func main() {
 
 我们来看看OnHTML这个方法的定义：
 
-```Go
+```go
 func (c *Collector) OnHTML(goquerySelector string, f HTMLCallback)
 ```
 
@@ -154,7 +154,7 @@ goquery将jQuery的语法和特性引入进来，所以可以更灵活地选择�
 
 goquery主要的结构：
 
-```Go
+```go
 type Document struct {
 	*Selection
 	Url      *url.URL
@@ -164,7 +164,7 @@ type Document struct {
 
 Document 嵌入了Selection 类型，因此，Document 可以直接使用 Selection 类型的方法。我们可以通过下面四种方式来初始化得到*Document对象。
 
-```Go
+```go
 func NewDocumentFromNode(root *html.Node) *Document 
 
 func NewDocument(url string) (*Document, error) 
@@ -176,7 +176,7 @@ func NewDocumentFromResponse(res *http.Response) (*Document, error)
 
 Selection 是重要的一个结构体，解析中最重要，最核心的方法方法都由它提供。
 
-```Go
+```go
 type Selection struct {
 	Nodes    []*html.Node
 	document *Document
@@ -192,7 +192,7 @@ go get github.com/PuerkitoBio/goquery
 
 接下来在代码中导入包：
 
-```Go
+```go
 import "github.com/PuerkitoBio/goquery"
 ```
 
@@ -200,7 +200,7 @@ goquery的主要用法是选择器，需要借鉴jQuery的特性，多加练习�
 
 goquery可以直接发送url请求，获得响应后得到HTML代码。但goquery主要擅长于HTML代码分析，而Colly在爬虫抓取管理调度上有优势，所以下面以Colly作为爬虫框架，goquery作为HTML分析器，看看怎么抓取并分析页面内容：
 
-```Go
+```go
 package main
 
 import (

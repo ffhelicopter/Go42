@@ -14,14 +14,14 @@ Go 奉行通过通信来共享内存，而不是共享内存来通信。所以�
 
 使用make来建立一个通道：
 
-```Go
+```go
 var channel chan int = make(chan int)
 // 或
 channel := make(chan int)
 ```
 Go中通道可以是发送（send）、接收（receive）、同时发送（send）和接收（receive）。
 
-```Go
+```go
 // 定义接收的通道
 receive_only := make (<-chan int)
  
@@ -37,7 +37,7 @@ send_receive := make (chan int)
 
 定义只发送或只接收的通道意义不大，一般用于在参数传递中：
 
-```Go
+```go
 package main
 
 import (
@@ -70,7 +70,7 @@ func recv(c <-chan int) {
 	}
 }
 ```
-```Go
+```go
 程序输出：
 
 send readey  0
@@ -108,12 +108,12 @@ send  9
 
 我们可以建立带缓冲区的通道：
 
-```Go
+```go
 c := make(chan int, 1024)
 ```
 我们把前面的程序修改下：
 
-```Go
+```go
 package main
 
 import (
@@ -147,7 +147,7 @@ func recv(c <-chan int) {
 }
 ```
 
-```Go
+```go
 程序输出：
 
 send readey  0

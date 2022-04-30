@@ -20,7 +20,7 @@ https://github.com/ffhelicopter/tmm
 项目主要目录“tmm”： GOPATH/src/github.com/ffhelicopter/tmm
 在这个目录(tmm)下面还有其他目录，分别放置了其他代码，大概结构如下：
 
-```Go
+```go
 src/github.com/ffhelicopter/tmm  
                                /api  
                                /handler
@@ -31,7 +31,7 @@ src/github.com/ffhelicopter/tmm
 ```
 main.go 文件中定义了package main 。同时也在文件中import了
 
-```Go
+```go
 "github.com/ffhelicopter/tmm/api"
 "github.com/ffhelicopter/tmm/handler"
 ```
@@ -45,7 +45,7 @@ main.go 文件中定义了package main 。同时也在文件中import了
 
 在程序中我们一般都会注释，如果我们按照一定规则，godoc工具会收集这些注释并产生一个技术文档。
 
-```Go
+```go
 // Copyright 2009 The Go Authors. All rights reserved.  
 // Use of this source code is governed by a BSD-style  
 // license that can be found in the LICENSE file.     
@@ -114,7 +114,7 @@ Go 1.11 新增了对模块的支持，希望借此解决“包依赖管理”。
  
 运行命令，go help mod ，我们可以看到mod的操作子命令，主要是init、 edit、 tidy。
 
-```Go
+```go
 Go mod provides access to operations on modules.
 
 Note that support for modules is built into all the go commands,
@@ -161,7 +161,7 @@ why       解释为什么需要依赖
 （4）在ind目录中，我们编写了该项目的主要文件main.go
 
 
-```Go
+```go
 
 package main
 
@@ -210,7 +210,7 @@ D:\gomodules\ind>go mod edit -replace=golang.org/x/net@v0.0.0-20181114220301-ada
 
 go.mod文件
 
-```Go
+```go
 module ind
 
 replace (
@@ -242,7 +242,7 @@ go.mod文件可以通过require，replace和exclude语句使用的精确软件�
 
 go.sum文件
 
-```Go
+```go
 github.com/PuerkitoBio/goquery v1.5.0 h1:uGvmFXOA73IKluu/F84Xd1tt/z07GYm8X49XKHP7EJk=
 github.com/PuerkitoBio/goquery v1.5.0/go.mod h1:qD2PgZ9lccMbQlc7eEOjaeRlFQON7xY8kdmcsrnKqMg=
 github.com/andybalholm/cascadia v1.0.0 h1:hOCXnnZ5A+3eVDX8pvgl4kofXv2ELss0bKcqRySc45o=

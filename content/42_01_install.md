@@ -58,7 +58,7 @@ Windows系统也可以选择go1.11.1.windows-amd64.msi，双击运行程序根�
 
 Win+R打开CMD（注意：设置环境变量后需要重新打开CMD），输入 go ，如下显示说明Go语言运行环境已经安装成功：
 
-```Go
+```go
 D:\goproject\src>go
 Go is a tool for managing Go source code.
 
@@ -127,7 +127,7 @@ GOPATH目录约定有三个子目录
 
 文件名: test.go，代码如下：
 
-```Go
+```go
 package main
 
 import "fmt"

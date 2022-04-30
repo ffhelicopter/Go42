@@ -6,7 +6,7 @@
 
 反射是应用程序检查其所拥有的结构，尤其是类型的一种能。每种语言的反射模型都不同，并且有些语言根本不支持反射。Go语言实现了反射，反射机制就是在运行时动态调用对象的方法和属性，即可从运行时态的示例对象反求其编码阶段的定义，标准库中reflect包提供了相关的功能。在reflect包中，通过reflect.TypeOf()，reflect.ValueOf()分别从类型、值的角度来描述一个Go对象。
 
-```Go
+```go
 func TypeOf(i interface{}) Type
 type Type interface 
 
@@ -16,7 +16,7 @@ type Value struct
 
 在Go语言的实现中，一个interface类型的变量存储了2个信息, 一个<值，类型>对，<value,type> :
 
-```Go
+```go
 (value, type)
 ```
 
@@ -24,7 +24,7 @@ value是实际变量值，type是实际变量的类型。两个简单的函数�
 
 例如，x 被定义为：var x float64 = 3.4，那么 reflect.TypeOf(x) 返回 float64，reflect.ValueOf(x) 返回 3.4。实际上，反射是通过检查一个接口的值，变量首先被转换成空接口。这从下面两个函数签名能够很明显的看出来：
 
-```Go
+```go
 func TypeOf(i interface{}) Type
 func ValueOf(i interface{}) Value
 ```
@@ -43,7 +43,7 @@ Kind() 将返回一个常量，表示具体类型的底层类型
 
 由于反射是一个强大的工具，但反射对性能有一定的影响，除非有必要，否则应当避免使用或小心使用。下面代码针对int、数组以及结构体分别使用反射机制，其中的差异请看注释。
 
-```Go
+```go
 package main
 
 import (
@@ -86,7 +86,7 @@ d.CanSet()方法：判断它是否可被取地址并可被修改
 
 通过一个settable的Value反射对象来访问、修改其对应的变量值：
 
-```Go
+```go
 package main
 
 import (
@@ -131,7 +131,7 @@ func main() {
 
 在结构体中有tag标签，通过反射可获取结构体成员变量的tag信息。
 
-```Go
+```go
 package main
 
 import (
@@ -154,7 +154,7 @@ func main() {
 
 ```
 
-```Go
+```go
 程序输出：
 years
 ```
@@ -163,7 +163,7 @@ years
 
 为了完整说明反射的情况，通过反射一个结构体类型，综合来说明。下面例子较为系统地利用一个结构体，来充分举例说明反射：
 
-```Go
+```go
 package main
 
 import (
@@ -273,7 +273,7 @@ func PrintValue(v reflect.Value) {
 }
 ```
 
-```Go
+```go
 程序输出：
 String             : <main.ss Value>
 Type               : main.ss

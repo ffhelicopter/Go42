@@ -32,7 +32,7 @@ TCP Socket
 
 在Go语言的net包中有一个类型TCPConn，这个类型可以用来作为客户端和服务器端交互的通道，他有两个主要的函数：
 
-```Go
+```go
 func (c *TCPConn) Write(b []byte) (n int, err os.Error)
 func (c *TCPConn) Read(b []byte) (n int, err os.Error)
 ```
@@ -40,7 +40,7 @@ func (c *TCPConn) Read(b []byte) (n int, err os.Error)
 TCPConn可以用在客户端和服务器端来读写数据。
 
 在Go语言中通过ResolveTCPAddr获取一个TCPAddr：
-```Go
+```go
 func ResolveTCPAddr(net, addr string) (*TCPAddr, os.Error)
 ```
 net参数是"tcp4"、"tcp6"、"tcp"中的任意一个，分别表示TCP(IPv4-only), TCP(IPv6-only)或者TCP(IPv4, IPv6的任意一个)。
@@ -49,7 +49,7 @@ addr表示域名或者IP地址，例如"www.google.com:80" 或者"127.0.0.1:22"�
 
 我们来看一个TCP 连接建立的具体代码：
 
-```Go
+```go
 // TCP server 服务端代码
 
 package main
@@ -122,7 +122,7 @@ func tcpPipe(conn *net.TCPConn) {
 服务端 tcpListener.AcceptTCP() 接受一个客户端连接请求，通过go tcpPipe(tcpConn) 开启一个新协程来管理这对连接。 在func tcpPipe(conn *net.TCPConn)  中，处理服务端和客户端数据的交换，在这段代码for中，通过 bufio.NewReader 读取客户端发送过来的数据。
 
 客户端代码：
-```Go
+```go
 // TCP client
 
 package main
