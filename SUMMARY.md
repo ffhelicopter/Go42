@@ -1,4 +1,3 @@
-[TOC]
 # [前言](README.md)
 # [第一章 Go安装与运行](content/42_01_install.md)
 ## [1.1 Go 安装](content/42_01_install.md#11-go安装)
