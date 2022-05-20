@@ -193,5 +193,3 @@ LiteIDE源码位于https://github.com/visualfc/liteide上。需要使用Qt4/Qt5�
 >
 >
 >虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
-
-
