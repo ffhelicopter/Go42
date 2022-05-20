@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第三十七章 context包
 
-作者：李骁
+作者：李骁(ffhelicopter)
 
 ## 37.1 context包
 

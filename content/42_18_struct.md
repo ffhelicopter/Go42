@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第十八章 Struct 结构体
 
-作者：李骁
+作者：李骁(ffhelicopter)
 
 ## 18.1结构体(struct)
 

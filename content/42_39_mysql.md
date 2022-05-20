@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第三十九章 MySql数据库
 
-作者：李骁
+作者：李骁(ffhelicopter)
 
 ## 39.1 database/sql包
 

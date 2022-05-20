@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第三十三章 Socket网络
 
-作者：李骁
+作者：李骁(ffhelicopter)
 
 ## 33.1 Socket基础知识
 

@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第二十八章 unsafe包
 
-作者：李骁
+作者：李骁(ffhelicopter)
 
 ## 28.1 unsafe 包
 

@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第二十二章 通道(channel)
 
-作者：李骁
+作者：李骁(ffhelicopter)
 
 ## 22.1 通道(channel)
 

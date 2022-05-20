@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第十一章 数组(Array)
 
-作者：李骁
+作者：李骁(ffhelicopter)(ffhelicopter)
 
 ## 11.1 数组(Array)
 

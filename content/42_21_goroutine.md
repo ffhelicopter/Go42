@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第二十一章 协程(goroutine)
 
-作者：李骁
+作者：李骁(ffhelicopter)
 
 >Concurrency is about dealing with lots of things at once. <br>
 >Parallelism is about doing lots of things at once.<br>

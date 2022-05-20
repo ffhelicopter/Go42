@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第十二章 切片(slice)
 
-作者：李骁
+作者：李骁(ffhelicopter)
 
 ## 12.1 切片(slice)
 
