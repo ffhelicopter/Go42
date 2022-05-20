@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第十一章 数组(Array)
 
-作者：李骁
+作者：ffhelicopter（李骁）(ffhelicopter)
 
 ## 11.1 数组(Array)
 
@@ -127,4 +127,4 @@ println(arrRoom == arrBed) //true
 >
 >
 >虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
->联系邮箱：roteman@163.com
+

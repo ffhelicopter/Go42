@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第十章 string
 
-作者：李骁
+作者：ffhelicopter（李骁）
 
 ## 10.1 字符串介绍
 
@@ -224,4 +224,4 @@ strings.Contains(s, substr string) bool
 >
 >
 >虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
->联系邮箱：roteman@163.com
+

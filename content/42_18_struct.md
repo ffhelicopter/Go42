@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第十八章 Struct 结构体
 
-作者：李骁
+作者：ffhelicopter（李骁）
 
 ## 18.1结构体(struct)
 
@@ -111,10 +111,10 @@ type Line struct { p, q Point3D }
 
 ```go
 origin := Point3D{}                      //  Point3D 是零值
-line := Line{origin, Point3D{y: -4, z: 12.3}}  //   line.q.x 是零值
+line := Line{origin, Point3D{y: -4, z: 12.3\}\}  //   line.q.x 是零值
 ```
 
-这里 Point3D{}以及 Line{origin, Point3D{y: -4, z: 12.3}}都是结构体字面量。
+这里 Point3D{}以及 Line{origin, Point3D{y: -4, z: 12.3\}\}都是结构体字面量。
 
 表达式 new(Type) 和 &Type{} 是等价的。&struct1{a, b, c} 是一种简写，底层仍然会调用 new ()，这里值的顺序必须按照字段顺序来写。也可以通过在值的前面放上字段名来初始化字段的方式，这种方式就不必按照顺序来写了。
 
@@ -335,7 +335,7 @@ func (o Other) Write() {
 func main() {
 
 	//  方法一：Other{99}作为Writer 接口赋值
-	Ao := Author{"Other", Other{99}}
+	Ao := Author{"Other", Other{99\}\}
 	Ao.Write()
 
 	// 方法二：简易做法，对接口使用零值，可以完成初始化
@@ -394,7 +394,7 @@ func main() {
 	fmt.Printf("Student.Human.string is: %s\n", stu.string)
 
 	// 使用结构体字面量赋值
-	stud := Student{Room: 102, Human: Human{"Hawking", "男", 14, "Monitor"}}
+	stud := Student{Room: 102, Human: Human{"Hawking", "男", 14, "Monitor"\}\}
 
 	fmt.Println("stud is:", stud)
 	fmt.Printf("Student.Room is: %d\n", stud.Room)
@@ -464,4 +464,4 @@ var c C
 >
 >
 >虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
->联系邮箱：roteman@163.com
+

@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第十五章 错误处理
 
-作者：李骁
+作者：ffhelicopter（李骁）
 
 ## 15.1 错误类型
 任何时候当你需要一个新的错误类型，都可以用 errors（必须先 import）包的 errors.New 函数接收合适的错误信息来创建，像下面这样：
@@ -298,4 +298,3 @@ fmt.Printf("longCalculation took this amount of time: %s\n", delta)
 >
 >
 >虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
->联系邮箱：roteman@163.com

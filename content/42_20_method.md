@@ -1,6 +1,6 @@
 # 《Go语言四十二章经》第二十章 方法
 
-作者：李骁
+作者：ffhelicopter（李骁）
 
 在前面我们讲了结构体（struct）和接口（interface），在里面也提到过方法，但没有详细介绍方法（Method）。在这一章里，我们来仔细看看方法有那些奇妙之处呢？
 
@@ -381,7 +381,7 @@ func (s Student) Print() { // 值方法
 }
 
 func main() {
-	stud := Student{Room: 102, Human: Human{"Hawking", "男", 14, "Monitor"}}
+	stud := Student{Room: 102, Human: Human{"Hawking", "男", 14, "Monitor"\}\}
 	stud.String()
 	stud.Human.String()
 }
@@ -799,7 +799,7 @@ func methodSet(a interface{}) {
 }
 
 func main() {
-	p := OtherPeople{People{26, "Male", "张三"}}
+	p := OtherPeople{People{26, "Male", "张三"\}\}
 	p.PeInfo()
 	p.PeName("Joke")
 
@@ -865,4 +865,3 @@ pnew name: Haw
 >
 >
 >虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
->联系邮箱：roteman@163.com
