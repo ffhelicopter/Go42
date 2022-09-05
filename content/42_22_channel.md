@@ -57,7 +57,7 @@ close(c)
 func send(c chan<- int) {
 	for i := 0; i < 10; i++ {
 
-		fmt.Println("send readey ", i)
+		fmt.Println("send ready ", i)
 		c <- i
 		fmt.Println("send ", i)
 	}
@@ -73,33 +73,33 @@ func recv(c <-chan int) {
 ```go
 程序输出：
 
-send readey  0
+send ready  0
 send  0
-send readey  1
+send ready  1
 received  0
 received  1
 send  1
-send readey  2
+send ready  2
 send  2
-send readey  3
+send ready  3
 received  2
 received  3
 send  3
-send readey  4
+send ready  4
 send  4
-send readey  5
+send ready  5
 received  4
 received  5
 send  5
-send readey  6
+send ready  6
 send  6
-send readey  7
+send ready  7
 received  6
 received  7
 send  7
-send readey  8
+send ready  8
 send  8
-send readey  9
+send ready  9
 received  8
 received  9
 send  9
@@ -133,7 +133,7 @@ func main() {
 func send(c chan<- int) {
 	for i := 0; i < 10; i++ {
 
-		fmt.Println("send readey ", i)
+		fmt.Println("send ready ", i)
 		c <- i
 		fmt.Println("send ", i)
 	}
@@ -150,17 +150,17 @@ func recv(c <-chan int) {
 ```go
 程序输出：
 
-send readey  0
+send ready  0
 send  0
-send readey  1
+send ready  1
 send  1
-send readey  2
+send ready  2
 send  2
-send readey  3
+send ready  3
 send  3
-send readey  4
+send ready  4
 send  4
-send readey  5
+send ready  5
 received  0
 received  1
 received  2
@@ -168,13 +168,13 @@ received  3
 received  4
 received  5
 send  5
-send readey  6
+send ready  6
 send  6
-send readey  7
+send ready  7
 send  7
-send readey  8
+send ready  8
 send  8
-send readey  9
+send ready  9
 send  9
 received  6
 received  7
@@ -283,7 +283,7 @@ close(c)
 func send(c chan<- int) {
 	for i := 0; i < 10; i++ {
 
-		fmt.Println("send readey ", i)
+		fmt.Println("send ready ", i)
 		c <- i
 		fmt.Println("send ", i)
 	}
@@ -299,33 +299,33 @@ func recv(c <-chan int) {
 ```go
 程序输出：
 
-send readey  0
+send ready  0
 send  0
-send readey  1
+send ready  1
 received  0
 received  1
 send  1
-send readey  2
+send ready  2
 send  2
-send readey  3
+send ready  3
 received  2
 received  3
 send  3
-send readey  4
+send ready  4
 send  4
-send readey  5
+send ready  5
 received  4
 received  5
 send  5
-send readey  6
+send ready  6
 send  6
-send readey  7
+send ready  7
 received  6
 received  7
 send  7
-send readey  8
+send ready  8
 send  8
-send readey  9
+send ready  9
 received  8
 received  9
 send  9
@@ -359,7 +359,7 @@ func main() {
 func send(c chan<- int) {
 	for i := 0; i < 10; i++ {
 
-		fmt.Println("send readey ", i)
+		fmt.Println("send ready ", i)
 		c <- i
 		fmt.Println("send ", i)
 	}
@@ -376,17 +376,17 @@ func recv(c <-chan int) {
 ```go
 程序输出：
 
-send readey  0
+send ready  0
 send  0
-send readey  1
+send ready  1
 send  1
-send readey  2
+send ready  2
 send  2
-send readey  3
+send ready  3
 send  3
-send readey  4
+send ready  4
 send  4
-send readey  5
+send ready  5
 received  0
 received  1
 received  2
@@ -394,13 +394,13 @@ received  3
 received  4
 received  5
 send  5
-send readey  6
+send ready  6
 send  6
-send readey  7
+send ready  7
 send  7
-send readey  8
+send ready  8
 send  8
-send readey  9
+send ready  9
 send  9
 received  6
 received  7
