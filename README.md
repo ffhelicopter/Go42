@@ -4,15 +4,7 @@
 
 # [《Go语言四十二章经》](https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md "《Go语言四十二章经》")
 
-作者：ffhelicopter（李骁）  时间：2018-04-15
-
-
-## 开始阅读
-
-本书内容在github更新：https://github.com/ffhelicopter/Go42/blob/master/SUMMARY.md<br>
-
-
-#### [>>>开始阅读 第一章 Go安装与运行](https://github.com/ffhelicopter/Go42/blob/master/content/42_01_install.md)
+作者：ffhelicopter（李骁）  完稿时间：2018-04-15
 
 
 ## 进阶阅读
