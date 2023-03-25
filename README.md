@@ -52,14 +52,8 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 
 
-## rpcx 框架
 
-最新更新，框架rpcx包含了服务发现、负载均衡、故障转移等服务治理能力，特整理了一些资料来说说这款框架，推荐中小团队使用。
-
-#### [>>> 开始阅读  rpcx 框架](https://github.com/ffhelicopter/Go42/blob/master/content/42_43_rpcx.md)
-
-
-## 最新分享
+## 分享
 
 
 本人在 GitChat 的专栏分享《Gin 框架入门实践》！ [我要报名参加](https://gitbook.cn/gitchat/column/5dab061e7d66831b22aa0b44)
@@ -74,13 +68,6 @@ function，method，interface，type等词语是程序员们接触比较多的�
 目前有关 Web 开发中的安全性问题的讲解很少在框架类教程中出现，这也是本专栏根据实际开发情况，有针对性编写了相关内容，当然， Gin 框架在安全性方面也做的相当不错。
 
 本专栏图文并茂，课程中的重要实例代码均有完整代码可供测试。
-
-
-
-另外本人在 GitChat 有分享 [《Go 语言错误与异常处理》](https://gitbook.cn/gitchat/activity/5d13238387e6304e23d91260)主要介绍 Go 语言中错误与异常，进一步深入探讨错误与异常的区别以及实际开发中合适的处理方式。
-
-带堆栈的错误信息在开发与bug追踪中都十分重要，可以帮助程序员更快定位错误发生位置。它拥有比标准库中错误处理更丰富的处理方式，可谓程序员调试之牛刀。
-
 
 
 
