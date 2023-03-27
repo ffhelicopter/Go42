@@ -51,43 +51,6 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 
 
-## 分享
-
-
-本人在 GitChat 的专栏分享《Gin 框架入门实践》！ [我要报名参加](https://gitbook.cn/gitchat/column/5dab061e7d66831b22aa0b44)
-
-
-本专栏通过对 Gin 框架核心代码的详细解读，分块讲解各个模块的功能与原理，并结合实例深度探讨 Gin 原理与特性。区别于其他教程只讲使用不深入原理分析。
-
-专栏包含大量不同场景下的案例和代码实践，带领读者了解框架的具体使用，有助于读者更深入体会对应模块原理。对某些重要的知识点，专栏进一步进行了更多拓展，以达到读者更清晰理解与掌握知识点。
-
-专栏的安全编程部分，结合 Gin 框架对 CORS 跨域资源共享、CSRF 跨站请求伪造、Cookie 安全、数据有效性、数据渲染的安全性问题等，都做了非常深入的讨论和实践。
-
-目前有关 Web 开发中的安全性问题的讲解很少在框架类教程中出现，这也是本专栏根据实际开发情况，有针对性编写了相关内容，当然， Gin 框架在安全性方面也做的相当不错。
-
-本专栏图文并茂，课程中的重要实例代码均有完整代码可供测试。
-
-
-
-## 交流
-
-虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
-
-
-感谢以下网友对本书提出的修改建议： Joyboo 、林远鹏、Mr_RSI、magic-joker、3lackrush、Jacky2、tanjibo、wisecsj、eternal-flame-AD、isLishude、morya、adophper、ivanberry、xjl662750、huanglizhuo、xianyunyh、荣怡、pannz、yaaaaaaaan、sidbusy、NHibiki、awkj、yufy、lazyou、 liov 、飞翔不能的翔哥、橡_皮泥、刘冲_54ac、henng、slarsar
-
-
-
-## 更新
-
-本书会在GitHub持续更新！为了更简单表述清楚，某些章节的内容我会根据情况随时更新，也包括新发现的错误和缺陷。
-
-随Go语言版本的不断迭代，本书也会不断修改完善相关章节的内容和代码。
-
-这里提醒读者朋友，在GitHub将会在第一时间得到本书的最新更新，所以如发现任何问题还请先在GitHub上看看最新文章的情况。
-
-
-
 ## 推荐
 
 下列清单是常用的第三方库。
@@ -199,3 +162,22 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 2.goreporter https://github.com/360EntSecGroup-Skylar/goreporter
 
+
+
+
+## 交流
+
+虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
+
+
+感谢以下网友对本书提出的修改建议： Joyboo 、林远鹏、Mr_RSI、magic-joker、3lackrush、Jacky2、tanjibo、wisecsj、eternal-flame-AD、isLishude、morya、adophper、ivanberry、xjl662750、huanglizhuo、xianyunyh、荣怡、pannz、yaaaaaaaan、sidbusy、NHibiki、awkj、yufy、lazyou、 liov 、飞翔不能的翔哥、橡_皮泥、刘冲_54ac、henng、slarsar
+
+
+
+## 更新
+
+本书会在GitHub持续更新！为了更简单表述清楚，某些章节的内容我会根据情况随时更新，也包括新发现的错误和缺陷。
+
+随Go语言版本的不断迭代，本书也会不断修改完善相关章节的内容和代码。
+
+这里提醒读者朋友，在GitHub将会在第一时间得到本书的最新更新，所以如发现任何问题还请先在GitHub上看看最新文章的情况。
