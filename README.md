@@ -51,119 +51,6 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 
 
-## 推荐
-
-下列清单是常用的第三方库。
-
-#### WEB框架
-
-1.Gin  https://github.com/gin-gonic/gin
-
-2.Beego  https://github.com/astaxie/beego
-
-3.martini https://github.com/go-martini/martini
-
-
-#### HTTP
-
-1.httprouter https://github.com/julienschmidt/httprouter
-
-2.fasthttp https://github.com/valyala/fasthttp
-
-3.mux https://github.com/gorilla/mux
-
-
-#### JSON解析
-
-1.json-iterator https://github.com/json-iterator/go 
-
-2.jsonparser https://github.com/buger/jsonparser
-
-
-#### 数据库以及ORM
-
-1.LevelDB https://github.com/syndtr/goleveldb
-
-2.BoltDB https://github.com/boltdb/bolt
-
-3.MySQL https://github.com/go-sql-driver/mysql
-
-4.tidb https://github.com/pingcap/tidb
-
-5.ssdb https://github.com/ideawu/ssdb
-
-6.gorm https://github.com/jinzhu/gorm
-
-
-#### 爬虫
-
-1.Colly https://github.com/gocolly/colly
-
-2.Goquery https://github.com/PuerkitoBio/goquery
-
-
-#### 中间件
-
-1.redis https://github.com/go-redis/redis
-
-2.ElasticSearch https://github.com/olivere/elastic
-
-3.Alice https://github.com/justinas/alice
-
-
-#### 日志
-
-1.zap https://github.com/uber-go/zap
-
-
-#### 错误处理
-
-1.errors https://github.com/pkg/errors
-
-
-#### 消息队列
-
-1.Nsq  https://github.com/nsqio/nsq
-
-#### Service Mesh
-
-1.Istio  https://github.com/istio/istio
-
-#### RPC
-
-1.rpcx https://github.com/smallnest/rpcx
-
-2.grpc https://github.com/grpc/grpc-go
-
-#### 协程池
-
-1.ants https://github.com/panjf2000/ants
-
-
-#### 视觉图像处理
-
-1.bild https://github.com/anthonynsimon/bild
-
-2.gmf https://github.com/3d0c/gmf
-
-3.opencv https://github.com/hybridgroup/gocv
-
-
-#### 网络
-
-1.KCP https://github.com/xtaci/kcp-go
-
-2.frp https://github.com/fatedier/frp
-
-
-#### 测试
-
-1.gock https://github.com/h2non/gock
-
-2.goreporter https://github.com/360EntSecGroup-Skylar/goreporter
-
-
-
 
 ## 交流
 
@@ -176,8 +63,6 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 ## 更新
 
-本书会在GitHub持续更新！为了更简单表述清楚，某些章节的内容我会根据情况随时更新，也包括新发现的错误和缺陷。
+因为各位热心朋友的支持与鼓励，让我有了动力不断持续更新完善本书。6年多来，看着Go语言被越来越多的人接受使用，而且本书开源以来也接到数千位读者的认可，本人非常开心。
 
-随Go语言版本的不断迭代，本书也会不断修改完善相关章节的内容和代码。
-
-这里提醒读者朋友，在GitHub将会在第一时间得到本书的最新更新，所以如发现任何问题还请先在GitHub上看看最新文章的情况。
+但因为种种原因，很遗憾我需要停止本书的更新了，江湖不再有我，但我热爱的Go语言将会继续伴随我（大概率是我业余用唯一编程语言）。再次感谢给以支持的各位朋友。
