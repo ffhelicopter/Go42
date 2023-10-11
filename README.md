@@ -48,21 +48,3 @@ function，method，interface，type等词语是程序员们接触比较多的�
 
 
 #### [>>>开始阅读 第一章 Go安装与运行](https://github.com/ffhelicopter/Go42/blob/master/content/42_01_install.md)
-
-
-
-
-## 交流
-
-虽然本书中例子都经过实际运行，但难免出现错误和不足之处，烦请您指出；如有建议也欢迎交流。
-
-
-感谢以下网友对本书提出的修改建议： Joyboo 、林远鹏、Mr_RSI、magic-joker、3lackrush、Jacky2、tanjibo、wisecsj、eternal-flame-AD、isLishude、morya、adophper、ivanberry、xjl662750、huanglizhuo、xianyunyh、荣怡、pannz、yaaaaaaaan、sidbusy、NHibiki、awkj、yufy、lazyou、 liov 、飞翔不能的翔哥、橡_皮泥、刘冲_54ac、henng、slarsar
-
-
-
-## 更新
-
-因为各位热心朋友的支持与鼓励，让我有了动力不断持续更新完善本书。6年多来，看着Go语言被越来越多的人接受使用，而且本书开源以来也接到数千位读者的认可，本人非常开心。
-
-但因为种种原因，很遗憾我需要停止本书的更新了，江湖不再有我，但我热爱的Go语言将会继续伴随我（大概率是我业余用唯一编程语言）。再次感谢给以支持的各位朋友。
