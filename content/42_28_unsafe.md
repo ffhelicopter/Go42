@@ -136,7 +136,7 @@ var i *int32 = (*int32)(unsafe.Pointer(v))
 var j *int64 = (*int64)(unsafe.Pointer(uintptr(unsafe.Pointer(v)) + uintptr(unsafe.Sizeof(int64(0)))))
 ```
 
-其实我们已经知道v是有两个成员的，包括i和j，并且在定义中，i位于j的前面，而i是int32类型，也就是说i占4个字节。所以j是相对于v偏移了4个字节。您可以用uintptr(4)或uintptr(unsafe.Sizeof(int64(0)))来做这个事。unsafe.Sizeof方法用来得到一个值应该占用多少个字节空间。注意这里跟C的用法不一样，C是直接传入类型，而Go 语言是传入值。
+其实我们已经知道v是有两个成员的，包括i和j，并且在定义中，i位于j的前面，而i是int32类型，也就是说i占4个字节，但对齐为8字节。所以j是相对于v偏移了8个字节。您可以用uintptr(8)或uintptr(unsafe.Sizeof(int64(0)))来做这个事（因为int64占8字节，对齐也是8字节，但最好是使用uintptr(unsafe.Offsetof(v.j))）。unsafe.Sizeof方法用来得到一个值应该占用多少个字节空间。注意这里跟C的用法不一样，C是直接传入类型，而Go 语言是传入值。
 
 之所以转成uintptr类型是因为需要做指针运算。v的地址加上j相对于v的偏移地址，也就得到了v.j在内存中的绝对地址，然后通过unsafe.Pointer转为指针，别忘了j的类型是int64，所以现在的j就是一个指向v.j的指针，接下来给它赋值：
 
